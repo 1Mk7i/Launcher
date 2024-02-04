@@ -13,7 +13,7 @@ body {
 }
 .menu {
     background-color: #202124;
-    background-image: url(/src/assets/images/rust-metal-tech-floor-wall.jpg) !important;
+    background-image: url(../assets/images/rust-metal-tech-floor-wall.jpg) !important;
     background-position: center;
     color: #000;
     font-family: cursive;
@@ -23,7 +23,7 @@ body {
 }
 .menu2 {
     background-color: #202124;
-    background-image: url(/src/assets/images/texture-wood-flooring-parquet.jpg);
+    background-image: url(../assets/images/texture-wood-flooring-parquet.jpg);
     background-position: center;
     color: #000;
     font-family: cursive;
