@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/styles/index.css">
+    <link rel="stylesheet" href="/src/styles/prism-holi-theme.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>React</title>
+</head>
+<body class="menu">
+    <div class="Back">
+        <a class="btn btn-primary back" href="/src/pages/guide.html">←</a>
+    </div>
+    <div class="numPanel">
+        <a class="btn btn-primary num" data-target="section1" onclick="scrollToSection(this)">1</a>
+    </div>
+    <div class="panel">
+        <div id="section1"></div>
+          <div class="descriptionPanel" id="text1">
+                1. Створити новий проєкт mysite-react <br>
+                2. Переконатись, що встановлено останні версії: <br>
+                    -  Node.js (команда <code>node -v</code>) v20.8.0 і вище <br>
+                    -  npm (команда <code>npm -v</code>) v10.1.0 і вище <br>
+                    -  git (команда <code>git --version</code>) <br>
+                    -  github CLI (команда <code>gh --version</code>) <br>
+                3. Створити react app за допомогою команди <code>npx create-react-app .</code> <br>
+                4. Встановити пакети за допомогою команди <code>npm install</code> <br>
+                5. Переконатись, що додаток працює за допомогою команди <code>npm start</code> <br>
+                6. Переконатись, що працює <code>hot reload</code>. Для цього змінити функцію <code>App</code> в файлі <code>App.js</code> і переконатись, що зміни відображаються в браузері. Ви можете змінити щось в HTML, який генерує ця функція. <br>
+                7. Створимо локальний репозиторій за допомогою команди <code>git init</code> <br>
+                8. Додамо всі файли в локальний репозиторій за допомогою команди <code>git add .</code> <br>
+                9. Зробимо перший коміт за допомогою команди <code>git commit -m "Initial commit"</code> <br>
+                10. Авторизуємось на github.com в браузері <br>
+                11. Авторизуємося в github за допомогою команди <code>gh auth login</code>: <br>
+                     -  Виберіть <code>GitHub.com</code> <br>
+                     -  Виберіть <code>HTTPS</code> <br>
+                     -  На питання 'Authenticate Git with your GitHub credentials?' відповідь <code>Y</code> <br>
+                     -  Копіюємо код з консолі, натискаємо <code>Enter</code>; Відкриється браузер, де потрібно вставити код і натиснути <code>Enter</code> і дозволити авторизацію. <br>
+                12. Створюємо новий репозиторій на github за допомогою команди <code>gh repo create "Назва репозиторію" --public</code> <br>
+                13. Додаємо віддалений репозиторій за допомогою команди <code>git remote add origin "Посилання на репозиторій"</code> <br>
+                    Приклад: <code>git remote add origin https://github.com/SurkovKostiantyn/kn22react.git</code> <br>
+                14. Пушимо наш локальний репозиторій на github за допомогою команди <code>git push origin master</code> <br>
+                15. Перевіряємо, що наш репозиторій з'явився на github <br>
+                16. Інсталюємо gh-pages за допомогою команди <code>npm install gh-pages --save-dev</code> <br>
+                17. Відкриваємо файл <code>package.json</code> і під записом <code>"name": "mysite-react"</code> додаємо запис <br>
+                    <code>"homepage": "https://ваш_логін_на_гітхаб.github.io/ваш_репозиторій"</code> <br>
+                    Приклад:  <br>
+                    <code>"homepage": "https://SurkovKostiantyn.github.io/mysite-react"</code> <br>
+                    Далі додаємо записи в <code>scripts</code> в цьому ж файлі: <br>
+                    <code>"predeploy": "npm run build",</code> <br>
+                    <code>"deploy": "gh-pages -d build"</code> <br>
+                18. Прописуємо команду <code>npm run deploy</code> <br>
+                18. Через 2-3 хвилини заходимо на сайті github в ваш репозиторій, <code>Settings</code> -> <code>Pages</code> -> <code>Branch</code> -> <code>gh-pages branch</code> - тобто обираємо гілку, з якої буде відображатись наш сайт. <br>
+                19. Чекаємо 2-3 хвилини перевіряємо, що сайт відображається за адресою <code>https://ваш_логін_на_гітхаб.github.io/ваш_репозиторій</code> <br>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript-функція для прокручування до певного пункту
+        function scrollToSection(button) {
+            var targetId = button.getAttribute('data-target');
+            var element = document.getElementById(targetId);
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
