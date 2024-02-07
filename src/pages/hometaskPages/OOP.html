@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles/index.css">
+    <link rel="stylesheet" href="../../styles/prism-holi-theme.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>OOP</title>
+</head>
+<body class="menu2">
+    <div class="Back">
+        <a class="btn btn-primary back" href="../hometask.html">←</a>
+    </div>
+    <div class="numPanel">
+        <a class="btn btn-primary num" data-target="section1" onclick="scrollToSection(this)">1</a>
+    </div>
+    
+    <div class="panel">
+        <div id="section1"></div>
+        <div class="descriptionPanel" id="text1">
+            <h2>Завдання 1</h2>
+            <h4>07.02.2024</h4>
+            <p>Розробити програму, використовуючи функції, розмішені всередині структури, що описує відповідний об’єкт.
+                Описати структуру з іменем  TRIANGLE, яка містить координати вершин трикутника. Всередині структури реалізувати функції, що знаходять периметр, площ`у трикутника; радіус вписаного/описаного кола.
+                </p>
+            
+        </div>
+        <pre><code id="code1" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-c.min.js"></script>
+    <script>
+        // Використовуємо fetch для отримання вмісту файлу та відображення його
+        function fetchAndDisplayContent(url, codeId, textId) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(codeId).textContent = data;
+                    Prism.highlightAll();
+                });
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    var preElement = document.createElement('pre');
+                    preElement.textContent = data;
+                    var textContainer = document.getElementById(textId);
+                    textContainer.innerHTML = '';
+                    textContainer.appendChild(preElement);
+                });
+        }
+        fetchAndDisplayContent('OOP-res/task1.cpp', 'code1');
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript-функція для прокручування до певного пункту
+        function scrollToSection(button) {
+            var targetId = button.getAttribute('data-target');
+            var element = document.getElementById(targetId);
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
