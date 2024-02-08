@@ -14,11 +14,13 @@
     </div>
     <div class="numPanel">
         <a class="btn btn-primary num" data-target="section1" onclick="scrollToSection(this)">1</a>
+        <a class="btn btn-primary num" data-target="section2" onclick="scrollToSection(this)">2</a>
     </div>
     
     <div class="panel">
         <div id="section1"></div>
         <div class="descriptionPanel" id="text1">
+            <h2 style="color:red; text-align: center;">Практикум</h2>
             <h2>Завдання 1</h2>
             <h4>07.02.2024</h4>
             <p>Розробити програму, використовуючи функції, розмішені всередині структури, що описує відповідний об’єкт.
@@ -27,6 +29,28 @@
             
         </div>
         <pre><code id="code1" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+        <div class="imageContainer">
+            <img src="OOP-res/images/task1.png" alt="triangle">
+        </div>
+        
+    </div>
+    <div class="panel">
+        <div id="section2"></div>
+        <div class="descriptionPanel" id="text2">
+            <h2>Завдання 2</h2>
+            <h4>08.02.2024</h4>
+            <p>Розробити програму, використовуючи функції, що реалізують заданий функціонал.</p>
+            <p>Описати структуру з іменем  NOTE, яка містить поля:  NAME – прізвище, ім'я; TEL – номер телефону; BDAY – день народження (масив із трьох чисел). 
+                Написати програму, що окремими функціями виконує наступні дії:</p>
+            <ul style="list-style-type: disc;">
+                <li>введення з клавіатури даних в масив BLOCKNOTE, що складається з N змінних типу NOTE;</li>
+                <li>виведення на екран інформації про людей, чиї дні народження припадають на місяць, значення якого введено з клавіатури; якщо таких людей немає, то вивести відповідне повідомлення.</li>
+            </ul>
+        </div>
+        <pre><code id="code2" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+        <div class="imageContainer">
+            <img src="OOP-res/images/task2.png">
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
@@ -50,7 +74,8 @@
                     textContainer.appendChild(preElement);
                 });
         }
-        fetchAndDisplayContent('OOP-res/task1.cpp', 'code1');
+        fetchAndDisplayContent('OOP-res/tasks/task1.cpp', 'code1');
+        fetchAndDisplayContent('OOP-res/tasks/task2.cpp', 'code2');
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -61,6 +86,13 @@
             var targetId = button.getAttribute('data-target');
             var element = document.getElementById(targetId);
             element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        var buttons = document.getElementsByClassName('num');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function() {
+                scrollToSection(this);
+            });
         }
     </script>
 </body>
