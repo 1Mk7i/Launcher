@@ -81,18 +81,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
-        // JavaScript-функція для прокручування до певного пункту
-        function scrollToSection(button) {
+       // JavaScript-функція для прокручування до певного пункту
+       function scrollToSection(button) {
             var targetId = button.getAttribute('data-target');
             var element = document.getElementById(targetId);
             element.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        var buttons = document.getElementsByClassName('num');
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener('click', function() {
-                scrollToSection(this);
-            });
         }
     </script>
 </body>
