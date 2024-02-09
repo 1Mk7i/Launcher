@@ -15,6 +15,7 @@
     <div class="numPanel">
         <a class="btn btn-primary num" data-target="section1" onclick="scrollToSection(this)">1</a>
         <a class="btn btn-primary num" data-target="section2" onclick="scrollToSection(this)">2</a>
+        <a class="btn btn-primary num" data-target="section3" onclick="scrollToSection(this)">1lab</a>
     </div>
     
     <div class="panel">
@@ -52,6 +53,38 @@
             <img src="OOP-res/images/task2.png">
         </div>
     </div>
+
+    <div class="panel">
+        <div id="section3"></div>
+        <div class="descriptionPanel" id="text3">
+        <h2>Лабораторна робота 1</h2>
+        <h4>09.02.2024</h4>
+        <div id="section4"></div>
+        
+            <h2>Завдання 3</h2>
+            <h4>10.02.2024</h4>
+            <p>Варіант 5</p>
+            <ol>
+                <li>Створити структуру, що містить інформацію про Кут (градуси, мінути). Реалізувати власний метод виведення на екран у форматі: ggmm'.  Реалізувати функцію додавання двох кутів.</li>
+                <li>Відомості  про видачу екземпляра журналу читачу складаються з назви журналу, номера та прізвища читача. Ввести набір з 10 таких відомостей. Знайти:
+                    <ul>
+                        <li>по даній назві журналу номера, що видавались та прізвища читачів, що їх брали;</li>
+                        <li>для кожного номера заданого журналу кількість його видач.</li>
+                    </ul>
+                </li>
+                <li>визначити, чи є Сидоров читачем, перерахувати видані йому журнали.</li>
+            </ol>
+        </div>
+        <pre><code id="code3" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+        <h4>Завдання 1</h4>
+        <img src="OOP-res/images/lab11.png">
+        <h4>Завдання 2</h4>
+        <img src="OOP-res/images/lab12.png">
+    </div>
+    
+        
+    </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-c.min.js"></script>
@@ -76,6 +109,7 @@
         }
         fetchAndDisplayContent('OOP-res/tasks/task1.cpp', 'code1');
         fetchAndDisplayContent('OOP-res/tasks/task2.cpp', 'code2');
+        fetchAndDisplayContent('OOP-res/tasks/lab1.cpp', 'code3');
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
