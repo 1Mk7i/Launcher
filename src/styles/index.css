@@ -13,7 +13,7 @@ body {
 }
 .menu {
     background: rgb(37,3,89);
-    background: linear-gradient(90deg, rgba(37,3,89,1) 0%, rgb(3, 45, 87) 50%, rgba(37,3,89,1) 100%);
+    background: linear-gradient(90deg, rgba(37,3,89,1) 0%, rgb(8, 39, 70) 50%, rgba(37,3,89,1) 100%);
     background-position: center;
     color: #fff; /* змінив кольор тексту на білий для кращої видимості */
     font-family: cursive;
@@ -57,7 +57,7 @@ body {
     box-shadow: #04ebeb77 5px 5px 3px;
 }
 .preview:hover {
-    box-shadow: #e5ff0044 3px 3px 10px;
+    box-shadow: #e4fd0144 3px 3px 10px;
 }
 .previewImg {
     margin: 0;
@@ -111,9 +111,6 @@ body {
 
 .preview:hover {
     animation: shake 0.5s infinite;
-}
-
-.preview:hover {
     box-shadow: #e5ff0044 3px 3px 10px;
 }
 .previewImg {
@@ -216,24 +213,45 @@ body {
     padding: 0;
 }
 .num{
-    background-color: #5b8388 !important;
-    border-color: #ff000000 !important;
+    background-color: #0abbd3 !important;
+    border: #527ae7 1px solid !important;
+    border-radius: 0% !important;
 }
 .num:hover{
-    background-color: #3c5f64 !important;
-    border-color: #ff000000 !important;
+    background-color: #0491a7 !important;
 }
-.whiteb{
-    background-image: url(../assets/images/background-space-text-image.jpg);
-    background-color: #8a8a8a !important;
-    border-color: #000000 !important;
-    color: #b1b1b1 !important;
-    box-shadow: inset 0 0 10px #837d50 !important;
+.whiteb {
+    align-items: center;
+    background-color: #313131;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-family: Phantomsans, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
 }
-.whiteb:hover{
-    background-image: url(../assets/images/stock-illustration-background.jpg);
-    background-color: #faefcd !important;
-    box-shadow: inset 0 0 10px #000000e5 !important;
-    border-color: #000000 !important;
-    color: #000 !important;
+
+.whiteb:active,
+.whiteb:hover {
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    outline: 0;
+}
+
+@media (min-width: 768px) {
+    .whiteb {
+        font-size: 24px;
+        min-width: 196px;
+    }
 }
