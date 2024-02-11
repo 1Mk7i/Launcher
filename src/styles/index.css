@@ -12,19 +12,18 @@ body {
     overflow: auto;
 }
 .menu {
-    background-color: #202124;
-    background-image: url(../assets/images/rust-metal-tech-floor-wall.jpg) !important;
+    background: rgb(37,3,89);
+    background: linear-gradient(90deg, rgba(37,3,89,1) 0%, rgb(3, 45, 87) 50%, rgba(37,3,89,1) 100%);
     background-position: center;
-    color: #000;
+    color: #fff; /* змінив кольор тексту на білий для кращої видимості */
     font-family: cursive;
     font-size: 16px;
     margin: 0;
     padding: 0;
 }
 .menu2 {
-    background-color: #202124;
-    background-image: url(../assets/images/texture-wood-flooring-parquet.jpg);
-    background-position: center;
+    background: rgb(7,0,128);
+    background: linear-gradient(90deg, rgba(7,0,128,1) 0%, rgba(0,0,0,1) 50%, rgba(7,0,128,1) 100%);    background-position: center;
     color: #000;
     font-family: cursive;
     font-size: 16px;
@@ -54,9 +53,8 @@ body {
     width: 100%;
     max-width: 100%; /* Змінилось на 100% від батьківського контейнера */
     min-width: 250px;
-    border: #000000 2px solid;
     border-radius: 5px;
-    box-shadow: #00000077 5px 5px 3px;
+    box-shadow: #04ebeb77 5px 5px 3px;
 }
 .preview:hover {
     box-shadow: #e5ff0044 3px 3px 10px;
@@ -69,17 +67,6 @@ body {
     border-radius: 3px;
     border: #000000 1px solid ;
     filter: sepia(0.5);
-}
-.maskImg{
-    filter:opacity(0.5);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 78%;
-    border-radius: 3px;
-    border: #000000 1px solid ;
-    z-index: 1;
 }
 .Button {
     position: absolute;
