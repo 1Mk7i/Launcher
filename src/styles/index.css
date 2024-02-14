@@ -21,7 +21,7 @@ html {
     background-color: #00000000 !important;
     border: none;
     box-shadow: none !important;
-    color: #ffffff;
+    color: #000000 !important;
     font-size: 20px;
     font-family: cursive;
     border-radius: 0 !important;
@@ -33,10 +33,13 @@ html {
     height: 100% !important;
     width: 100% !important;
 }
+.dropdown-toggle:hover{
+    background-color: #1df80077 !important;
+}
 .dropdown-menu.show {
     left: 50% !important;
-    background-color: #0cceff00;
-    
+    background-color: #85858594;
+    border: none;
 }
 .btn-secondary{
     width: 20px;
@@ -98,9 +101,8 @@ body {
     border-radius: 5px;
     padding: 10px;
     text-decoration: none;
-    margin: 60px 100px 30px;
+    margin: 60px 260px 30px 100px;
     min-width: 500px;
-    max-width: 1600px;
 }
 .preview {
     position: relative;
@@ -269,9 +271,9 @@ body {
 .num{
     background-color: #0abbd3 !important;
     border: #527ae7 1px solid !important;
-    border-radius: 50% !important;
+    border-radius: 10% !important;
     margin-bottom: 10px;
-    width: 50px;
+    width: 110px;
     height: 50px;
     display: flex !important;    
     align-items: center;
