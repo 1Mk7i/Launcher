@@ -9,11 +9,12 @@ struct Note {
 };
 
 void information() {
+    
     int N;
     cout << "Enter the number of people: ";
     cin >> N;
+    Note* BLOCKNOTE = new Note[N];
 
-    Note BLOCKNOTE[N];
 
     // Вводимо дані про людей
     for (int i = 0; i < N; i++) {

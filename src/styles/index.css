@@ -17,6 +17,25 @@ html {
     border-bottom: 2px solid #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+.btn-secondary{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    border-radius: 0;
+    justify-content: center;
+}
+.headb{
+    width: 20px !important;
+    height: 20px !important;
+    background-color: #00000000 !important;
+    border: none;
+    box-shadow: none !important;
+    display: flex;
+    font: 0.8em sans-serif;
+    border-radius: 0 !important; 
+    align-items: center;
+    
+}
 body {
     height: 100%;
     width: 100%;
@@ -26,7 +45,7 @@ body {
 }
 .menu {
     background: rgb(37,3,89);
-    background: linear-gradient(90deg, rgb(30, 4, 68) 0%, rgb(6, 29, 51) 50%, rgba(37,3,89,1) 100%);
+    background: linear-gradient(90deg, rgb(51, 50, 53) 0%, rgb(75, 75, 75) 50%, rgb(63, 63, 63) 100%);
     background-position: center;
     color: #fff; /* змінив кольор тексту на білий для кращої видимості */
     font-family: cursive;
@@ -215,7 +234,6 @@ body {
 }
 .numPanel{
     background-color: #ff000000;
-    border: 1px solid #000;
     border-radius: 5px;
     padding: 10px;
     top: 120px;
@@ -228,7 +246,13 @@ body {
 .num{
     background-color: #0abbd3 !important;
     border: #527ae7 1px solid !important;
-    border-radius: 0% !important;
+    border-radius: 50% !important;
+    margin-bottom: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex !important;    
+    align-items: center;
+    justify-content: center;
 }
 .num:hover{
     background-color: #0491a7 !important;

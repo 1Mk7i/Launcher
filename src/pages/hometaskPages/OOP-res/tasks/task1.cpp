@@ -3,47 +3,45 @@
 
 using namespace std;
 
-struct Shape {
-    string name;
-    int points;
-    int x[3];
-    int y[3];
+struct Point {
+    float x, y;
 };
 
-void print(const Shape& inf) {
-    float perimetr = 0.0;
-    cout << "Shape: " << inf.name << endl;
-    for (int i = 0; i < inf.points; ++i) {
-        cout << "Point " << i + 1 << ": (" << inf.x[i] << ", " << inf.y[i] << ")" << endl;
-    }
-    if (inf.points == 3) {
-        perimetr = sqrt(pow((inf.x[1] - inf.x[0]), 2) + pow((inf.y[1] - inf.y[0]), 2)) + sqrt(pow((inf.x[2] - inf.x[1]), 2) + pow((inf.y[2] - inf.y[1]), 2)) + sqrt(pow((inf.x[2] - inf.x[0]), 2) + pow((inf.y[2] - inf.y[0]), 2));
-    }
-    // периметр
-    cout << "P: " << perimetr << endl;
-    // площа
-    float S = 0.5 * abs((inf.x[0] - inf.x[2]) * (inf.y[1] - inf.y[2]) - (inf.x[1] - inf.x[2]) * (inf.y[0] - inf.y[2]));
-    cout << "S: " << S << endl;
-    // радіус вписаного кола
-    float r = S / (perimetr / 2);
-    cout << "r: " << r << endl;
-    // радіус описаного кола
-    float R = (sqrt(pow((inf.x[1] - inf.x[0]), 2) + pow((inf.y[1] - inf.y[0]), 2)) * sqrt(pow((inf.x[2] - inf.x[1]), 2) + pow((inf.y[2] - inf.y[1]), 2)) * sqrt(pow((inf.x[2] - inf.x[0]), 2) + pow((inf.y[2] - inf.y[0]), 2))) / (4 * S);
+struct Shape {
+    string name = "Triangle";
+    int points;
+    Point p1,p2,p3;
 
-    cout << "R: " << R << endl;
-}
+    void print(){
+        cout << "Enter 3 points of triangle: " << endl;
+        cout << "Enter point 1 : " << endl;
+        cin >> p1.x >> p1.y;
+        cout << "Enter point 2 : " << endl;
+        cin >> p2.x >> p2.y;
+        cout << "Enter point 3 : " << endl;
+        cin >> p3.x >> p3.y;
+            
+        cout << "Shape: " << name << endl;
+        for (int i = 0; i < points; ++i) {
+        }
+        
+        // периметр
+        float perimetr = sqrt(pow((p2.x - p1.x), 2) + pow((p2.y - p1.y), 2)) + sqrt(pow((p3.x - p2.x), 2) + pow((p3.y - p2.y), 2)) + sqrt(pow((p3.x - p1.x), 2) + pow((p3.y - p1.y), 2));
+        cout << "P: " << perimetr << endl;
+        // площа
+        float S = 0.5 * abs((p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y));
+        cout << "S: " << S << endl;
+        // радіус вписаного кола
+        float r = S / (perimetr / 2);
+        cout << "r: " << r << endl;
+        // радіус описаного кола
+        float R = (sqrt(pow((p2.x - p1.x), 2) + pow((p2.y - p1.y), 2)) * sqrt(pow((p3.x - p2.x), 2) + pow((p3.y - p2.y), 2)) * sqrt(pow((p3.x - p1.x), 2) + pow((p3.y - p1.y), 2))) / (4 * S);
+        cout << "R: " << R << endl;
+    }
+};
 
 int main() {
-    int x[3];
-    int y[3];
-    
-    int n = 3;
-
-    cout << "Enter 3 points (x y)" << endl;
-    for (int i = 0; i < n; ++i) {
-        cin >> x[i] >> y[i];
-    }
-    Shape triangle = { "Triangle", 3, {x[0], x[1], x[2]}, {y[0], y[1], y[2]} };
-    print(triangle);
+    Shape triangle;
+    triangle.print();
     return 0;
 }
