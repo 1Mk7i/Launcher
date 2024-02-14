@@ -13,11 +13,24 @@
         <a class="btn btn-primary back" href="../hometask.html">←</a>
     </div>
     <div class="numPanel">
-        <a class="btn btn-primary num" data-target="section1" onclick="scrollToSection(this)">1</a>
-        <a class="btn btn-primary num" data-target="section2" onclick="scrollToSection(this)">2</a>
-        <a class="btn btn-primary num" data-target="section3" onclick="scrollToSection(this)">1lab</a>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Практикум №1
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="btn btn-primary num" data-target="section1" onclick="scrollToSection(this)">1</a>
+                <a class="btn btn-primary num" data-target="section2" onclick="scrollToSection(this)">2</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Лабораторні роботи
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="btn btn-primary num" data-target="section3" onclick="scrollToSection(this)">1lab</a>
+            </div>
+        </div>
     </div>
-    
     <div class="panel">
         <div id="section1"></div>
         <div class="descriptionPanel" id="text1">
