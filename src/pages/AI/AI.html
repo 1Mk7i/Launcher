@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Launcher/src/styles/index.css">
+    <link rel="stylesheet" href="/Launcher/src/styles/prism-holi-theme.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>AI</title>
+</head>
+<body class="menu2">
+    <div class="Back">
+        <a class="btn btn-primary back" href="/Launcher/src/pages/hometask.html">←</a>
+    </div>
+
+    <div class="numPanel" style="background-color: #07ffffa9;">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #007bff; border: none;">
+                Завдання
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="btn btn-primary num" data-target="section1" href="BachetClassic/index.html" style="background-color: #007bff; border: none; color: #000;">1 Завд</a>
+                <a class="btn btn-primary num" data-target="section2" onclick="scrollToSection(this)" style="background-color: #007bff; border: none;">2 Завд</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #007bff; border: none;">
+                ???
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="btn btn-primary num" data-target="section3" onclick="scrollToSection(this)" style="background-color: #007bff; border: none;">???</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel">
+        <div id="section1"></div>
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/Launcher/src/js/index.js"></script>
+</body>
+</html>

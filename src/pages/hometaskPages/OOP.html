@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../styles/index.css">
-    <link rel="stylesheet" href="../../styles/prism-holi-theme.css">
+    <link rel="stylesheet" href="/Launcher/src/styles/index.css">
+    <link rel="stylesheet" href="/Launcher/src/styles/prism-holi-theme.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>OOP</title>
 </head>
 <body class="menu2">
+
     <div class="Back">
-        <a class="btn btn-primary back" href="../hometask.html">←</a>
+        <a class="btn btn-primary back" href="/Launcher/src/pages/hometask.html">←</a>
     </div>
+
     <div class="numPanel" style="background-color: #07ffffa9;">
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #007bff; border: none;">
@@ -24,6 +26,14 @@
         </div>
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #007bff; border: none;">
+                Практикум №2
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="btn btn-primary num" data-target="section4" onclick="scrollToSection(this)" style="background-color: #007bff; border: none;">Main</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #007bff; border: none;">
                 Лабораторні роботи
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -31,10 +41,11 @@
             </div>
         </div>
     </div>
+
     <div class="panel">
         <div id="section1"></div>
         <div class="descriptionPanel" id="text1">
-            <h2 style="color:red; text-align: center;">Практикум</h2>
+            <h2 style="color:red; text-align: center;">Практикум №1</h2>
             <h2>Завдання 1</h2>
             <h4>07.02.2024</h4>
             <p>Розробити програму, використовуючи функції, розмішені всередині структури, що описує відповідний об’єкт.
@@ -42,7 +53,7 @@
                 </p>
             
         </div>
-        <pre><code id="code1" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+        <pre><code id="Prak1OOPnum1" class="language-c"><!-- Код буде вставлено тут --></code></pre>
         <div class="imageContainer">
             <img src="OOP-res/images/task1.png" alt="triangle">
         </div>
@@ -61,7 +72,7 @@
                 <li>виведення на екран інформації про людей, чиї дні народження припадають на місяць, значення якого введено з клавіатури; якщо таких людей немає, то вивести відповідне повідомлення.</li>
             </ul>
         </div>
-        <pre><code id="code2" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+        <pre><code id="Prak1OOPnum2" class="language-c"><!-- Код буде вставлено тут --></code></pre>
         <div class="imageContainer">
             <img src="OOP-res/images/task2.png">
         </div>
@@ -72,7 +83,6 @@
         <div class="descriptionPanel" id="text3">
         <h2>Лабораторна робота 1</h2>
         <h4>09.02.2024</h4>
-        <div id="section4"></div>
             <p>Варіант 5</p>
             <ol>
                 <li>Створити структуру, що містить інформацію про Кут (градуси, мінути). Реалізувати власний метод виведення на екран у форматі: ggmm'.  Реалізувати функцію додавання двох кутів.</li>
@@ -85,52 +95,48 @@
                 <li>визначити, чи є Сидоров читачем, перерахувати видані йому журнали.</li>
             </ol>
         </div>
-        <pre><code id="code3" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+        <pre><code id="Lab1OOP" class="language-c"><!-- Код буде вставлено тут --></code></pre>
         <h4>Завдання 1</h4>
         <img src="OOP-res/images/lab11.png">
         <h4>Завдання 2</h4>
         <img src="OOP-res/images/lab12.png">
     </div>
+
+    <div class="panel">
+        <div id="section4"></div>
+        <div class="descriptionPanel" id="text3">
+            <h2 style="color:red; text-align: center;">Практикум №2</h2>
+            <h2>Завдання</h2>
+            <h4>15.02.2024</h4>
+            <p>Комплексні числа представляють парою дійсних чисел (a,b), де а - дійсна частина, а b - уявна. Реалізувати клас Complex для роботи з комплексними числами. Обов’язково повинні бути присутніми операції:</p>
+            <li>додавання add, 		(a,b) + (c,d) = (a+b, c+d);</li>
+            <li>віднімання sub, 		(a,b) - (c,d) = (a-b, c-d);</li>
+            <li>множення mul, 		(a,b) * (c,d) = (ac-bd, ad+bc);</li>
+            <li>ділення div, 			(a,b) / (c,d) = (ac+bd, bc-ad) / (c2+d2);</li>
+            <li>порівняння equ, 		(a,b) = (c,d), якщо  (a=c)  та (b=d) ;</li>
+            <li>спряжене число conj, 	conj(a,b) = (a, -b).</li>
+            </div>
+            <pre><code id="Prak2OOPnum1" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+            <img src="OOP-res/images/P2_Main.png">
+    </div>
+
+    <div class="panel">
+        <div id="section5"></div>
+        <div class="descriptionPanel" id="text3">
+            </div>
+            <pre><code id="Prak2OOPnum2" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+            <img src="OOP-res/images/P2_Main.png">
+    </div>
     
-        
+    
     </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-c.min.js"></script>
-    <script>
-        // Використовуємо fetch для отримання вмісту файлу та відображення його
-        function fetchAndDisplayContent(url, codeId, textId) {
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById(codeId).textContent = data;
-                    Prism.highlightAll();
-                });
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    var preElement = document.createElement('pre');
-                    preElement.textContent = data;
-                    var textContainer = document.getElementById(textId);
-                    textContainer.innerHTML = '';
-                    textContainer.appendChild(preElement);
-                });
-        }
-        fetchAndDisplayContent('OOP-res/tasks/task1.cpp', 'code1');
-        fetchAndDisplayContent('OOP-res/tasks/task2.cpp', 'code2');
-        fetchAndDisplayContent('OOP-res/tasks/lab1.cpp', 'code3');
-    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-       // JavaScript-функція для прокручування до певного пункту
-       function scrollToSection(button) {
-            var targetId = button.getAttribute('data-target');
-            var element = document.getElementById(targetId);
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+    <script src="/Launcher/src/js/index.js"></script>
 </body>
 </html>
