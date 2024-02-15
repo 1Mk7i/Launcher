@@ -37,6 +37,21 @@
             </div>
         </div>
     </div>
+    <script>
+        const path = require('path');
+
+        // Отримуємо поточний каталог
+        const currentDirectory = process.cwd();
+        
+        // Отримуємо шлях до поточного файлу
+        const currentFilePath = __filename;
+        
+        // Отримуємо повний шлях до поточного файлу
+        const fullPathToFile = path.resolve(currentDirectory, currentFilePath);
+        
+        console.log("Повний шлях до поточного файлу:", fullPathToFile);
+
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
