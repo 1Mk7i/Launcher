@@ -4,75 +4,83 @@
 
 using namespace std;
 
+struct ComplexData {
+    float a, b;
+};
+
 class Complex {
 private:
-    float a, b;
+    ComplexData data;
 
 public:
-    // Конструктор за замовчуванням
-    Complex() : a(0), b(0) {}
-
-    // Конструктор зі значеннями
-    Complex(float re, float im) : a(re), b(im) {}
-
     // Метод ініціалізації
     void Init(float re, float im) {
-        a = re;
-        b = im;
+        data.a = re;
+        data.b = im;
     }
 
     // Метод введення з клавіатури
     void Read() {
         cout << "Введіть дійсну частину: ";
-        cin >> a;
+        cin >> data.a;
         cout << "Введіть уявну частину: ";
-        cin >> b;
+        cin >> data.b;
     }
 
     // Метод виведення на екран
     void Display() {
-        cout << "(" << a << ", " << b << ")";
+        cout << "(" << data.a << ", " << data.b << ")";
     }
 
     // Метод перетворення в рядок
     string toString() {
         stringstream SS;
-        if (b < 0){
-            SS << a << b << "i";
+        if (data.b < 0){
+            SS << data.a << data.b << "i";
         }else{
-            SS << a << "+" << b << "i";
+            SS << data.a << "+" << data.b << "i";
         }
         return SS.str();
     }
 
     // Операція додавання
     Complex add(const Complex& other) {
-        return Complex(a + other.a, b + other.b);
+        Complex result;
+        result.Init(data.a + other.data.a, data.b + other.data.b);
+        return result;
     }
 
     // Операція віднімання
     Complex sub(const Complex& other) {
-        return Complex(a - other.a, b - other.b);
+        Complex result;
+        result.Init(data.a - other.data.a, data.b - other.data.b);
+        return result;
     }
 
     // Операція множення
     Complex mul(const Complex& other) {
-        return Complex(a * other.a - b * other.b, a * other.b + b * other.a);
+        Complex result;
+        result.Init(data.a * other.data.a - data.b * other.data.b, data.a * other.data.b + data.b * other.data.a);
+        return result;
     }
 
     // Операція ділення
     Complex div(const Complex& other) {
-        return Complex((a * other.a + b * other.b) / (other.a * other.a + other.b * other.b), (b * other.a - a * other.b) / (other.a * other.a + other.b * other.b));
+        Complex result;
+        result.Init((data.a * other.data.a + data.b * other.data.b) / (other.data.a * other.data.a + other.data.b * other.data.b), (data.b * other.data.a - data.a * other.data.b) / (other.data.a * other.data.a + other.data.b * other.data.b));
+        return result;
     }
 
     // Операція порівняння
     bool equ(const Complex& other) {
-        return (a == other.a && b == other.b);
+        return (data.a == other.data.a && data.b == other.data.b);
     }
 
     // Операція спряженого числа
     Complex conj() {
-        return Complex(a, -b);
+        Complex result;
+        result.Init(data.a, -data.b);
+        return result;
     }
 };
 
