@@ -11,15 +11,12 @@ struct ComplexData {
 class Complex {
 private:
     ComplexData data;
-
 public:
-    // Метод ініціалізації
     void Init(float re, float im) {
         data.a = re;
         data.b = im;
     }
 
-    // Метод введення з клавіатури
     void Read() {
         cout << "Введіть дійсну частину: ";
         cin >> data.a;
@@ -27,12 +24,10 @@ public:
         cin >> data.b;
     }
 
-    // Метод виведення на екран
     void Display() {
         cout << "(" << data.a << ", " << data.b << ")";
     }
 
-    // Метод перетворення в рядок
     string toString() {
         stringstream SS;
         if (data.b < 0){
@@ -41,48 +36,49 @@ public:
             SS << data.a << "+" << data.b << "i";
         }
         return SS.str();
-    }
+    } 
 
-    // Операція додавання
-    Complex add(const Complex& other) {
-        Complex result;
-        result.Init(data.a + other.data.a, data.b + other.data.b);
-        return result;
-    }
-
-    // Операція віднімання
-    Complex sub(const Complex& other) {
-        Complex result;
-        result.Init(data.a - other.data.a, data.b - other.data.b);
-        return result;
-    }
-
-    // Операція множення
-    Complex mul(const Complex& other) {
-        Complex result;
-        result.Init(data.a * other.data.a - data.b * other.data.b, data.a * other.data.b + data.b * other.data.a);
-        return result;
-    }
-
-    // Операція ділення
-    Complex div(const Complex& other) {
-        Complex result;
-        result.Init((data.a * other.data.a + data.b * other.data.b) / (other.data.a * other.data.a + other.data.b * other.data.b), (data.b * other.data.a - data.a * other.data.b) / (other.data.a * other.data.a + other.data.b * other.data.b));
-        return result;
-    }
-
-    // Операція порівняння
-    bool equ(const Complex& other) {
-        return (data.a == other.data.a && data.b == other.data.b);
-    }
-
-    // Операція спряженого числа
-    Complex conj() {
-        Complex result;
-        result.Init(data.a, -data.b);
-        return result;
-    }
+    friend Complex add(const Complex& c1, const Complex& c2);
+    friend Complex sub(const Complex& c1, const Complex& c2);
+    friend Complex mul(const Complex& c1, const Complex& c2);
+    friend Complex div(const Complex& c1, const Complex& c2);
+    friend bool equ(const Complex& c1, const Complex& c2);
+    friend Complex conj(const Complex& c);
 };
+
+Complex add(const Complex& c1, const Complex& c2) {
+    Complex result;
+    result.Init(c1.data.a + c2.data.a, c1.data.b + c2.data.b);
+    return result;
+}
+
+Complex sub(const Complex& c1, const Complex& c2) {
+    Complex result;
+    result.Init(c1.data.a - c2.data.a, c1.data.b - c2.data.b);
+    return result;
+}
+
+Complex mul(const Complex& c1, const Complex& c2) {
+    Complex result;
+    result.Init(c1.data.a * c2.data.a - c1.data.b * c2.data.b, c1.data.a * c2.data.b + c1.data.b * c2.data.a);
+    return result;
+}
+
+Complex div(const Complex& c1, const Complex& c2) {
+    Complex result;
+    result.Init((c1.data.a * c2.data.a + c1.data.b * c2.data.b) / (c2.data.a * c2.data.a + c2.data.b * c2.data.b), (c1.data.b * c2.data.a - c1.data.a * c2.data.b) / (c2.data.a * c2.data.a + c2.data.b * c2.data.b));
+    return result;
+}
+
+bool equ(const Complex& c1, const Complex& c2) {
+    return (c1.data.a == c2.data.a && c1.data.b == c2.data.b);
+}
+
+Complex conj(const Complex& c) {
+    Complex result;
+    result.Init(c.data.a, -c.data.b);
+    return result;
+}
 
 int main() {
     // Створення об'єктів
@@ -107,17 +103,17 @@ int main() {
 
     cout << ". . . . . . . . . . . . . . . . . . ." << endl;
     // Операції
-    cout << "Додавання: " << (n1.add(n2)).toString() << endl;
+    cout << "Додавання: " << add(n1, n2).toString() << endl;
 
-    cout << "Віднімання: " << (n1.sub(n2)).toString() << endl;
+    cout << "Віднімання: " << sub(n1, n2).toString() << endl;
 
-    cout << "Множення: " << (n1.mul(n2)).toString() << endl;
+    cout << "Множення: " << mul(n1, n2).toString() << endl;
 
-    cout << "Ділення: " << (n1.div(n2)).toString() << endl;
+    cout << "Ділення: " << div(n1, n2).toString() << endl;
 
-    cout << "Порівняння: " << (n1.equ(n2) ? "Рівні" : "Не рівні") << endl;
+    cout << "Порівняння: " << (equ(n1, n2) ? "Рівні" : "Не рівні") << endl;
 
-    cout << "Спряжене першого числа: " << (n1.conj()).toString() << endl;
+    cout << "Спряжене першого числа: " << conj(n1).toString() << endl;
 
     return 0;
 }
