@@ -16,7 +16,33 @@ class World {
 			this.startGame(showLog)
 		}
 		console.log("Tournament results:", this.tournamentScores)
+		
+		this.displayResults()
 	}
+
+	displayResults(worldName) {
+		let info = document.querySelector(".info");
+		let tournamentResults = document.createElement("div");
+		tournamentResults.classList.add("tournament-results");
+
+		let worldNameElement = document.createElement("h4");
+		worldNameElement.classList.add("world-name");
+		worldNameElement.textContent = this.constructor.name;
+		tournamentResults.appendChild(worldNameElement);
+
+		let sortedBots = Object.entries(this.tournamentScores).sort((a, b) => b[1] - a[1]);
+		for (let i = 0; i < sortedBots.length; i++) {
+			let botName = sortedBots[i][0];
+			let botScore = sortedBots[i][1];
+			let result = document.createElement("div");
+			result.classList.add("result");
+			result.innerHTML = (i + 1) + ". " + botName + " : " + botScore;
+			tournamentResults.appendChild(result);
+		}
+
+		info.appendChild(tournamentResults);
+	}
+
 
 	startGame(showLog=true){
 		//боти вже є
@@ -220,16 +246,71 @@ class BachetWorld134 extends World{
 		return this.N<=0;
 	}
 
-	//{n:1..3}
 	makeBotMove(moveOb){
 		this.N-=moveOb.n
 	}
-	//moveOb має бути {n:1..3}
 	validateMove(moveOb){
 		let res = true;
 		if (moveOb["n"]){
 			if (Math.floor(moveOb["n"])===moveOb["n"]){
 				if (moveOb["n"]>=1 && moveOb["n"]<=4 && moveOb["n"]!=2){
+					if (moveOb["n"]<=this.N){
+						res=true;
+					}else{
+						res=false;
+					}
+				}else{
+					res=false;
+				}
+			}else{
+				res=false;
+			}
+		}else{
+			res=false;
+		}
+
+		return res
+	}
+
+	buildCurrentGameSituation(){
+		return {N:this.N}
+	}	
+
+	initNewGamePosition(){
+		this.N = Math.floor(50+Math.random()*50)
+	}	
+
+	calculateGamePoints(currentBotId){
+		this.giveVictoryToSingleBot(currentBotId)
+	}
+
+	stopGameAfterBotError(botId){
+		//перемога всім іншим
+		this.giveDefeatToSingleBot(botId)
+	}	
+}
+
+class BachetWorld1234 extends World{
+	constructor(){
+		super()
+		console.log("BachetWorld1234 created")
+
+
+		this.N = 100;
+	}
+
+	isGameOver(){
+		return this.N<=0;
+	}
+
+	makeBotMove(moveOb){
+		this.N-=moveOb.n
+	}
+	validateMove(moveOb){
+		let res = true;
+		if (moveOb["n"]){
+			if (Math.floor(moveOb["n"])===moveOb["n"]){
+				if (moveOb["n"]>=1 && moveOb["n"]<=4){
 					if (moveOb["n"]<=this.N){
 						res=true;
 					}else{

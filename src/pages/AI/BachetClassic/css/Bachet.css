@@ -1,0 +1,9 @@
+.world-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color: rgb(0, 0, 141);
+}
+.result {
+  color: #007a06;
+}

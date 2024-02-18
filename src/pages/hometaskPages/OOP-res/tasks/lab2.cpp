@@ -80,7 +80,6 @@ public:
                 cout << "Остача від ділення" << endl;
                 vector<int> num = parse();
                 for (int i = 0; i < num.size(); i++) {
-                    result %= num[i];
                 }
             }
         }

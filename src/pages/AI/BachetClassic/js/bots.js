@@ -77,22 +77,77 @@ class BachetRandomBot134 extends Bot{
 	}	
 }
 
-class BachetSuperBot134 extends Bot{
+class BachetSuperBot134 extends Bot {
+    makeMoveForSituation(gameDataOb) {
+        let n = gameDataOb.N % 4;
+
+        if (gameDataOb.N === 0) {
+            return {n: 1};
+        }
+
+        if (gameDataOb.N < 4) {
+            return {n: gameDataOb.N}; // Беремо всі камені, якщо їх менше 4
+        }
+
+        // Вибір оптимального ходу в залежності від кількості каменів на столі
+        switch (n) {
+            case 0:
+                return {n: 4}; // Залишає кратне 4
+            case 1:
+                return {n: 1}; // Залишає некратне 4
+            case 2:
+                return {n: 1}; // Залишає некратне 4
+            case 3:
+                return {n: 3}; // Залишає кратне 4
+            default:
+                return {n: 4}; // Залишає кратне 4
+        }
+    }
+}
+
+// Боти які беруть 1, 2, 3 або 4 камінці
+
+class BachetRandomBot1234 extends Bot{
 	makeMoveForSituation(gameDataOb){
-		//gameDataOb.N - поточне число камінців у купі
-		//ідеальний бот який може брати 1, 3 або 4 камінці
-		let n = gameDataOb.N%2;
-		if (n==0){
-			if (gameDataOb.N>=5 || gameDataOb.N<=7 || gameDataOb.N<=8){
-				n=1;
-			}else{
-				n=4;
-			}
-			
+		if (gameDataOb.N==1){
+			return {n:1}
 		}
-		
-		return {n:n}
+		if (gameDataOb.N==2){
+			return {n:1}
+		}
+		if (gameDataOb.N==3){
+			return {n:3}
+		}
+		return {n:[1,2,3,4][0+Math.floor(Math.random()*4)]}
 	}	
+}
+
+class BachetSuperBot1234 extends Bot {
+	makeMoveForSituation(gameDataOb) {
+		let n = gameDataOb.N % 4;
+
+		if (gameDataOb.N === 0) {
+			return {n: 1};
+		}
+
+		if (gameDataOb.N < 4) {
+			return {n: gameDataOb.N}; // Беремо всі камені, якщо їх менше 4
+		}
+
+		// Вибір оптимального ходу в залежності від кількості каменів на столі
+		switch (n) {
+			case 0:
+				return {n: 4}; // Залишає кратне 4
+			case 1:
+				return {n: 1}; // Залишає некратне 4
+			case 2:
+				return {n: 2}; // Залишає некратне 4
+			case 3:
+				return {n: 3}; // Залишає кратне 4
+			default:
+				return {n: 4}; // Залишає кратне 4
+		}
+	}
 }
 
 

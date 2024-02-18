@@ -1,11 +1,17 @@
-window.onload=function(){
-	console.log("Hello")
-	window.world = new BachetWorld();
-	// world.startTournament([BachetBot1, BachetBot2],100)
-	window.world.startTournament([BachetSuperBot, BachetBot1],1000)
+window.onload = function() {
+    console.log("Hello");
+    window.world = new BachetWorld();
+    // world.startTournament([BachetBot1, BachetBot2],100)
+    window.world.startTournament([BachetSuperBot, BachetBot1],1000);
 
-	window.world = new BachetWorld134();
-	window.world.startTournament([BachetSuperBot134, BachetRandomBot134],100)
+    window.world = new BachetWorld134();
+    window.world.startTournament([BachetSuperBot134, BachetRandomBot134],100);
+
+    window.world = new BachetWorld1234();
+    window.world.startTournament([BachetSuperBot134, BachetRandomBot134],100);
+	
+
+}
 /*
 	let obs={}
 	for (let i=0; i<1000000; i++){
@@ -35,4 +41,4 @@ window.onload=function(){
 	//	}
 	}
 	*/
-}
+
