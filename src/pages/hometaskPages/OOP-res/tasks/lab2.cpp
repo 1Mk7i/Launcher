@@ -5,11 +5,14 @@
 
 using namespace std;
 
-class TParcer {
+struct MyStruct {
+    const int zeroAfterComma = 2;
+};
+
+class TParcer : public MyStruct{
 private:
     string str;
-    const int zeroAfterComma = 2;
-public:
+public:    
     TParcer() {
         cout << "Введіть рядок: ";
         cin >> str;
