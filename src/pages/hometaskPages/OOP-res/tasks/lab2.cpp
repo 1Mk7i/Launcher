@@ -19,10 +19,18 @@ public:
         this->str = str;
     }
 
-    void Display(){
-        cout << "\033[1;34m" << "Вираз: " << str << "\033[0m" << endl;
+    void setString(string str) {
+        this->str = str;
     }
-    // розбиття рядка на числа та знаки
+
+    string getString() {
+        return str;
+    }
+
+    void Display(){
+        cout << "\033[1;34m" << "Вираз: " << getString() << "\033[0m" << endl;
+    }
+
     void parse() {
         vector<int> numbers;
         vector<char> signs;
@@ -96,7 +104,6 @@ public:
                 numbers[i] = numbers[i] - numbers[i + 1];
             }
         }
-        // Виводимо результат з точністю до 2 знаків після коми
         cout << fixed << setprecision(zeroAfterComma) << "\033[1;32m" << "Результат: " <<  "\033[1;33m" << numbers[0] << "\033[0m" << endl;
     }
 };
@@ -109,7 +116,8 @@ int main() {
     cin >> n;
     if (n == 1) {
         for (int i = 0; i < tasks.size(); i++) {
-            TParcer parcer(tasks[i]);
+            TParcer parcer;
+            parcer.setString(tasks[i]);
             parcer.parse();
             parcer.Display();
             parcer.calculate();
