@@ -10,92 +10,86 @@
 
 using namespace std;
 
-struct ParserData {
-    string v = "5 7";
-    string operations;
-};
-
-class Parser{
-private:
-    ParserData data;
-public:
-    Parser() {}
-
-    Parser(string v, string operations) {
-        data.v = v;
-        data.operations = operations;
-    }
-
-    // розбиваємо рядок на числа
-    vector<int> parse() {
-        vector<int> result;
-        string temp = "";
-        for (int i = 0; i < data.v.length(); i++) {
-            if (data.v[i] == ' '){
-                result.push_back(stoi(temp));
-                temp = "";
-            } else {
-                temp += data.v[i];
-            }
-        }
-        result.push_back(stoi(temp));
-        return result;
-    }
-
-    // Метод введення з клавіатури
-    void Read() {
-        cout << "Введіть операцію: ";
-        cin >> data.operations;
-    }
-
-    // Метод визначення операцій
-    void operations(){
-        double result;
-        for (int i = 0; i < data.operations.length(); i++) {
-            if (data.operations[i] == '*') {
-                cout << "Множення" << endl;
-                vector<int> num = parse();
-                for (int i = 0; i < num.size(); i++) {
-                    result *= num[i];
-                }
-            } else if (data.operations[i] == '+') {
-                cout << "Сума" << endl;
-                vector<int> num = parse();
-                for (int i = 0; i < num.size(); i++) {
-                    result += num[i];
-                }
-            } else if (data.operations[i] == '/') {
-                cout << "Ділення" << endl;
-                vector<int> num = parse();
-                for (int i = 0; i < num.size(); i++) {
-                    result /= num[i];
-                }
-            } else if (data.operations[i] == '-') {
-                cout << "Віднімання" << endl;
-                vector<int> num = parse();
-                for (int i = 0; i < num.size(); i++) {
-                    result -= num[i];
-                }
-            } else if (data.operations[i] == '%') {
-                cout << "Остача від ділення" << endl;
-                vector<int> num = parse();
-                for (int i = 0; i < num.size(); i++) {
+class TParcer {
+    private:
+        string str = "2 % 5";
+    public:
+        // розбиття рядка на числа та знаки
+        void parse() {
+            vector<int> numbers;
+            vector<char> signs;
+            string temp = "";
+            for (int i = 0; i < str.length(); i++) {
+                if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '%') {
+                    numbers.push_back(stoi(temp));
+                    temp = "";
+                    signs.push_back(str[i]);
+                } else {
+                    temp += str[i];
                 }
             }
+            numbers.push_back(stoi(temp));
+            for (int i = 0; i < numbers.size(); i++) {
+                cout << numbers[i] << " ";
+            }
+            cout << endl;
+            for (int i = 0; i < signs.size(); i++) {
+                cout << signs[i] << " ";
+            }
+            cout << endl;
         }
-    }
+
+        void calculate() {
+            vector<int> numbers;
+            vector<char> signs;
+            string temp = "";
+            for (int i = 0; i < str.length(); i++) {
+                if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '%') {
+                    numbers.push_back(stoi(temp));
+                    temp = "";
+                    signs.push_back(str[i]);
+                } else {
+                    temp += str[i];
+                }
+                cout << temp << endl;
+            }
+            numbers.push_back(stoi(temp));
+            for (int i = 0; i < signs.size(); i++) {
+                if (signs[i] == '*') {
+                    numbers[i] *= numbers[i + 1];
+                    numbers.erase(numbers.begin() + i + 1);
+                    signs.erase(signs.begin() + i);
+                    i--;
+                } else if (signs[i] == '/') {
+                    numbers[i] /= numbers[i + 1];
+                    numbers.erase(numbers.begin() + i + 1);
+                    signs.erase(signs.begin() + i);
+                    i--;
+                }
+            }
+            for (int i = 0; i < numbers.size(); i++) {
+                if (signs[i] == '%') {
+                    numbers[i] %= numbers[i + 1];
+                    numbers.erase(numbers.begin() + i + 1);
+                    signs.erase(signs.begin() + i);
+                    i--;
+                }
+            }
+            for (int i = 0; i < signs.size(); i++) {
+                if (signs[i] == '+') {
+                    numbers[i] += numbers[i + 1];
+                } else if (signs[i] == '-') {
+                    numbers[i] -= numbers[i + 1];
+                }
+            }
+            cout << numbers[0] << endl;
+        }
 };
-    
 
 int main() {
-    Parser parser1;
-    parser1.Read();
-    vector<int> result = parser1.parse();
-    for (int i = 0; i < result.size(); i++) {
-        cout << result[i] << " ";
-    }
-    cout << endl;
-    parser1.operations();
+    TParcer parcer;
+    parcer.parse();
+    parcer.calculate();
 
     return 0;
 }
