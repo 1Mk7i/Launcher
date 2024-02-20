@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <vector>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
@@ -22,6 +23,15 @@ public:
         this->str = str;
     }
 
+    bool isValidInput() const {
+        for (int i = 0; i < str.length(); i++) {
+            if (!isdigit(str[i]) && str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/' && str[i] != '%' && str[i] != ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+
     void setString(string str) {
         this->str = str;
     }
@@ -39,15 +49,29 @@ public:
         vector<char> signs;
         string temp = "";
         for (int i = 0; i < str.length(); i++) {
-            if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '%') {
-                numbers.push_back(stoi(temp));
-                temp = "";
+            if (isdigit(str[i])) {
+                temp += str[i];
+            } else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '%') {
+                if (!temp.empty()) {
+                    numbers.push_back(stoi(temp));
+                    temp = "";
+                }
                 signs.push_back(str[i]);
             } else {
-                temp += str[i];
+                cout << "\033[1;31m" << "Error: Недопустимий символ '" << str[i] << "'!" << "\033[0m" << endl;
+                return;
             }
         }
-        numbers.push_back(stoi(temp));
+        if (!temp.empty()) {
+            numbers.push_back(stoi(temp));
+        }
+
+        // Продовжуємо обробку, якщо є оператори та числа
+        if (numbers.size() != signs.size() + 1) {
+            cout << "\033[1;31m" << "Error: Невірна кількість операторів або чисел!" << "\033[0m" << endl;
+            return;
+        }
+
         for (int i = 0; i < numbers.size(); i++) {
             cout << numbers[i] << " ";
         }
@@ -57,6 +81,8 @@ public:
         }
         cout << endl;
     }
+
+
 
     void calculate() {
         vector<double> numbers;
@@ -85,7 +111,7 @@ public:
                     signs.erase(signs.begin() + i);
                     i--;
                 } else {
-                    cout << "Error: Не можна ділити на нуль!" << endl;
+                    cout << "\033[1;31m" << "Error: Не можна ділити на нуль!" << "\033[0m" << endl;
                     return;
                 }
             } else if (signs[i] == '%' && numbers[i] != 0) {
@@ -95,7 +121,7 @@ public:
                     signs.erase(signs.begin() + i);
                     i--;
                 } else {
-                    cout << "Error: Не можна ділити на нуль!" << endl;
+                    cout << "\033[1;31m" << "Error: Не можна ділити на нуль!" << "\033[0m" << endl;
                     return;
                 }
             }
@@ -128,19 +154,26 @@ int main() {
     cin >> n;
     if (n == 1) {
         for (int i = 0; i < tasks.size(); i++) {
-            TParcer parcer;
-            parcer.setString(tasks[i]);
+            TParcer parcer(tasks[i]);
+            if (!parcer.isValidInput()) {
+                cout << "\033[1;31m" << "Error: Введений вираз містить недопустимі символи!" << "\033[0m" << endl;
+                continue;
+            }
             parcer.parse();
             parcer.Display();
             parcer.calculate();
         }
     } else if (n == 2) {
         TParcer parcer;
+        if (!parcer.isValidInput()) {
+            cout << "\033[1;31m" << "Error: Введений вираз містить недопустимі символи!" << "\033[0m" << endl;
+            return 1;
+        }
         parcer.parse();
         parcer.Display();
         parcer.calculate();
     } else {
-        cout << "Error: Невірний ввід!" << endl;
+        cout << "\033[1;31m" << "Error: Невірний ввід!" << "\033[0m" << endl;
     }
 
     return 0;
