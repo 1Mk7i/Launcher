@@ -26,11 +26,11 @@ public:
         this->str = str;
     }
 
-    string getString() {
+    string getString() const {
         return str;
     }
 
-    void Display(){
+    void Display() const {
         cout << "\033[1;34m" << "Вираз: " << getString() << "\033[0m" << endl;
     }
 
@@ -110,6 +110,15 @@ public:
         cout << fixed << setprecision(zeroAfterComma) << "\033[1;32m" << "Результат: " <<  "\033[1;33m" << numbers[0] << "\033[0m" << endl;
     }
 };
+
+// Гетери та сетери поза класом
+void setTParcerString(TParcer& parcer, const string& str) {
+    parcer.setString(str);
+}
+
+string getTParcerString(const TParcer& parcer) {
+    return parcer.getString();
+}
 
 int main() {
     vector<string> tasks = {"2+2", "2-2", "2*2", "2/2", "2%2", "2+2*2", "2*2+2", "2+2/2", "2/2+2", "2+2%2", "2%2+2", "2-2*2", "2*2-2", "2-2/2", "2/2-2", "2-2%2", "2%2-2"};
