@@ -16,7 +16,7 @@ function fetchAndDisplayContent(url, codeId, textId) {
             textContainer.appendChild(preElement);
         });
 }
-fetchAndDisplayContent('tasks/task1.cpp', 'Prak1OOPnum1');
+fetchAndDisplayContent('/Launcher/src/pages/hometaskPages/OOP-res/tasks/task1.cpp', 'Prak1OOPnum1');
 fetchAndDisplayContent('tasks/task2.cpp', 'Prak1OOPnum2');
 fetchAndDisplayContent('tasks/lab1.cpp', 'Lab1OOP');
 fetchAndDisplayContent('tasks/lab2.cpp', 'Lab2OOP');
