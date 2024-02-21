@@ -8,6 +8,48 @@ using namespace std;
 
 struct MyStruct {
     const int zeroAfterComma = 2;
+
+    // функція ділення, множення, ділення націло
+    void performMultiplicationAndDivision(vector<double>& numbers, vector<char>& signs, int priority) {
+        for (int i = 0; i < signs.size(); i++) {
+            if (signs[i] == '*' && priority == 0) {
+                numbers[i] = numbers[i] * numbers[i + 1];
+                numbers.erase(numbers.begin() + i + 1);
+                signs.erase(signs.begin() + i);
+                i--;
+            } else if (signs[i] == '/' && priority == 0) {
+                if (numbers[i + 1] != 0 && numbers[i] != 0) {
+                    numbers[i] = numbers[i] / numbers[i + 1];
+                    numbers.erase(numbers.begin() + i + 1);
+                    signs.erase(signs.begin() + i);
+                    i--;
+                } else {
+                    cout << "\033[1;31m" << "Error: Не можна ділити на нуль!" << "\033[0m" << endl;
+                    return;
+                }
+            } else if (signs[i] == '%' && numbers[i] != 0 && priority == 0) {
+                if (numbers[i + 1] != 0) {
+                    numbers[i] = static_cast<int>(numbers[i]) % static_cast<int>(numbers[i + 1]);
+                    numbers.erase(numbers.begin() + i + 1);
+                    signs.erase(signs.begin() + i);
+                    i--;
+                } else {
+                    cout << "\033[1;31m" << "Error: Не можна ділити на нуль!" << "\033[0m" << endl;
+                    return;
+                }
+            }
+        }
+    }
+    // функція додавання та віднімання
+    void performAdditionAndSubtraction(vector<double>& numbers, vector<char>& signs) {
+        for (int i = 0; i < signs.size(); i++) {
+            if (signs[i] == '+') {
+                numbers[i] = numbers[i] + numbers[i + 1];
+            } else if (signs[i] == '-') {
+                numbers[i] = numbers[i] - numbers[i + 1];
+            }
+        }
+    }
 };
 
 class TParcer : public MyStruct{
@@ -82,59 +124,29 @@ public:
         cout << endl;
     }
 
-
-
     void calculate() {
         vector<double> numbers;
         vector<char> signs;
         string temp = "";
         for (int i = 0; i < str.length(); i++) {
             if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '%') {
-                numbers.push_back(stoi(temp));
+                numbers.push_back(stod(temp));
                 temp = "";
                 signs.push_back(str[i]);
             } else {
                 temp += str[i];
             }
         }
-        numbers.push_back(stoi(temp));
-        for (int i = 0; i < signs.size(); i++) {
-            if (signs[i] == '*') {
-                numbers[i] = numbers[i] * numbers[i + 1];
-                numbers.erase(numbers.begin() + i + 1);
-                signs.erase(signs.begin() + i);
-                i--;
-            } else if (signs[i] == '/') {
-                if (numbers[i + 1] != 0 && numbers[i] != 0) {
-                    numbers[i] = numbers[i] / numbers[i + 1];
-                    numbers.erase(numbers.begin() + i + 1);
-                    signs.erase(signs.begin() + i);
-                    i--;
-                } else {
-                    cout << "\033[1;31m" << "Error: Не можна ділити на нуль!" << "\033[0m" << endl;
-                    return;
-                }
-            } else if (signs[i] == '%' && numbers[i] != 0) {
-                if (numbers[i + 1] != 0) {
-                    numbers[i] = static_cast<int>(numbers[i]) % static_cast<int>(numbers[i + 1]);
-                    numbers.erase(numbers.begin() + i + 1);
-                    signs.erase(signs.begin() + i);
-                    i--;
-                } else {
-                    cout << "\033[1;31m" << "Error: Не можна ділити на нуль!" << "\033[0m" << endl;
-                    return;
-                }
-            }
-        }
-        for (int i = 0; i < signs.size(); i++) {
-            if (signs[i] == '+') {
-                numbers[i] = numbers[i] + numbers[i + 1];
-            } else if (signs[i] == '-') {
-                numbers[i] = numbers[i] - numbers[i + 1];
-            }
-        }
+        numbers.push_back(stod(temp));
+        calculate(numbers, signs);
+    }
+
+    void calculate(vector<double>& numbers, vector<char>& signs) {
+        performMultiplicationAndDivision(numbers, signs, 0);
+        performAdditionAndSubtraction(numbers, signs);
         cout << fixed << setprecision(zeroAfterComma) << "\033[1;32m" << "Результат: " <<  "\033[1;33m" << numbers[0] << "\033[0m" << endl;
     }
+
 };
 
 // Гетери та сетери поза класом
