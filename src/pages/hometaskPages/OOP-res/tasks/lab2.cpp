@@ -3,21 +3,34 @@
 #include <vector>
 #include <string>
 #include <cctype>
+#include <cmath>
 
 using namespace std;
 
 struct MyStruct {
     const int zeroAfterComma = 2;
 
+    // функція піднесення в степінь
+    void performExponentiation(vector<double>& numbers, vector<char>& signs, int priority) {
+        for (int i = 0; i < signs.size(); i++) {
+            if (signs[i] == '^' && priority == 0) {
+                numbers[i] = pow(numbers[i], numbers[i + 1]);
+                numbers.erase(numbers.begin() + i + 1);
+                signs.erase(signs.begin() + i);
+                i--;
+            }
+        }
+    }
+
     // функція ділення, множення, ділення націло
     void performMultiplicationAndDivision(vector<double>& numbers, vector<char>& signs, int priority) {
         for (int i = 0; i < signs.size(); i++) {
-            if (signs[i] == '*' && priority == 0) {
+            if (signs[i] == '*' && priority == 1) {
                 numbers[i] = numbers[i] * numbers[i + 1];
                 numbers.erase(numbers.begin() + i + 1);
                 signs.erase(signs.begin() + i);
                 i--;
-            } else if (signs[i] == '/' && priority == 0) {
+            } else if (signs[i] == '/' && priority == 1) {
                 if (numbers[i + 1] != 0 && numbers[i] != 0) {
                     numbers[i] = numbers[i] / numbers[i + 1];
                     numbers.erase(numbers.begin() + i + 1);
@@ -27,7 +40,7 @@ struct MyStruct {
                     cout << "\033[1;31m" << "Error: Не можна ділити на нуль!" << "\033[0m" << endl;
                     return;
                 }
-            } else if (signs[i] == '%' && numbers[i] != 0 && priority == 0) {
+            } else if (signs[i] == '%' && numbers[i] != 0 && priority == 1) {
                 if (numbers[i + 1] != 0) {
                     numbers[i] = static_cast<int>(numbers[i]) % static_cast<int>(numbers[i + 1]);
                     numbers.erase(numbers.begin() + i + 1);
@@ -67,7 +80,7 @@ public:
 
     bool isValidInput() const {
         for (int i = 0; i < str.length(); i++) {
-            if (!isdigit(str[i]) && str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/' && str[i] != '%' && str[i] != ' ') {
+            if (!isdigit(str[i]) && str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/' && str[i] != '%' && str[i] != '^' && str[i] != ' ') {
                 return false;
             }
         }
@@ -93,7 +106,7 @@ public:
         for (int i = 0; i < str.length(); i++) {
             if (isdigit(str[i])) {
                 temp += str[i];
-            } else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '%') {
+            } else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '%' || str[i] == '^') {
                 if (!temp.empty()) {
                     numbers.push_back(stoi(temp));
                     temp = "";
@@ -129,7 +142,7 @@ public:
         vector<char> signs;
         string temp = "";
         for (int i = 0; i < str.length(); i++) {
-            if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '%') {
+            if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || str[i] == '%' || str[i] == '^') {
                 numbers.push_back(stod(temp));
                 temp = "";
                 signs.push_back(str[i]);
@@ -142,7 +155,8 @@ public:
     }
 
     void calculate(vector<double>& numbers, vector<char>& signs) {
-        performMultiplicationAndDivision(numbers, signs, 0);
+        performExponentiation(numbers, signs, 0); // 0 - найвищий приорітет виконання
+        performMultiplicationAndDivision(numbers, signs, 1);
         performAdditionAndSubtraction(numbers, signs);
         cout << fixed << setprecision(zeroAfterComma) << "\033[1;32m" << "Результат: " <<  "\033[1;33m" << numbers[0] << "\033[0m" << endl;
     }
