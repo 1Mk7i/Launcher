@@ -81,6 +81,7 @@ public:
     bool isValidInput() const {
         for (int i = 0; i < str.length(); i++) {
             if (!isdigit(str[i]) && str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/' && str[i] != '%' && str[i] != '^' && str[i] != ' ') {
+                cout << "\033[1;31m" << "Error: Недопустимий символ '" << str[i] << "'!" << "\033[0m" << endl;
                 return false;
             }
         }
@@ -182,7 +183,6 @@ int main() {
         for (int i = 0; i < tasks.size(); i++) {
             TParcer parcer(tasks[i]);
             if (!parcer.isValidInput()) {
-                cout << "\033[1;31m" << "Error: Введений вираз містить недопустимі символи!" << "\033[0m" << endl;
                 continue;
             }
             parcer.parse();
@@ -192,7 +192,6 @@ int main() {
     } else if (n == 2) {
         TParcer parcer;
         if (!parcer.isValidInput()) {
-            cout << "\033[1;31m" << "Error: Введений вираз містить недопустимі символи!" << "\033[0m" << endl;
             return 1;
         }
         parcer.parse();
