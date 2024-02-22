@@ -36,6 +36,15 @@
         </div>
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #007bff; border: none;">
+                Практикум №3
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="btn btn-primary num" data-target="section8" onclick="scrollToSection(this)" style="background-color: #007bff; border: none;">Завдання 1</a>
+                <a class="btn btn-primary num" data-target="section9" onclick="scrollToSection(this)" style="background-color: #007bff; border: none;">Завдання 2</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #007bff; border: none;">
                 Лабораторні роботи
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -58,7 +67,7 @@
         </div>
         <pre><code id="Prak1OOPnum1" class="language-c"><!-- Код буде вставлено тут --></code></pre>
         <div class="imageContainer">
-            <img src="images/task1.png" alt="triangle">
+            <img class="TaskImg" src="images/task1.png" alt="triangle">
         </div>
         
     </div>
@@ -77,7 +86,7 @@
         </div>
         <pre><code id="Prak1OOPnum2" class="language-c"><!-- Код буде вставлено тут --></code></pre>
         <div class="imageContainer">
-            <img src="images/task2.png">
+            <img class="TaskImg" src="images/task2.png">
         </div>
     </div>
 
@@ -100,9 +109,9 @@
         </div>
         <pre><code id="Lab1OOP" class="language-c"><!-- Код буде вставлено тут --></code></pre>
         <h4>Завдання 1</h4>
-        <img src="images/lab11.png">
+        <img class="TaskImg" src="images/lab11.png">
         <h4>Завдання 2</h4>
-        <img src="images/lab12.png">
+        <img class="TaskImg" src="images/lab12.png">
     </div>
 
     <div class="panel">
@@ -122,19 +131,19 @@
             <h4 style="color:rgb(0, 107, 18); text-align: center;">Перший спосіб</h4>
             <li>тип даних представити структурою з необхідними полями, а операції реалізуються як зовнішні функції, які отримують об’єкти даного типу в якості аргументів;</li>
             <pre><code id="Prak2OOPnum1" class="language-c"><!-- Код буде вставлено тут --></code></pre>
-            <img src="images/P2_Main.png">
+            <img class="TaskImg" src="images/P2_Main.png">
 
         <div id="section5"></div>
             <h4 style="color: rgb(0, 107, 18); text-align: center;">Другий спосіб</h4>
             <li>як клас із закритими полями, де операції реалізуються як методи класу;</li>
             <pre><code id="Prak2OOPnum2" class="language-c"><!-- Код буде вставлено тут --></code></pre>
-            <img src="images/P2_Main.png">
+            <img class="TaskImg" src="images/P2_Main.png">
 
         <div id="section6"></div>
             <h4 style="color:rgb(0, 107, 18); text-align: center;">Третій спосіб</h4>
             <li>інкапсулювати поля класу в незалежній структурі і в ній реалізувати методи Init(), Read(), Display(), toString(); в основному класі повинно бути одне поле даних, представлене об’єктом-структурою.</li>
             <pre><code id="Prak2OOPnum3" class="language-c"><!-- Код буде вставлено тут --></code></pre>
-            <img src="images/P2_Main.png">
+            <img class="TaskImg" src="images/P2_Main.png">
     </div>
 
     <div class="panel">
@@ -151,12 +160,38 @@
             <p>2. Реалізувати масив виразів, ініціалізувати вказану кількість елементів та порахувати суму значень виразів.</p>
             <pre><code id="Lab2OOP" class="language-c"><!-- Код буде вставлено тут --></code></pre>
             <h4>1 випадок</h4>
-            <img src="images/lab21.png">
+            <img class="TaskImg" src="images/lab21.png">
             <h4>2 випадок</h4>
-            <img src="images/lab22.png">
+            <img class="TaskImg" src="images/lab22.png">
             <h4>3 випадок</h4>
-            <img src="images/lab23.png">
+            <img class="TaskImg" src="images/lab23.png">
+        </div>
     </div>
+
+    <div class="panel">
+        <div id="section8"></div>
+        <div class="descriptionPanel" id="text3">
+            <h2>Практикум №3</h2>
+            <h4>21.02.2024</h4>
+            <p><h4>Завдання 1</h4> Реалізувати клас ЧЕРГА, що містить інформацію про надходження на сервер запитів. Інформаційними полями кожного елемента є код користувача та сума оплати. Черга має обмеження на максимальну кількість запитів (статичний масив). Реалізувати додавання запиту в чергу, виконання запиту (вилучення) та проглядання всіх запитів черги. В якості інформаційної моделі черги використати масив (STL не застосовувати).</p>
+            <li>В програмі створити декілька екземплярів черг та продемонструвати реалізацію їх обробки.</li>
+            <li>Реалізувати сторонню функцію, що здійснює виведення на екран всіх запитів заданої черги.</li>
+            <li>Створити масив черг, ініцалізувати їх та відсортувати масив у порядку зростання кількостей запитів в елементах масиву.</li>
+            <pre><code id="Prak3OOPnum1" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+            <img class="TaskImg" src="images/P3_1.png">
+        </div>
+    </div>
+
+    <div class="panel">
+        <div id="section9"></div>
+        <div class="descriptionPanel" id="text3">
+            <p><h4>Завдання 2</h4>Реалізувати клас ІСТОРІЯ_ДІЙ, що моделює історію дій в редакторі Photoshop. Інформаційними полями кожного елемента є код графічного шару та назва операції. В якості інформаційної моделі історії_дій використати динамічний масив (STL не застосовувати).  Реалізувати додавання в масив нової операції, відміну(вилучення) та проглядання всіх операції за принципом стеку.</p>
+            <li>В програмі створити декілька екземплярів історій дій та продемонструвати реалізацію їх обробки.</li>
+            <li>Реалізувати сторонню функцію, що здійснює виведення на екран списку всіх дій в порядку відмінни заданої черги.</li>
+            <li>Створити масив історій, ініцалізувати їх та відсортувати масив у порядку зрозстання кількостей записів в елементах масиву.</li>
+            <pre><code id="Prak3OOPnum2" class="language-c"><!-- Код буде вставлено тут --></code></pre>
+            <img class="TaskImg" src="images/P3_2.png">
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>

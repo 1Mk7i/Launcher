@@ -147,6 +147,9 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
 }
+.TaskImg{
+    max-width: 500px;
+}
 .textPanel{
     background-color: #c9c9c9;
     border: 1px solid #000;
@@ -273,7 +276,7 @@ body {
     border: #527ae7 1px solid !important;
     border-radius: 10% !important;
     margin-bottom: 10px;
-    width: 110px;
+    width: 115px;
     height: 50px;
     display: flex !important;    
     align-items: center;
