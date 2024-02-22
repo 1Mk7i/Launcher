@@ -34,32 +34,41 @@ public:
     // Додавання дії в історію
     void add(int layerCode, string operation) {
         if (count < capacity) {
-            actions[count].layerCode = layerCode;
-            actions[count].operation = operation;
+            // Зсув елементів масиву вправо
+            for (int i = count - 1; i >= 0; i--) {
+                actions[i + 1] = actions[i];
+            }
+            // Додавання нової дії
+            actions[0].layerCode = layerCode;
+            actions[0].operation = operation;
             count++;
         } else {
             cout << red << "Історія переповнена, не вдалося додати дію." << reset << endl;
         }
     }
 
-    // Відміна (вилучення) дії з історії
+    // Відміна (вилученняcount дії з історії
     void deleted() {
         if (count > 0) {
+            // Зсув елементів масиву вліво
+            for (int i = 0; i < count - 1; i++) {
+                actions[i] = actions[i + 1];
+            }
             count--;
         } else {
-            cout << red << "Історія порожня, немає дій для відміни." << reset << endl;
+            cout << red << "Історія порожня, не вдалося вилучити дію." << reset << endl;
         }
     }
 
     // Виведення всіх дій історії
     void display() {
-        if (count == 0) {
-            cout << magenta << "Історія порожня." << reset << endl;
-        } else {
-            cout << magenta << "Дії в історії:" << reset << endl;
-            for (int i = count - 1; i >= 0; i--) {
-                cout << blue << "Код шару: " << yellow << actions[i].layerCode << blue << ", Операція: " << yellow << actions[i].operation << reset << endl;
+        if (count > 0) {
+            cout << green << "Історія:" << reset << endl;
+            for (int i = 0; i < count; i++) {
+                cout << blue << "Шар " << actions[i].layerCode << ": " << yellow << actions[i].operation << reset << endl;
             }
+        } else {
+            cout << red << "Історія порожня." << reset << endl;
         }
     }
 };
