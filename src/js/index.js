@@ -21,6 +21,7 @@ fetchAndDisplayContent('tasks/task2.cpp', 'Prak1OOPnum2');
 fetchAndDisplayContent('tasks/lab1.cpp', 'Lab1OOP');
 fetchAndDisplayContent('tasks/lab2.cpp', 'Lab2OOP');
 fetchAndDisplayContent('tasks/lab3.cpp', 'Lab3OOP');
+fetchAndDisplayContent('tasks/TSoundPlayer.h', 'Lab3OOPh');
 fetchAndDisplayContent('tasks/Prak2OOPS1.cpp','Prak2OOPnum1')
 fetchAndDisplayContent('tasks/Prak2OOPMain.cpp','Prak2OOPnum2')
 fetchAndDisplayContent('tasks/Prak2OOPS3.cpp','Prak2OOPnum3')
