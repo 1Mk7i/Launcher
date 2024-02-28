@@ -1,5 +1,6 @@
 #include "TSoundPlayer.h"
 #include <iostream>
+#include <fstream>
 #include <windows.h>
 
 using namespace std;
@@ -50,6 +51,40 @@ void TSoundPlayer::Play(const std::string& melody, int *T) {
     }
 }
 
+// Створення треку
+void TSoundPlayer::CreateTrack(const string& melody, int *T) {
+    ofstream file("track.txt");
+    if (file.is_open()) {
+        file << melody << endl;
+        for (size_t i = 0; i < sizeof(T); i++) {
+            file << T[i] << " ";
+        }
+        file.close();
+        cout << "Трек створено та збережено в файлі track.txt" << endl;
+    }
+}
+
+// Відтворення треку
+void TSoundPlayer::PlayTrack(const string& filename) {
+    ifstream file(filename);
+    #include "TSoundPlayer.h"
+
+    if (file.is_open()) {
+        string melody;
+        string T;
+        file >> melody;
+        file >> T;
+        int *arr = new int[T.length()];
+        for (size_t i = 0; i < T.length(); i++) {
+            arr[i] = T[i];
+        }
+        TSoundPlayer player;
+        player.Play(melody, arr);
+        delete[] arr;
+        file.close();
+        cout << "Трек відтворено" << endl;
+    }
+}
 
 int main() {
     int D[] = {500};
@@ -70,5 +105,7 @@ int main() {
     string melody5 = "B A G A B G B A G E2 B G A B C2 B A C2 B A G A B G B A G E2 B G A C2 B D2 C2 A B G A C2 B D2";
     int T5[] = {400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400};
     player.Play(melody5, T5);
+    player.CreateTrack(melody, T);
+    player.PlayTrack("track.txt");
     return 0;
 }

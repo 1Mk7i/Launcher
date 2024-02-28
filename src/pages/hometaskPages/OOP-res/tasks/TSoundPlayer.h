@@ -13,4 +13,6 @@ public:
     ~TSoundPlayer();
 
     void Play(const std::string& melody, int *T);
+    void CreateTrack(const std::string& melody, int *T);
+    void PlayTrack(const std::string& filename);
 };
