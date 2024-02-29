@@ -27,6 +27,7 @@ fetchAndDisplayContent('tasks/Prak2OOPMain.cpp','Prak2OOPnum2')
 fetchAndDisplayContent('tasks/Prak2OOPS3.cpp','Prak2OOPnum3')
 fetchAndDisplayContent('tasks/Prak3OOPS1.cpp','Prak3OOPnum1')
 fetchAndDisplayContent('tasks/Prak3OOPS2.cpp','Prak3OOPnum2')
+fetchAndDisplayContent('tasks/Prak4OOP.cpp','Prak4OOP')
 
 // JavaScript-функція для прокручування до певного пункту
 function scrollToSection(button) {
