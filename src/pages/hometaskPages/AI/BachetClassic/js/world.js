@@ -1,8 +1,78 @@
 class World {
 	constructor(){
-		this.bots=[]
+		this.bots=[]//боти для конкретної серії ігор
+		this.allBots=[]//боти для великого турніру. Звідси будуть бартися боти по двоє і запускатися серія ігор
+		this.allBotsResults=[];//бали ботів у великому турнірі, у такому ж порядку, як і їхні номери у списку this.allBots
+		this.tournamentScores={}//асоційований об'єкт: бали ботів у турнірі по їх іменах
 	}
-
+	displayAllBots(){
+		// вивести в div з id="allBots" всіх ботів
+		let div = document.getElementById("allBots");
+		div.innerHTML="";
+		for (let i=0; i<this.allBots.length; i++){
+			let bot = this.allBots[i];
+			let p = document.createElement("p");
+			p.textContent=bot.myName;
+			div.appendChild(p);
+		}
+	}
+	//службова функція - вибір m чисел з масиву unselected до масиву selected
+	recursivelySelect(res, m, selected, unselected){
+		if (m==0){
+			res.push(selected);
+			return;
+		}
+		for (let i=0; i<=unselected.length-m; i++){
+			let a = unselected[i];
+            let newSelected = selected.slice()
+            newSelected.push(a)
+			this.recursivelySelect(res, m-1, newSelected, unselected.slice(i+1))
+		}
+	}
+	//службова функція - перерахувати усі способи вибору m чисел з m
+	listSelectionsOfMFromN(m, n){
+		let res=[];
+		let ar2Select=[];
+		for (let i=0; i<n; i++){
+			ar2Select.push(i);
+		}
+		this.recursivelySelect(res,m,[],ar2Select)
+		return res;
+	}
+	/**
+	 * 
+	 * @param {*} bots // які боти будуть брати участь у великому турнірі
+	 * @param {*} numGames //скільки ігор проводити між кожною підгрупою ботів
+	 * @param {*} numBotsInOneGame //по скільки ботів з загального списку обирати, щоб провести серію ігор
+	 * @param {*} showLog //чи виводити лог
+	 */
+	startTournamentBetweenBots(bots, numGames, numBotsInOneGame=2, showLog=false){
+		this.allBots = bots;
+		this.allBotsResults=[];
+		this.tournamentScores={}
+		for (let i=0; i<this.allBots.length; i++){
+			this.allBotsResults.push(0);
+		}
+		let botsIdsInGames = this.listSelectionsOfMFromN(numBotsInOneGame,this.allBots.length);
+		//визначаємо всі способи обрати по numBotsInOneGame серед всіх ботів
+		for (let i=0; i<botsIdsInGames.length; i++){
+			let usedBotsInThisGame=botsIdsInGames[i];
+			this.bots=[];
+			for (let j=0; j<usedBotsInThisGame.length; j++){
+				this.bots.push(this.allBots[usedBotsInThisGame[j]]);
+			}
+			//обираємо ботів для поточної серіїї ігор з загального списку ботів
+			for (let i=0; i<numGames; i++){
+				this.startGame(showLog)
+			}			
+		}
+		//виводимо результати турніру
+		console.log("Bots Tournament results:",this.allBotsResults);
+		console.log("Tournament results:", this.tournamentScores);
+		this.resetResults();
+		this.displayResults();
+	}
+	//простіший турнір для порівняння поведінки класів ботів
 	startTournament(botsClasses, numGames, showLog=false){
 		this.bots.length=0;
 		//створюємо ботів для турніра
@@ -43,6 +113,10 @@ class World {
 		info.appendChild(tournamentResults);
 	}
 
+	resetResults() {
+		let info = document.querySelector(".info");
+		info.innerHTML = "";
+	}
 
 	startGame(showLog=true){
 		//боти вже є
@@ -59,7 +133,7 @@ class World {
 			let ob = this.buildCurrentGameSituation()
 			if (showLog)console.log("Situation ",ob)
 			//який бот зараз ходить
-			if (showLog)console.log("Bot ",currentBotId, "moves")
+			if (showLog)console.log("Bot ",currentBotId,this.bots[currentBotId].myName , "moves")
 			let bot = this.bots[currentBotId]
 			//показуємо боту ситуація та отримуємо від нього хід
 			let botMove = bot.makeMoveForSituation(ob)
@@ -136,6 +210,12 @@ class World {
 				}else{
 					this.tournamentScores[bot.myName]=1
 				}
+
+				let bid = this.allBots.indexOf(bot)
+				if (bid!=-1){
+					this.allBotsResults[bid]+=1
+				}
+				
 				bot.getInformedOfVictory()
 			}else{
 				bot.getInformedOfDefeat()
@@ -152,11 +232,82 @@ class World {
 				}else{
 					this.tournamentScores[bot.myName]=1
 				}	
-				bot.getInformedOfVictory()		
+				
+				let bid = this.allBots.indexOf(bot)
+				if (bid!=-1){
+					this.allBotsResults[bid]+=1
+				}
+
+				bot.getInformedOfVictory()	
 			}else{
 				bot.getInformedOfDefeat()
 			}
 		}	
+	}
+
+	//за результатами турніру видаляємо усіх ботів класу botClass, які не потрапили у K кращих
+	keepNoMoreThanKBestBotsOfClass(botClass, K=10){
+		//боти, що не відносяться до класу botClass залишаються
+		let otherBots=[]
+		//боти, що відносяться до класу botClass залишаються якщо потрапляють у К кращих
+		let bots2Keep=[];
+		let botsScores2Keep=[];
+		for (let i=0; i<this.allBots.length; i++){
+			let bot = this.allBots[i];
+			if (bot instanceof botClass){
+				let score = this.allBotsResults[i];
+				let needsSorting=false;
+				if (bots2Keep.length<K){
+					bots2Keep.push(bot)
+					botsScores2Keep.push(score)
+					needsSorting=true;
+				}else{
+					if (botsScores2Keep[botsScores2Keep.length-1]<score){
+						botsScores2Keep[botsScores2Keep.length-1]=score;
+						bots2Keep[bots2Keep.length-1]=bot;
+						needsSorting=true
+					}
+				}
+				if (needsSorting){
+					for (let j=botsScores2Keep.length-1; j>=1; j--){
+						if (botsScores2Keep[j-1]<botsScores2Keep[j]){
+							let t = botsScores2Keep[j-1];
+							botsScores2Keep[j-1]=botsScores2Keep[j]
+							botsScores2Keep[j]=t
+
+							let b = bots2Keep[j-1];
+							bots2Keep[j-1]=bots2Keep[j]
+							bots2Keep[j]=b;
+						}
+					}
+				}
+			}else{
+				otherBots.push(bot)
+			}
+		}
+
+		this.allBots=otherBots;
+		for (let i=0; i<bots2Keep.length; i++){
+			this.allBots.push(bots2Keep[i]);
+		}
+	}
+
+	createDescendantsOfBotsOfClass(botClass, nameStart="A"){
+		let len = this.allBots.length
+		for (let i=0; i<len-1; i++){
+			let b1 = this.allBots[i];
+			if (b1 instanceof botClass){
+				let b = new botClass(nameStart+"_"+i, b1)
+				this.allBots.push(b)
+				for (let j=i+1; j<len; j++){
+					let b2 = this.allBots[j];
+					if (b2 instanceof botClass){
+						let b = new botClass(nameStart+"_"+i+"_"+j, b1, b2)
+						this.allBots.push(b)
+					}
+				}
+			}
+		}
 	}
 }
 //що має вміти ігровий світ?
@@ -233,116 +384,42 @@ class BachetWorld extends World{
 	}	
 }
 
-
-class BachetWorld134 extends World{
-	constructor(){
+class UniversalBachetWorld extends BachetWorld{
+	constructor(movesAr=[1,2,3], isLastMoveWinner=true){
 		super()
-		console.log("BachetWorld134 created")
-
-		this.N = 100;
-	}
-
-	isGameOver(){
-		return this.N<=0;
-	}
-
-	makeBotMove(moveOb){
-		this.N-=moveOb.n
+		this.allowedMoves=movesAr;
+		this.isLastPlayerWinner=isLastMoveWinner;
 	}
 	validateMove(moveOb){
-		let res = true;
+		let res=false;
 		if (moveOb["n"]){
-			if (Math.floor(moveOb["n"])===moveOb["n"]){
-				if (moveOb["n"]>=1 && moveOb["n"]<=4 && moveOb["n"]!=2){
-					if (moveOb["n"]<=this.N){
-						res=true;
-					}else{
-						res=false;
-					}
-				}else{
-					res=false;
+			if (this.allowedMoves.indexOf(moveOb.n)!=-1){//якщо зроблений гравцем хід є серед дозволених
+				if (moveOb.n<=this.N){
+					res=true;
 				}
-			}else{
-				res=false;
 			}
-		}else{
-			res=false;
 		}
-
-		return res
+		return res;
 	}
-
-	buildCurrentGameSituation(){
-		return {N:this.N}
-	}	
-
-	initNewGamePosition(){
-		this.N = Math.floor(50+Math.random()*50)
-	}	
-
-	calculateGamePoints(currentBotId){
-		this.giveVictoryToSingleBot(currentBotId)
-	}
-
-	stopGameAfterBotError(botId){
-		//перемога всім іншим
-		this.giveDefeatToSingleBot(botId)
-	}	
-}
-
-class BachetWorld1234 extends World{
-	constructor(){
-		super()
-		console.log("BachetWorld1234 created")
-
-
-		this.N = 100;
-	}
-
+	//гра завершена, коли каміння залишилося менше, ніж найменший можливий хід
 	isGameOver(){
-		return this.N<=0;
-	}
-
-	makeBotMove(moveOb){
-		this.N-=moveOb.n
-	}
-	validateMove(moveOb){
-		let res = true;
-		if (moveOb["n"]){
-			if (Math.floor(moveOb["n"])===moveOb["n"]){
-				if (moveOb["n"]>=1 && moveOb["n"]<=4){
-					if (moveOb["n"]<=this.N){
-						res=true;
-					}else{
-						res=false;
-					}
-				}else{
-					res=false;
-				}
-			}else{
+		let res=true;
+		for (let i=0; i<this.allowedMoves.length; i++){
+			if (this.allowedMoves[i]<=this.N){
 				res=false;
+				break;
 			}
-		}else{
-			res=false;
 		}
 
-		return res
-	}
-
-	buildCurrentGameSituation(){
-		return {N:this.N}
+		return res;
 	}	
-
-	initNewGamePosition(){
-		this.N = Math.floor(50+Math.random()*50)
-	}	
-
+	//ця функція викликається після ходу, яких завершує гру
 	calculateGamePoints(currentBotId){
-		this.giveVictoryToSingleBot(currentBotId)
+		//currentBotId - номер бота, який зробив останній хід
+		if (this.isLastPlayerWinner){
+			this.giveVictoryToSingleBot(currentBotId)
+		}else{
+			this.giveDefeatToSingleBot(currentBotId)
+		}
 	}
-
-	stopGameAfterBotError(botId){
-		//перемога всім іншим
-		this.giveDefeatToSingleBot(botId)
-	}	
 }

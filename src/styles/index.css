@@ -215,6 +215,65 @@ body {
     margin: 20px;
     position: bottom;
 }
+.staticPanel{
+    background-color: rgba(127, 255, 212, 0);
+    border: 1px solid #000;
+    height: 100%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: top;
+    flex-direction:row;
+    position: fixed;
+    bottom: 0%;
+    max-height: 100px;
+}
+.staticPanel input{
+    width: 100% !important;
+    height: 100%;
+    border: none;
+    font-size: 20px;
+    text-align: center;
+}
+.static-panel-info{
+    display: flex;
+    background-color: #47474742;
+    width: 200px;
+    min-height: 200px;
+    position: fixed;
+    right: 20px;
+    top: 30px;
+    flex-direction: column;
+}
+.static-panel-info h5{
+    color: #ffffff;
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+    border-bottom: #b3b3b3 1px solid;
+}
+.last-actions {
+    background-color:#0000001e;
+    overflow: auto;
+    white-space: nowrap;
+    width: 100%;
+    max-height: 120px;
+}
+.last-actions p {
+    color: #ffffff;
+    margin: 0;
+}
+.all-bots {
+    background-color:#0000001e;
+    overflow: auto;
+    white-space: nowrap;
+    width: 100%;
+    max-height: 150px;
+}
+.all-bots p {
+    color: #ffffff;
+    margin: 0;
+}
 .textLine{
     border-top: #000000 2px solid;
     margin: 20px 0 20px 0;

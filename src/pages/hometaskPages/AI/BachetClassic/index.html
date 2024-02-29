@@ -18,14 +18,93 @@
 
 
 	<div class="panel">
-		<div class="info" style="color: black;"></div>
-
+		<div class="info" style="color: black; margin: 0, 0, 200px, 0;"></div>
+	</div>
+	<div class="static-panel-info">
+		<h5>Всі боти:</h5>
+		<div class="all-bots" id="allBots" style="color: black;"></div>
+		<h5>Останні дії:</h5>
+		<div class="last-actions" id="lastActions" style="color: black;"></div>
+	</div>
+	<button type="button" class="hideStaticPanel" onclick="hideStaticPanel('off')" style="position: fixed; bottom: 100px;">Hide</button>
+	<div class="staticPanel">
 		<div class="btn-group" role="group" aria-label="Basic example">
 			<button type="button" class="btn btn-secondary" onclick="location.reload()">Reset</button>
 		</div>
+		<button type="button" class="btn btn-secondary" onclick="keepNoMoreThanKBestBotsOfClass()">Keep 10 best</button>
+		<input type="text" id="char" value="" style="width: 20px;" onchange="char = this.value;" placeholder="Evo Name">
+		<button type="button" class="btn btn-secondary" onclick="createDescendantsOfBotsOfClass()">Create descendants</button>
+		<button type="button" class="btn btn-secondary" onclick="showAllBots()">Show all bots</button>
+		<button type="button" class="btn btn-secondary" onclick="playTournaments()">Play tournaments</button>
+		<input type="text" id="n" value="" style="width: 20px;" onchange="n = this.value;" placeholder="N">
+		<button type="button" class="btn btn-secondary" onclick="createDescendantsOfBotsOfClassManyTimes(n)">Create descendants N times</button>
 	</div>
 
-		
+<script>
+	let char = 'B';
+	// масив останніх дій
+	let lastActions = [];
+	function updateLastActions() {
+		if (lastActions.length > 5) {
+			lastActions.shift();
+		}
+		let p = document.createElement("p");
+		p.innerHTML = lastActions.join('<br>');
+		// очищення вмісту
+		document.getElementById('lastActions').innerHTML = '';
+		document.getElementById('lastActions').appendChild(p);
+	}
+	function keepNoMoreThanKBestBotsOfClass() {
+		window.world.keepNoMoreThanKBestBotsOfClass(EvoBot, 10);
+		lastActions.push('keep 10 best');
+		updateLastActions();
+	}
+	function createDescendantsOfBotsOfClass() {
+		if (char.trim() !== '') { // Перевірка, чи не порожній рядок
+			window.world.createDescendantsOfBotsOfClass(EvoBot, char);
+			lastActions.push('create desc. of ' + char + ' class');
+			updateLastActions();
+		} else {
+			console.error('Char is empty or undefined');
+		}
+	}
+	function showAllBots() {
+		console.log(window.world.allBots);
+		window.world.displayAllBots();
+		lastActions.push('showAllBots');
+		updateLastActions();
+	}
+	function playTournaments(){
+		window.world.startTournamentBetweenBots(window.world.allBots, 100, 2, false);
+		lastActions.push('playTournaments');
+		updateLastActions();
+	}
+	// функція для того щоб пройти декілька поколінь одразу
+	function createDescendantsOfBotsOfClassManyTimes(n) {
+		for (let i = 0; i < n; i++) {
+			window.world.keepNoMoreThanKBestBotsOfClass(EvoBot, 10);
+			window.world.createDescendantsOfBotsOfClass(EvoBot, "Skip"+i);
+			window.world.startTournamentBetweenBots(window.world.allBots, 100, 2, false);
+		}
+		lastActions.push('create desc. ' + n + ' times');
+		updateLastActions();
+	}
+
+	// функція для того щоб приховати статичну панель
+	let setn = 'off';
+
+	function hideStaticPanel(display) {
+		if (display === 'off' && setn === 'on') {
+			document.querySelector('.staticPanel').style.display = 'flex';
+			setn = 'off';
+		} else if (display === 'off' && setn === 'off') {
+			document.querySelector('.staticPanel').style.display = 'none';
+			setn = 'on';
+		}
+	}
+
+</script>
+
 </body>
 <script src="/Launcher/src/js/index.js"></script>
 </html>
