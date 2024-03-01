@@ -3,39 +3,41 @@
 #include <vector>
 #include <windows.h>
 
+using namespace std;
+
 class TSoundPlayer {
 private:
-    static const std::vector<std::string> notes;
-    static const std::vector<int> freq;
-    static const int t = 1000;
+    static const vector<string> notes;
+    static const vector<int> freq;
+    static const int t = 1024;
 
 public:
     TSoundPlayer();
-    TSoundPlayer(const std::string& melody, const std::vector<double>& T);
+    TSoundPlayer(const string& melody, const vector<double>& T);
     ~TSoundPlayer();
 
-    void Play(const std::string& melody, const std::vector<double>& T);
-    void CreateTrack(const std::string& melody, const std::vector<double>& T);
-    void PlayTrack(const std::string& filename);
+    void Play(const string& melody, const vector<double>& T);
+    void CreateTrack(const string& melody, const vector<double>& T);
+    void PlayTrack(const string& filename);
 };
 
-const std::vector<std::string> TSoundPlayer::notes = {"C", "D", "E", "F", "G", "A", "B", "C2", "D2", "E2", "F2", "G2", "A2", "B2"};
-const std::vector<int> TSoundPlayer::freq = {262, 294, 330, 349, 392, 440, 494, 523, 587, 659, 698, 784, 880, 988};
+const vector<string> TSoundPlayer::notes = {"C", "D", "E", "F", "G", "A", "B", "C2", "D2", "E2", "F2", "G2", "A2", "B2"};
+const vector<int> TSoundPlayer::freq = {262, 294, 330, 349, 392, 440, 494, 523, 587, 659, 698, 784, 880, 988};
 
 TSoundPlayer::TSoundPlayer() {
-    std::cout << "TSoundPlayer конструктор без параметрів" << std::endl;
+    cout << "TSoundPlayer конструктор без параметрів" << endl;
 }
 
-TSoundPlayer::TSoundPlayer(const std::string& melody, const std::vector<double>& T) {
-    std::cout << "TSoundPlayer конструктор з двома параметрами" << std::endl;
+TSoundPlayer::TSoundPlayer(const string& melody, const vector<double>& T) {
+    cout << "TSoundPlayer конструктор з двома параметрами" << endl;
     Play(melody, T);
 }
 
 TSoundPlayer::~TSoundPlayer() {
-    std::cout << "TSoundPlayer деструктор" << std::endl;
+    cout << "TSoundPlayer деструктор" << endl;
 }
 
-void TSoundPlayer::Play(const std::string& melody, const std::vector<double>& T) {
+void TSoundPlayer::Play(const string& melody, const vector<double>& T) {
     if (!melody.empty()) {
         size_t j = 0; // Змінна для індексування значень з T[]
         for (size_t i = 0; i < melody.length(); i++) {
@@ -65,25 +67,25 @@ void TSoundPlayer::Play(const std::string& melody, const std::vector<double>& T)
 }
 
 
-void TSoundPlayer::CreateTrack(const std::string& melody, const std::vector<double>& T) {
-    std::ofstream file("track.txt");
+void TSoundPlayer::CreateTrack(const string& melody, const vector<double>& T) {
+    ofstream file("track.txt");
     if (file.is_open()) {
-        file << melody << std::endl;
+        file << melody << endl;
         for (size_t i = 0; i < T.size(); i++) {
             file << T[i] << " ";
         }
         file.close();
-        std::cout << "Трек створено та збережено в файлі track.txt" << std::endl;
+        cout << "Трек створено та збережено в файлі track.txt" << endl;
     } else {
-        std::cerr << "Не вдалося відкрити файл для запису треку." << std::endl;
+        cerr << "Не вдалося відкрити файл для запису треку." << endl;
     }
 }
 
-void TSoundPlayer::PlayTrack(const std::string& filename) {
-    std::ifstream file(filename);
+void TSoundPlayer::PlayTrack(const string& filename) {
+    ifstream file(filename);
     if (file.is_open()) {
-        std::string melody;
-        std::vector<double> T;
+        string melody;
+        vector<double> T;
         file >> melody;
         double temp;
         while (file >> temp) {
@@ -92,15 +94,15 @@ void TSoundPlayer::PlayTrack(const std::string& filename) {
         TSoundPlayer player;
         player.Play(melody, T);
         file.close();
-        std::cout << "Трек відтворено" << std::endl;
+        cout << "Трек відтворено" << endl;
     } else {
-        std::cerr << "Не вдалося відкрити файл для відтворення треку." << std::endl;
+        cerr << "Не вдалося відкрити файл для відтворення треку." << endl;
     }
 }
 
 int main() {
-    std::string melody = "E E E E E E E E E E E E G E E E G E E E E E E A B C2 B A B";
-    std::vector<double> T = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1, 1, 1, 1, 1, 1, 1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.6, 1, 1, 1, 1};
+    string melody = "E E E E E E E E E E E E G E E E G E E E E E E A B C2 B A B";
+    vector<double> T = {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0, 0.5, 0.5, 0.5, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0, 0.5, 0.5, 0.5, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1.0};
     TSoundPlayer player(melody, T);
     player.CreateTrack(melody, T);
     player.PlayTrack("track.txt");

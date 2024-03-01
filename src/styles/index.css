@@ -18,10 +18,10 @@ html {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 .dropdown-toggle{
-    background-color: #00000000 !important;
-    border: none;
+    background-color: #252525f1 !important;
+    border: none !important;
     box-shadow: none !important;
-    color: #000000 !important;
+    color: aqua !important;
     font-size: 20px;
     font-family: cursive;
     border-radius: 0 !important;
@@ -34,12 +34,15 @@ html {
     width: 100% !important;
 }
 .dropdown-toggle:hover{
-    background-color: #1df80077 !important;
+    background-color: #6e6e6ec0 !important;
 }
 .dropdown-menu.show {
-    left: 50% !important;
-    background-color: #85858594;
+    left: 20px !important;
+    background-color: #0000005d;
     border: none;
+    display: inline-flex !important;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 .btn-secondary{
     width: 20px;
@@ -87,10 +90,10 @@ body {
     padding: 0;
 }
 .btnpanel {
-    background-color: #47484d00;
+    background-color: rgba(71, 72, 77, 0);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 5%;
+    gap: 64px;
     padding: 20px;
     margin: 200px;
 }
@@ -238,10 +241,9 @@ body {
 .btn{
     width: 100%;
     height: 100%;
-    box-shadow: #91919136 5px 5px 0px;
 }
 .btn-primary {
-    border-color: #00000000 !important;
+    border-color: #00000000;
     border-radius: 0 0 3px 3px !important;
 }
 .back{
@@ -262,7 +264,7 @@ body {
 }
 .but-play{
     background-image: linear-gradient(to right, #2cb13e, #406d46) !important;
-    border-color: #406d46 !important;
+    border-color: #449c50 !important;
     color: #000 !important;
     box-shadow: inset 0 0 10px #9ba057 !important;
 }
@@ -284,7 +286,8 @@ body {
     margin: 16px;
 }
 .num{
-    background-color: #0abbd3 !important;
+    background-color: #242424 !important;
+    color: aqua !important;
     border: #527ae7 1px solid !important;
     border-radius: 10% !important;
     margin-bottom: 10px;
@@ -295,11 +298,11 @@ body {
     justify-content: center;
 }
 .num:hover{
-    background-color: #0491a7 !important;
+    background-color: #414141e5 !important;
 }
 .whiteb {
     align-items: center;
-    background-color: #313131;
+    background-color: #313131 !important;
     border-radius: 8px;
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
     box-sizing: border-box;
