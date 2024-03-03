@@ -20,6 +20,7 @@ private:
     string name;
     double price;
     vector<string> keywords;
+    vector<Product> products;
 
 public:
     Product() {
@@ -100,6 +101,101 @@ public:
         }
     }
 
+    void Interface(){
+        cout << green << "______________________________________________________" << reset << endl;
+        cout << green << "1. Додати товар" << reset << endl;
+        cout << green << "2. Видалити товар" << reset << endl;
+        cout << green << "3. Пошук товару" << reset << endl;
+        cout << green << "4. Вивести інформацію про товар" << reset << endl;
+        cout << green << "5. Вивести всі товари" << reset << endl;
+        cout << green << "6. Вийти" << reset << endl;
+
+        int choice;
+        // Вибір опції
+        cin >> choice;
+        if (choice == 1){ // Додавання товару
+            string name;
+            double price;
+            string keyword;
+            vector<string> keywords;
+            cout << cyan << "Введіть назву товару: " << reset;
+            cout << yellow;
+            cin >> name;
+            cout << reset;
+            cout << cyan << "Введіть ціну товару: " << reset;
+            cout << yellow;
+            cin >> price;
+            cout << reset;
+            cout << cyan << "Введіть кількість ключових слів: " << reset;
+            int n;
+            cout << yellow;
+            cin >> n;
+            cout << reset;
+            for (int i = 0; i < n; i++){
+                cout << cyan << "Введіть ключове слово: " << reset;
+                cout << yellow;
+                cin >> keyword;
+                cout << reset;
+                keywords.push_back(keyword);
+            }
+            products.emplace_back(name, price, vector<string>{keyword});
+
+            Interface();
+        }
+        else if (choice == 2){ // Видалення товару
+            int id;
+            cout << cyan << "Введіть ID товару: " << reset;
+            cout << yellow;
+            cin >> id;
+            cout << reset;
+            for (auto it = products.begin(); it != products.end(); ++it) {
+                if (it->getID() == id) {
+                    products.erase(it);
+                    break;
+                }
+            }
+            Interface();
+        }
+        else if (choice == 3){ // Пошук товару
+            string keyword;
+            cout << cyan << "Введіть ключове слово: " << reset;
+            cout << yellow;
+            cin >> keyword;
+            cout << reset;
+            for (const auto& product : products) {
+                product.findKeyword(keyword);
+            }
+            Interface();
+        }
+        else if (choice == 4){ // Виведення інформації про товар
+            int id;
+            cout << cyan << "Введіть ID товару: " << reset;
+            cout << yellow;
+            cin >> id;
+            cout << reset;
+            for (const auto& product : products) {
+                if (product.getID() == id) {
+                    product.getInfo();
+                    break;
+                }
+            }
+            Interface();
+        }
+        else if (choice == 5){ // Виведення всіх товарів
+            for (const auto& product : products) {
+                product.getInfo();
+            }
+            Interface();
+        }
+        else if (choice == 6){ // Вихід
+            return;
+        }
+        else {
+            cout << red << "Невірний вибір" << reset << endl;
+            Interface();
+        }
+    }
+
 // Статичне поле класу
 private:
     static int generateID() {
@@ -110,37 +206,52 @@ private:
 int Product::nextID = 100000;
 
 int main() {
-    cout << green << "Початок роботи" << reset << endl;
+    cout << blue << "Початок роботи" << reset << endl;
     vector<Product> products;
 
-    // Додавання товарів
-    products.emplace_back("Книга1", 100, vector<string>{"Книга"});
-    products.emplace_back("Lenovo", 1000, vector<string>{"Комп'ютер"});
-    products.emplace_back("Яблуко", 5, vector<string>{"Їжа"});
+    cout << green << "Варіанти роботи програми:" << reset << endl;
+    cout << green << "1. Автоматичний" << reset << endl;
+    cout << green << "2. Ручний" << reset << endl;
+    int choice;
+    cin >> choice;
 
-    // Перегляд інформації про товари
-    for (const auto& product : products) {
-        product.getInfo();
+    if (choice == 1){
+        // Додавання товарів
+        products.emplace_back("Книга1", 100, vector<string>{"Книга"});
+        products.emplace_back("Lenovo", 1000, vector<string>{"Комп'ютер"});
+        products.emplace_back("Яблуко", 5, vector<string>{"Їжа"});
+
+        // Перегляд інформації про товари
+        for (const auto& product : products) {
+            product.getInfo();
+        }
+
+        // Пошук за ключовим словом
+        cout << cyan << "Пошук за ключовим словом 'Комп'ютер':" << reset << endl;
+        for (const auto& product : products) {
+            product.findKeyword("Комп'ютер");
+        }
+
+        // Зміна назви та ціни товару
+        products[0].setName("Книга2");
+        products[0].setPrice(200);
+
+        // Додавання та видалення ключових слів
+        products[0].addKeyword("Художня");
+        products[0].removeKeyword("Книга");
+
+        // Вивід оновленої інформації про перший товар
+        products[0].getInfo();
+
+        Product::showNextID();
     }
-
-    // Пошук за ключовим словом
-    cout << cyan << "Пошук за ключовим словом 'Комп'ютер':" << reset << endl;
-    for (const auto& product : products) {
-        product.findKeyword("Комп'ютер");
+    else if (choice == 2){
+        Product product;
+        product.Interface();
     }
-
-    // Зміна назви та ціни товару
-    products[0].setName("Книга2");
-    products[0].setPrice(200);
-
-    // Додавання та видалення ключових слів
-    products[0].addKeyword("Художня");
-    products[0].removeKeyword("Книга");
-
-    // Вивід оновленої інформації про перший товар
-    products[0].getInfo();
-
-    Product::showNextID();
+    else {
+        cout << red << "Невірний вибір" << reset << endl;
+    }
 
     cout << red << "Кінець роботи" << reset << endl;
     return 0;
