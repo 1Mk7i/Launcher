@@ -12,7 +12,6 @@ string magenta = "\033[1;35m";
 string cyan = "\033[1;36m";
 string reset = "\033[0m";
 
-
 class Product {
 private:
     static int nextID;
@@ -102,6 +101,7 @@ public:
     }
 
     void Interface(){
+        cout << "\033[2J\033[1;1H"; // ощищення консолі
         cout << green << "______________________________________________________" << reset << endl;
         cout << green << "1. Додати товар" << reset << endl;
         cout << green << "2. Видалити товар" << reset << endl;
