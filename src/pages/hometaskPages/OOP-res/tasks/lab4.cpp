@@ -185,6 +185,9 @@ void TSoundPlayer::TrimTrack(size_t position) {
     if (!melody.empty() && position < T.size()) {
         melody = melody.substr(position);
         T.erase(T.begin(), T.begin() + position);
+
+        cout << "Трек обрізано" << endl;
+        Play(melody, T);
     }
 }
 
@@ -226,10 +229,13 @@ void Interface(){
         cout << "Введіть зсув: ";
         cin >> shift;
         player.ChangeKey(shift);
+        player.Play(melody, T);
     } else if (choice == 7) {
         player.FillRandom();
+        player.Play(melody, T);
     } else if (choice == 8) {
         player.ReverseTrack();
+        player.Play(melody, T);
     } else if (choice == 9) {
         size_t position;
         cout << "Введіть позицію: ";
