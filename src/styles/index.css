@@ -3,20 +3,45 @@ html {
     width: 100%;
     box-shadow: inset 0 0 1000px #000000 !important;
     overflow: hidden; /* Change overflow to hidden */
+    margin: 0;
 }
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+body::-webkit-scrollbar-track{
+    background: #050c25;
+    border-radius: 10px;
+}
+body::-webkit-scrollbar-thumb{
+    background: #003741;
+    border-radius: 10px;
+}
+body::-webkit-scrollbar-thumb:hover{
+    background: #00a5c2;
+}
+
 .headerstyle {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
-    background-color: #000000;
+    background-color: #1b18465b;
     color: #ffffff;
     padding: 10px;
     text-align: center;
     font-size: 20px;
     font-family: cursive;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid #175f5f70;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    right: 10px;
+    width: 100%;
+    height: 50px;
+    backdrop-filter: blur(2px);
+    z-index: 100;
 }
+
 .dropdown-toggle{
     background-color: #252525f1 !important;
     border: none !important;
@@ -43,14 +68,11 @@ html {
     display: inline-flex !important;
     flex-wrap: wrap;
     justify-content: space-around;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px #000000;
+    border-radius: 10px;
 }
-.btn-secondary{
-    width: 20px;
-    height: 20px;
-    display: flex;
-    border-radius: 0;
-    justify-content: center;
-}
+
 .headb{
     width: 20px !important;
     height: 20px !important;
@@ -61,7 +83,6 @@ html {
     font: 0.8em sans-serif;
     border-radius: 0 !important; 
     align-items: center;
-    
 }
 body {
     height: 100%;
@@ -78,7 +99,7 @@ body {
     font-family: cursive;
     font-size: 16px;
     margin: 0;
-    padding: 0;
+    padding: 40px 0 0 0;
 }
 .menu2 {
     background: rgb(7,0,128);
@@ -87,7 +108,7 @@ body {
     font-family: cursive;
     font-size: 16px;
     margin: 0;
-    padding: 0;
+    padding: 40px 0 0 0;
 }
 .btnpanel {
     background-color: rgba(71, 72, 77, 0);
@@ -95,17 +116,21 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 64px;
     padding: 20px;
-    margin: 200px;
+    margin: 100px;
 }
 .panel {
-    background-color: #acacac;
-    background-image: url(../assets/images/white-paper-texture.jpg);
-    border: 1px solid #949494;
+    background-color: #7474747c;
+    /* background-image: url(../assets/images/white-paper-texture.jpg); */
+    border: 1px solid #727272;
     border-radius: 5px;
     padding: 10px;
     text-decoration: none;
-    margin: 60px 260px 30px 100px;
+    margin: 100px;
     min-width: 500px;
+    backdrop-filter: blur(5px);
+    color: #ffffff;
+    text-shadow: #000000 2px 2px 1px;
+    box-shadow: #7a7a7a7c 5px 5px 6px;
 }
 .panel2 {
     background: linear-gradient(90deg, rgb(51, 50, 53) 0%, rgb(75, 75, 75) 50%, rgb(63, 63, 63) 100%);    border: 1px solid #949494;
@@ -172,7 +197,7 @@ body {
     position: bottom;
 }
 .descriptionPanel{
-    background-color: #fdd3d300;
+    background-color: #ffffff00;
     border-radius: 5px;
     padding: 10px;
     text-decoration: none;
@@ -246,6 +271,13 @@ body {
     border-color: #00000000;
     border-radius: 0 0 3px 3px !important;
 }
+.btn-secondary{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    border-radius: 5% !important;
+    justify-content: center;
+}
 .back{
     background-color: #999999 !important;
     border-color: #000000 !important;
@@ -265,25 +297,24 @@ body {
 .but-play{
     background-image: linear-gradient(to right, #2cb13e, #406d46) !important;
     border-color: #449c50 !important;
-    color: #000 !important;
     box-shadow: inset 0 0 10px #9ba057 !important;
 }
 .but-play:hover{
     background-image: linear-gradient(to right, #9ff178, #498f53) !important;
     border-color: #498f53 !important;
-    color: #000 !important;
 }
 .numPanel{
     background-color: #ff000000;
     border-radius: 5px;
     padding: 10px;
-    top: 120px;
+    position: relative;
+    top: 8px;
     right: 20px;
     width: auto;
     height: auto;
-    position: fixed;
     padding: 0;
-    margin: 16px;
+    display: flex;
+    margin: 0 0 16px 0;
 }
 .num{
     background-color: #242424 !important;

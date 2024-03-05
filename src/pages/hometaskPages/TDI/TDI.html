@@ -8,22 +8,27 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>AI</title>
 </head>
+<header>
+    <div class="headerstyle">
+        <div class="numPanel">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Завдання
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="btn btn-primary num" data-target="section1" onclick="scrollToSection(this)">1 Завд</a>
+                    <a class="btn btn-primary num" data-target="section2" onclick="scrollToSection(this)">2 Завд</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 <body class="menu2">
     <div class="Back">
         <a class="btn btn-primary back" href="/Launcher/src/pages/hometask.html">←</a>
     </div>
 
-    <div class="numPanel" style="background-color: #07ffffa9;">
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #007bff; border: none;">
-                Завдання
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="btn btn-primary num" data-target="section1" onclick="scrollToSection(this)" style="background-color: #007bff; border: none; color: #000;">1 Завд</a>
-                <a class="btn btn-primary num" data-target="section2" onclick="scrollToSection(this)" style="background-color: #007bff; border: none;">2 Завд</a>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="panel">
         <div id="section1"></div>

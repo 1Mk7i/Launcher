@@ -52,4 +52,4 @@ function loadContent(url, targetId) {
 }
 
 // Виклик функції для завантаження вмісту з іншого файлу
-loadContent('res/OOPnav.html', 'nav-content');
+loadContent('res/OOPnav.html', 'nav-content-oop');

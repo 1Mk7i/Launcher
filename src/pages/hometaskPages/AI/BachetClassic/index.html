@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="css/Bachet.css">
 	<link rel="stylesheet" href="/Launcher/src/styles/index.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<title>Document</title>
+	<title>BachetGame</title>
 	<script src="js/main.js"></script>
 	<script src="js/world.js"></script>
 	<script src="js/bots.js"></script>
@@ -32,15 +32,15 @@
 
 	<div class="staticPanel">
 		<div class="btn-group" role="group" aria-label="Basic example">
-			<button type="button" class="btn btn-secondary statPanelButton" onclick="location.reload()">Reset</button>
+			<button type="button" class="btn btn-primary statPanelButton" onclick="location.reload()">Reset</button>
 		</div>
-		<button type="button" class="btn btn-secondary statPanelButton" onclick="keepNoMoreThanKBestBotsOfClass()">Keep 10 best</button>
+		<button type="button" class="btn btn-primary statPanelButton" onclick="keepNoMoreThanKBestBotsOfClass()">Keep 10 best</button>
 		<input type="text" id="char" value="" style="width: 20px;" onchange="char = this.value;" placeholder="Evo Name">
-		<button type="button" class="btn btn-secondary statPanelButton" onclick="createDescendantsOfBotsOfClass()">Create descendants</button>
-		<button type="button" class="btn btn-secondary statPanelButton" onclick="showAllBots()">Show all bots</button>
-		<button type="button" class="btn btn-secondary statPanelButton" onclick="playTournaments()">Play tournaments</button>
+		<button type="button" class="btn btn-primary statPanelButton" onclick="createDescendantsOfBotsOfClass()">Create descendants</button>
+		<button type="button" class="btn btn-primary statPanelButton" onclick="showAllBots()">Show all bots</button>
+		<button type="button" class="btn btn-primary statPanelButton" onclick="playTournaments()">Play tournaments</button>
 		<input type="text" id="n" value="" style="width: 20px;" onchange="n = this.value;" placeholder="N">
-		<button type="button" class="btn btn-secondary statPanelButton" onclick="createDescendantsOfBotsOfClassManyTimes(n)">Create descendants N times</button>
+		<button type="button" class="btn btn-primary statPanelButton" onclick="createDescendantsOfBotsOfClassManyTimes(n)">Create descendants N times</button>
 	</div>
 
 <script>

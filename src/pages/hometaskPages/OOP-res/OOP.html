@@ -8,18 +8,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>OOP</title>
 </head>
+<header>
+    <div id="nav-content-oop" class="headerstyle"></div>
+</header>
 <body class="menu2">
 
     <div class="Back">
         <a class="btn btn-primary back" href="/Launcher/src/pages/hometask.html">←</a>
     </div>
 
-    <div id="nav-content"></div>
-
     <div class="panel">
         <div id="section1"></div>
         <div class="descriptionPanel" id="text1">
-            <h2 style="color:red; text-align: center;">Практикум №1</h2>
+            <h2>Практикум №1</h2>
             <h2>Завдання 1</h2>
             <h4>07.02.2024</h4>
             <p>Розробити програму, використовуючи функції, розмішені всередині структури, що описує відповідний об’єкт.
@@ -79,8 +80,8 @@
 
     <div class="panel">
         <div id="section4"></div>
-        <div class="descriptionPanel" id="text3">
-            <h2 style="color:red; text-align: center;">Практикум №2</h2>
+        <div class="descriptionPanel" id="text4">
+            <h2>Практикум №2</h2>
             <h2>Завдання</h2>
             <h4>15.02.2024</h4>
             <p>Комплексні числа представляють парою дійсних чисел (a,b), де а - дійсна частина, а b - уявна. Реалізувати клас Complex для роботи з комплексними числами. Обов’язково повинні бути присутніми операції:</p>
@@ -91,19 +92,19 @@
             <li>порівняння equ, 		(a,b) = (c,d), якщо  (a=c)  та (b=d) ;</li>
             <li>спряжене число conj, 	conj(a,b) = (a, -b).</li>
             </div>
-            <h4 style="color:rgb(0, 107, 18); text-align: center;">Перший спосіб</h4>
+            <h4 style="text-align: center;">Перший спосіб</h4>
             <li>тип даних представити структурою з необхідними полями, а операції реалізуються як зовнішні функції, які отримують об’єкти даного типу в якості аргументів;</li>
             <pre><code id="Prak2OOPnum1" class="language-cpp"><!-- Код буде вставлено тут --></code></pre>
             <img class="TaskImg" src="images/P2_Main.png">
 
         <div id="section5"></div>
-            <h4 style="color: rgb(0, 107, 18); text-align: center;">Другий спосіб</h4>
+            <h4 style="text-align: center;">Другий спосіб</h4>
             <li>як клас із закритими полями, де операції реалізуються як методи класу;</li>
             <pre><code id="Prak2OOPnum2" class="language-c"><!-- Код буде вставлено тут --></code></pre>
             <img class="TaskImg" src="images/P2_Main.png">
 
         <div id="section6"></div>
-            <h4 style="color:rgb(0, 107, 18); text-align: center;">Третій спосіб</h4>
+            <h4 style="text-align: center;">Третій спосіб</h4>
             <li>інкапсулювати поля класу в незалежній структурі і в ній реалізувати методи Init(), Read(), Display(), toString(); в основному класі повинно бути одне поле даних, представлене об’єктом-структурою.</li>
             <pre><code id="Prak2OOPnum3" class="language-c"><!-- Код буде вставлено тут --></code></pre>
             <img class="TaskImg" src="images/P2_Main.png">
@@ -111,7 +112,7 @@
 
     <div class="panel">
         <div id="section7"></div>
-        <div class="descriptionPanel" id="text3">
+        <div class="descriptionPanel" id="text5">
             <h2>Лабораторна робота 2</h2>
             <h4>16.02.2024</h4>
             <p>Варіант 5</p>
@@ -133,7 +134,7 @@
 
     <div class="panel">
         <div id="section8"></div>
-        <div class="descriptionPanel" id="text3">
+        <div class="descriptionPanel" id="text6">
             <h2>Практикум №3</h2>
             <h4>21.02.2024</h4>
             <p><h4>Завдання 1</h4> Реалізувати клас ЧЕРГА, що містить інформацію про надходження на сервер запитів. Інформаційними полями кожного елемента є код користувача та сума оплати. Черга має обмеження на максимальну кількість запитів (статичний масив). Реалізувати додавання запиту в чергу, виконання запиту (вилучення) та проглядання всіх запитів черги. В якості інформаційної моделі черги використати масив (STL не застосовувати).</p>
@@ -147,7 +148,7 @@
 
     <div class="panel">
         <div id="section9"></div>
-        <div class="descriptionPanel" id="text3">
+        <div class="descriptionPanel" id="text7">
             <p><h4>Завдання 2</h4>Реалізувати клас ІСТОРІЯ_ДІЙ, що моделює історію дій в редакторі Photoshop. Інформаційними полями кожного елемента є код графічного шару та назва операції. В якості інформаційної моделі історії_дій використати динамічний масив (STL не застосовувати).  Реалізувати додавання в масив нової операції, відміну(вилучення) та проглядання всіх операції за принципом стеку.</p>
             <li>В програмі створити декілька екземплярів історій дій та продемонструвати реалізацію їх обробки.</li>
             <li>Реалізувати сторонню функцію, що здійснює виведення на екран списку всіх дій в порядку відмінни заданої черги.</li>
@@ -159,7 +160,7 @@
 
     <div class="panel">
         <div id="section10"></div>
-        <div class="descriptionPanel" id="text3">
+        <div class="descriptionPanel" id="text8">
             <h2>Лабораторна робота 3</h2>
             <h4>25.02.2024</h4>
             <p>Вимоги до реалізації завдання:
@@ -176,7 +177,7 @@
 
     <div class="panel">
         <div id="section11"></div>
-        <div class="descriptionPanel" id="text3">
+        <div class="descriptionPanel" id="text9">
             <h2>Практикум №4</h2>
             <h4>28.02.2024</h4>
             <h4>Завдання:</h4>
@@ -202,9 +203,10 @@
         </div>
     </div>
 
+    
     <div class="panel">
         <div id="section12"></div>
-        <div class="descriptionPanel">
+        <div class="descriptionPanel" id="text10">
             <h2>Лабораторна №4</h2>
             <h4>03.03.2024</h4>
             <h4>Програвач 2.0</h4>
