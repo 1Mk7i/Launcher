@@ -1,25 +1,9 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
+#include "lab3.h"
+#define WIN32_LEAN_AND_MEAN
+#define RPC_NO_WINDOWS_H
 #include <windows.h>
 
 using namespace std;
-
-class TSoundPlayer {
-private:
-    static const vector<string> notes;
-    static const vector<int> freq;
-    static const int t = 1024;
-
-public:
-    TSoundPlayer();
-    TSoundPlayer(const string& melody, const vector<double>& T);
-    ~TSoundPlayer();
-
-    void Play(const string& melody, const vector<double>& T);
-    void CreateTrack(const string& melody, const vector<double>& T);
-    void PlayTrack(const string& filename);
-};
 
 const vector<string> TSoundPlayer::notes = {"C", "D", "E", "F", "G", "A", "B", "C2", "D2", "E2", "F2", "G2", "A2", "B2"};
 const vector<int> TSoundPlayer::freq = {262, 294, 330, 349, 392, 440, 494, 523, 587, 659, 698, 784, 880, 988};
