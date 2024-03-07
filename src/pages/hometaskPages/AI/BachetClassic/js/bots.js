@@ -164,9 +164,9 @@ class BachetLearnerBot extends Bot{
 //бот, що вміє еволюціонувати
 class EvoBot extends Bot{
 	constructor(nm, b1, b2){
-		super(nm)
+		super(nm);
 		// додавання до імені смайлик
-		this.myName+=this.getRandomEmoji();
+		this.myName = this.getRandomEmoji() + this.myName;
 		//може бути свторений просто так, а можуть бути вказані 1 чи 2 батьківських ботів
 		//масив правид, "ДНК" бота, що визначає його поведінку
 		this.rules=[]
