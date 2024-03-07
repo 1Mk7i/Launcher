@@ -19,7 +19,6 @@ private:
     string name;
     double price;
     vector<string> keywords;
-    vector<Product> products;
 
 public:
     Product() {
@@ -138,9 +137,9 @@ public:
                 cout << reset;
                 keywords.push_back(keyword);
             }
-            products.emplace_back(name, price, vector<string>{keyword});
+            Product newProduct(name, price, keywords);
 
-            Interface();
+            newProduct.Interface();
         }
         else if (choice == 2){ // Видалення товару
             int id;
@@ -148,11 +147,10 @@ public:
             cout << yellow;
             cin >> id;
             cout << reset;
-            for (auto it = products.begin(); it != products.end(); ++it) {
-                if (it->getID() == id) {
-                    products.erase(it);
-                    break;
-                }
+            if (id == getID()) {
+                cout << red << "Неможливо видалити поточний товар" << reset << endl;
+            } else {
+                cout << red << "Товар з ID " << id << " не знайдено" << reset << endl;
             }
             Interface();
         }
@@ -162,29 +160,15 @@ public:
             cout << yellow;
             cin >> keyword;
             cout << reset;
-            for (const auto& product : products) {
-                product.findKeyword(keyword);
-            }
+            findKeyword(keyword);
             Interface();
         }
         else if (choice == 4){ // Виведення інформації про товар
-            int id;
-            cout << cyan << "Введіть ID товару: " << reset;
-            cout << yellow;
-            cin >> id;
-            cout << reset;
-            for (const auto& product : products) {
-                if (product.getID() == id) {
-                    product.getInfo();
-                    break;
-                }
-            }
+            getInfo();
             Interface();
         }
         else if (choice == 5){ // Виведення всіх товарів
-            for (const auto& product : products) {
-                product.getInfo();
-            }
+            cout << red << "Немає збережених товарів" << reset << endl;
             Interface();
         }
         else if (choice == 6){ // Вихід
@@ -207,7 +191,6 @@ int Product::nextID = 100000;
 
 int main() {
     cout << blue << "Початок роботи" << reset << endl;
-    vector<Product> products;
 
     cout << green << "Варіанти роботи програми:" << reset << endl;
     cout << green << "1. Автоматичний" << reset << endl;
@@ -217,31 +200,29 @@ int main() {
 
     if (choice == 1){
         // Додавання товарів
-        products.emplace_back("Книга1", 100, vector<string>{"Книга"});
-        products.emplace_back("Lenovo", 1000, vector<string>{"Комп'ютер"});
-        products.emplace_back("Яблуко", 5, vector<string>{"Їжа"});
+        Product product1("Книга1", 100, vector<string>{"Книга"});
+        Product product2("Lenovo", 1000, vector<string>{"Комп'ютер"});
+        Product product3("Яблуко", 5, vector<string>{"Їжа"});
 
         // Перегляд інформації про товари
-        for (const auto& product : products) {
-            product.getInfo();
-        }
+        product1.getInfo();
+        product2.getInfo();
+        product3.getInfo();
 
         // Пошук за ключовим словом
         cout << cyan << "Пошук за ключовим словом 'Комп'ютер':" << reset << endl;
-        for (const auto& product : products) {
-            product.findKeyword("Комп'ютер");
-        }
+        product2.findKeyword("Комп'ютер");
 
         // Зміна назви та ціни товару
-        products[0].setName("Книга2");
-        products[0].setPrice(200);
+        product1.setName("Книга2");
+        product1.setPrice(200);
 
         // Додавання та видалення ключових слів
-        products[0].addKeyword("Художня");
-        products[0].removeKeyword("Книга");
+        product1.addKeyword("Художня");
+        product1.removeKeyword("Книга");
 
         // Вивід оновленої інформації про перший товар
-        products[0].getInfo();
+        product1.getInfo();
 
         Product::showNextID();
     }
