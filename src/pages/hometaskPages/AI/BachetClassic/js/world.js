@@ -98,9 +98,13 @@ class World {
 	
 		let worldNameElement = document.createElement("h4");
 		worldNameElement.classList.add("world-name");
-		// Додаємо рандомний смайлик перед ім'ям світу
 		worldNameElement.textContent = this.constructor.name;
 		tournamentResults.appendChild(worldNameElement);
+
+		let botsResultElement = document.createElement("h4");
+		botsResultElement.classList.add("bots-result");
+		botsResultElement.textContent = "Bots result:";
+		tournamentResults.appendChild(botsResultElement);
 	
 		let sortedBots = Object.entries(this.tournamentScores).sort((a, b) => b[1] - a[1]);
 		for (let i = 0; i < sortedBots.length; i++) {
