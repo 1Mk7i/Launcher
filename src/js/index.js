@@ -54,3 +54,5 @@ function loadContent(url, targetId) {
 
 // Виклик функції для завантаження вмісту з іншого файлу
 loadContent('res/OOPnav.html', 'nav-content-oop');
+loadContent('TDI-res/Virus.html', 'virus-content');
+loadContent('TDI-res/CiberAttack.html', 'ciber-attack-content');

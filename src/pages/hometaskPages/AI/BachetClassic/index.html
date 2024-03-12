@@ -84,13 +84,24 @@
 	}
 	// функція для того щоб пройти декілька поколінь одразу
 	function createDescendantsOfBotsOfClassManyTimes(n) {
-		for (let i = 0; i < n; i++) {
-			window.world.keepNoMoreThanKBestBotsOfClass(EvoBot, 10);
-			window.world.createDescendantsOfBotsOfClass(EvoBot, "Skip"+i);
-			window.world.startTournamentBetweenBots(window.world.allBots, 100, 2, false);
+		let besyBot = window.world.allBotsResults[3];
+		let lenght = window.world.allBotsResults.length;
+		for (let i = 0; i < lenght; i++){
+			if (besyBot >= i) {
+			for (let i = 0; i < n; i++) {
+				window.world.keepNoMoreThanKBestBotsOfClass(EvoBot, 10);
+				window.world.createDescendantsOfBotsOfClass(EvoBot, "Skip"+i);
+				window.world.startTournamentBetweenBots(window.world.allBots, 10, 2, false);
+			}
+			lastActions.push('create desc. ' + n + ' times');
+			updateLastActions();
+			}
+			else {
+				console.log('Error');
+			}
 		}
-		lastActions.push('create desc. ' + n + ' times');
-		updateLastActions();
+		
+		
 	}
 
 	// функція для того щоб приховати статичну панель
