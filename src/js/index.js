@@ -30,6 +30,12 @@ fetchAndDisplayContent('tasks/Prak2OOPS3.cpp','Prak2OOPnum3')
 fetchAndDisplayContent('tasks/Prak3OOPS1.cpp','Prak3OOPnum1')
 fetchAndDisplayContent('tasks/Prak3OOPS2.cpp','Prak3OOPnum2')
 fetchAndDisplayContent('tasks/Prak4OOP.cpp','Prak4OOP')
+// підключення 5 практикуму
+fetchAndDisplayContent('tasks/prak5/Prak5OOP.cpp','Prak5OOPmain')
+fetchAndDisplayContent('tasks/prak5/Point.h','Pointh')
+fetchAndDisplayContent('tasks/prak5/Point.cpp','Pointcpp')
+fetchAndDisplayContent('tasks/prak5/Vector.h','Vectorh')
+fetchAndDisplayContent('tasks/prak5/Vector.cpp','Vectorcpp')
 
 // JavaScript-функція для прокручування до певного пункту
 function scrollToSection(button) {
