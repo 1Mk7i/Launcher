@@ -4,6 +4,7 @@ class World {
 		this.allBots=[]//боти для великого турніру. Звідси будуть бартися боти по двоє і запускатися серія ігор
 		this.allBotsResults=[];//бали ботів у великому турнірі, у такому ж порядку, як і їхні номери у списку this.allBots
 		this.tournamentScores={}//асоційований об'єкт: бали ботів у турнірі по їх іменах
+		this.tournamentScoresByBots={}//асоційований об'єкт: бали ботів у турнірі по їх посиланнях
 	}
 	displayAllBots(){
 		// вивести в div з id="allBots" всіх ботів
@@ -50,6 +51,7 @@ class World {
 		this.allBots = bots;
 		this.allBotsResults=[];
 		this.tournamentScores={}
+		this.tournamentScoresByBots=new Map();
 		for (let i=0; i<this.allBots.length; i++){
 			this.allBotsResults.push(0);
 		}
@@ -71,6 +73,8 @@ class World {
 		console.log("Tournament results:", this.tournamentScores);
 		this.resetResults();
 		this.displayResults();
+		this.displayGraph();
+		this.displayGraphForSelectedBots();
 	}
 	//простіший турнір для порівняння поведінки класів ботів
 	startTournament(botsClasses, numGames, showLog=false){
@@ -81,15 +85,15 @@ class World {
 			this.bots.push(b)
 		}
 		this.tournamentScores={}
+		this.tournamentScoresByBots.clear()
 
 		for (let i=0; i<numGames; i++){
 			this.startGame(showLog)
 		}
-		console.log("Tournament results:", this.tournamentScores)
-		
+		console.log("Tournament results:", this.tournamentScores);
+
 		this.displayResults()
 	}
-
 
 	displayResults(worldName) {
 		let info = document.querySelector(".info");
@@ -125,6 +129,122 @@ class World {
 		info.innerHTML = "";
 	}
 
+	// вивід в окрему панель графік виграшів ботів
+	displayGraph() {
+		let chart = document.getElementById("chart");
+		chart.innerHTML = "";
+		let canvas = document.createElement("canvas");
+		canvas.id = "myChart";
+		chart.appendChild(canvas);
+		let ctx = document.getElementById("myChart").getContext("2d");
+		let myChart = new Chart(ctx, {
+			type: "bar",
+			data: {
+				labels: Object.keys(this.tournamentScores),
+				datasets: [
+					{
+						label: "Tournament results",
+						data: Object.values(this.tournamentScores),
+						backgroundColor: [
+							"rgba(255, 99, 132, 0.2)",
+							"rgba(54, 162, 235, 0.2)",
+							"rgba(255, 206, 86, 0.2)",
+							"rgba(75, 192, 192, 0.2)",
+							"rgba(153, 102, 255, 0.2)",
+							"rgba(255, 159, 64, 0.2)",
+							"rgba(255, 99, 132, 0.2)",
+							"rgba(54, 162, 235, 0.2)",
+							"rgba(255, 206, 86, 0.2)",
+							"rgba(75, 192, 192, 0.2)",
+							"rgba(153, 102, 255, 0.2)",
+							"rgba(255, 159, 64, 0.2)",
+						],
+						borderColor: [
+							"rgba(255, 99, 132, 1)",
+							"rgba(54, 162, 235, 1)",
+							"rgba(255, 206, 86, 1)",
+							"rgba(75, 192, 192, 1)",
+							"rgba(153, 102, 255, 1)",
+							"rgba(255, 159, 64, 1)",
+							"rgba(255, 99, 132, 1)",
+							"rgba(54, 162, 235, 1)",
+							"rgba(255, 206, 86, 1)",
+							"rgba(75, 192, 192, 1)",
+							"rgba(153, 102, 255, 1)",
+							"rgba(255, 159, 64, 1)",
+						],
+						borderWidth: 1,
+					},
+				],
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+					},
+				},
+			},
+		});
+	}
+
+	// вивід в окрему панель графік розвитку тільки для Evo ботів
+	displayGraphForSelectedBots() {
+		let chart = document.getElementById("chart");
+		let canvas = document.createElement("canvas");
+		canvas.id = "myChart2";
+		chart.appendChild(canvas);
+		let ctx = document.getElementById("myChart2").getContext("2d");
+		let myChart = new Chart(ctx, {
+			type: "line",
+			data: {
+				labels: Object.keys(this.tournamentScores),
+				datasets: [
+					{
+						label: "Tournament results",
+						data: Object.values(this.tournamentScores),
+						backgroundColor: [
+							"rgba(255, 99, 132, 0.2)",
+							"rgba(54, 162, 235, 0.2)",
+							"rgba(255, 206, 86, 0.2)",
+							"rgba(75, 192, 192, 0.2)",
+							"rgba(153, 102, 255, 0.2)",
+							"rgba(255, 159, 64, 0.2)",
+							"rgba(255, 99, 132, 0.2)",
+							"rgba(54, 162, 235, 0.2)",
+							"rgba(255, 206, 86, 0.2)",
+							"rgba(75, 192, 192, 0.2)",
+							"rgba(153, 102, 255, 0.2)",
+							"rgba(255, 159, 64, 0.2)",
+						],
+						borderColor: [
+							"rgba(255, 99, 132, 1)",
+							"rgba(54, 162, 235, 1)",
+							"rgba(255, 206, 86, 1)",
+							"rgba(75, 192, 192, 1)",
+							"rgba(153, 102, 255, 1)",
+							"rgba(255, 159, 64, 1)",
+							"rgba(255, 99, 132, 1)",
+							"rgba(54, 162, 235, 1)",
+							"rgba(255, 206, 86, 1)",
+							"rgba(75, 192, 192, 1)",
+							"rgba(153, 102, 255, 1)",
+							"rgba(255, 159, 64, 1)",
+						],
+						borderWidth: 1,
+					},
+				],
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+					},
+				},
+			},
+		});
+	}
+	
+	
 	startGame(showLog=true){
 		//боти вже є
 		this.initNewGamePosition();
@@ -135,7 +255,7 @@ class World {
 
 		//доки гра не закінчена, робимо ходи
 		let currentBotId = 0;
-		while(!this.isGameOver()){//ходи продовжуємо, поки гра триває
+		while(true){//ходи продовжуємо, поки гра триває
 			//будуємо ситуація для показу боту
 			let ob = this.buildCurrentGameSituation()
 			if (showLog)console.log("Situation ",ob)
@@ -151,8 +271,10 @@ class World {
 				this.makeBotMove(botMove);
 				//якщо хід привів до завершення гри
 				if (this.isGameOver()){
+					if (showLog)console.log("GAME OVER! Calculating points...")
 					//визначаємо, хто виграв, хто програв
 					this.calculateGamePoints(currentBotId)
+					break;
 				}else{
 					//якщо ні, визначаємо наступного гравця, який буде ходити
 					currentBotId++;
@@ -160,6 +282,7 @@ class World {
 				}
 			}else{
 				//якщо хід не задовольняє правилам, то зупиняємо гру, зарахувавши боту програш
+				if (showLog)console.log("BOT ERROR! Calculating points...")
 				this.stopGameAfterBotError(currentBotId);
 				break;
 			}
@@ -217,6 +340,11 @@ class World {
 				}else{
 					this.tournamentScores[bot.myName]=1
 				}
+				if (this.tournamentScoresByBots.has(bot)){
+					this.tournamentScoresByBots.set(bot,this.tournamentScoresByBots.get(bot)+1)
+				}else{
+					this.tournamentScoresByBots.set(bot,1)
+				}
 
 				let bid = this.allBots.indexOf(bot)
 				if (bid!=-1){
@@ -238,6 +366,11 @@ class World {
 					this.tournamentScores[bot.myName]++
 				}else{
 					this.tournamentScores[bot.myName]=1
+				}	
+				if (this.tournamentScoresByBots.has(bot)){
+					this.tournamentScoresByBots.set(bot,this.tournamentScoresByBots.get(bot)+1)
+				}else{
+					this.tournamentScoresByBots.set(bot,1)
 				}	
 				
 				let bid = this.allBots.indexOf(bot)
@@ -262,7 +395,7 @@ class World {
 		for (let i=0; i<this.allBots.length; i++){
 			let bot = this.allBots[i];
 			if (bot instanceof botClass){
-				let score = this.allBotsResults[i];
+				let score = this.findLastTournamentScoreOfBot(bot)
 				let needsSorting=false;
 				if (bots2Keep.length<K){
 					bots2Keep.push(bot)
@@ -301,7 +434,7 @@ class World {
 
 	createDescendantsOfBotsOfClass(botClass, nameStart="A"){
 		let len = this.allBots.length
-		for (let i=0; i<len-1; i++){
+		for (let i=0; i<len; i++){
 			let b1 = this.allBots[i];
 			if (b1 instanceof botClass){
 				let b = new botClass(nameStart+"_"+i, b1)
@@ -314,6 +447,53 @@ class World {
 					}
 				}
 			}
+		}
+	}
+
+
+	findLastTournamentScoreOfBot(bot){
+		if (this.tournamentScoresByBots.has(bot)){
+			return this.tournamentScoresByBots.get(bot)
+		}else{
+			return 0;
+		}
+	}
+
+	createKNewBotsOfClass(botClass,K,  nameStart="A"){
+		let len = this.allBots.length
+		for (let i=0; i<K; i++){
+			let b = new botClass(nameStart+"_"+(len+i))
+			this.allBots.push(b)
+		}
+	}
+
+	findBestTournamentResultOfBotsOfClass(botClass){
+		let res=0;
+		let len = this.allBots.length
+		for (let i=0; i<len; i++){
+			let b = this.allBots[i];
+			if (b instanceof botClass){
+				res = Math.max(res, this.findLastTournamentScoreOfBot(b))
+			}
+		}
+		return res;
+	}
+
+	findAverageTournamentResultOfBotsOfClass(botClass){
+		let sum=0;
+		let num=0
+		let len = this.allBots.length
+		for (let i=0; i<len; i++){
+			let b = this.allBots[i];
+			if (b instanceof botClass){
+				sum += this.findLastTournamentScoreOfBot(b)
+				num+=1
+			}
+		}
+		if (num==0){
+			return 0
+		}else{
+			return sum/num
 		}
 	}
 }
@@ -428,5 +608,49 @@ class UniversalBachetWorld extends BachetWorld{
 		}else{
 			this.giveDefeatToSingleBot(currentBotId)
 		}
+	}
+}
+
+class UniversalBachetWorldWithNoRepeats extends UniversalBachetWorld{
+	constructor(movesAr=[1,2,3], isLastMoveWinner=true, nunNonRepeats=1){
+		super(movesAr,isLastMoveWinner)
+		this.numForbiddenRepeats=nunNonRepeats;
+		this.forbiddenMoves=[];
+	}
+	validateMove(moveOb){
+		let res = super.validateMove(moveOb)
+		if (res){
+			if (this.forbiddenMoves.indexOf(moveOb["n"])!=-1){
+				res=false;
+			}		
+		}
+		return res;
+	}
+	initNewGamePosition(){
+		super.initNewGamePosition();
+		this.forbiddenMoves.length=0;
+	}
+	//{n:1..3}
+	makeBotMove(moveOb){
+		this.N-=moveOb.n
+		this.forbiddenMoves.push(moveOb.n);
+		if (this.forbiddenMoves.length>this.numForbiddenRepeats){
+			this.forbiddenMoves.splice(0,1)
+		}
+	}
+	buildCurrentGameSituation(){
+		return {N:this.N, forbiddenMoves:this.forbiddenMoves.slice()}
+	}		
+	isGameOver(){	
+		let minPossibleMove=NaN;
+		for (let i=0; i<this.allowedMoves.length; i++){
+			let val = this.allowedMoves[i];
+			if (this.forbiddenMoves.indexOf(val)==-1){
+				if ((isNaN(minPossibleMove))||(val<minPossibleMove)){
+					minPossibleMove=val;
+				}
+			}
+		}
+		return (minPossibleMove>this.N)||(this.N<=0);
 	}
 }

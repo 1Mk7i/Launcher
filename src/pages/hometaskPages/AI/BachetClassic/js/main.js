@@ -15,7 +15,8 @@ window.onload=function(){
 	//тепер треба повторити турнір
 	//window.world.startTournamentBetweenBots(window.world.allBots,100,2,false)
 	//та подивитися, чи нові еволюційні боти дадуть кращий результат
-/*
+
+	/*
 	let obs={}
 	for (let i=0; i<1000000; i++){
 		let ar=[1,2,3]
