@@ -21,3 +21,5 @@ fetchAndDisplayContent('tasks/prak5/Vector.cpp','Vectorcpp')
 
 // Виклик функції для завантаження вмісту html з іншого файлу
 loadContent('res/OOPnav.html', 'nav-content-oop');
+
+fetchAndDisplayContent('tasks/lab6.cpp', 'Lab6OOP');
