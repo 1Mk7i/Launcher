@@ -17,6 +17,8 @@ int main() {
     p.print();
     moveByVector(p,Vector(1.0, 2.0, 3.0));
     p.print();
+    p.moveByVector(Vector(1.0, 2.0, 3.0));
+    p.print();
     cout << "\nProgram end\n";
     return 0;
 }

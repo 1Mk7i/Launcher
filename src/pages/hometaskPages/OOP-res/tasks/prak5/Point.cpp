@@ -5,3 +5,4 @@
 void Point::print() {
     std::cout << "\nPoint(" << cx << " , " << cy << " , " << cz << ")";
 }
+

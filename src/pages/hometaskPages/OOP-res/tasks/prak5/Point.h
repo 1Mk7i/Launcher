@@ -1,7 +1,7 @@
 #ifndef POINT_H
 #define POINT_H
 
-class Vector;
+#include "Vector.h"
 
 class Point {
 private:
@@ -13,6 +13,12 @@ public:
     void print();
 
     friend void moveByVector(Point &p, const Vector &v);
+
+    void moveByVector(const Vector& v) {
+        cx += v.cx;
+        cy += v.cy;
+        cz += v.cz;
+    }
 };
 
 #endif
