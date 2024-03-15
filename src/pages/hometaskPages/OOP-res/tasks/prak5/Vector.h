@@ -8,11 +8,11 @@ private:
     double cx, cy, cz;
 
 public:
-    Vector(double x = 0.0, double y = 0.0, double z = 0.0);
+    Vector(double x = 0.0, double y = 0.0, double z = 0.0) : cx(x), cy(y), cz(z) {}
 
     void print();
 
-    friend class Point;
+    friend void Point::moveByVector(const Vector &v);
 };
 
 #endif

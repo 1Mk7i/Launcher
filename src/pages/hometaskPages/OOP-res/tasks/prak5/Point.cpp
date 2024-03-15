@@ -1,12 +1,9 @@
-#include "Point.h"
 #include <iostream>
-
-using namespace std;
-
-Point::Point(double x, double y, double z) : cx(x), cy(y), cz(z) {}
+#include "Point.h"
+#include "Vector.h"
 
 void Point::print() {
-    cout << "\nPoint(" << cx << " , " << cy << " , " << cz << ")";
+    std::cout << "\nPoint(" << cx << " , " << cy << " , " << cz << ")";
 }
 
 void Point::moveByVector(const Vector &v) {
