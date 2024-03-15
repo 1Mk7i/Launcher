@@ -5,9 +5,3 @@
 void Point::print() {
     std::cout << "\nPoint(" << cx << " , " << cy << " , " << cz << ")";
 }
-
-void Point::moveByVector(const Vector &v) {
-    cx += v.cx;
-    cy += v.cy;
-    cz += v.cz;
-}

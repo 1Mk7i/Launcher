@@ -12,7 +12,7 @@ public:
 
     void print();
 
-    void moveByVector(const Vector &v);
+    friend void moveByVector(Point &p, const Vector &v);
 };
 
 #endif
