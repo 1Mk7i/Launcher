@@ -15,7 +15,7 @@ int main() {
     Point p(7.0, 8.0, 9.0);
     Vector v(1.0, 2.0, 3.0);
     p.print();
-    moveByVector(p,v);
+    moveByVector(p,Vector(1.0, 2.0, 3.0));
     p.print();
     cout << "\nProgram end\n";
     return 0;
