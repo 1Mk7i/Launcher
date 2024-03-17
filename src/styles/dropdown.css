@@ -21,11 +21,11 @@ nav > ul{
 nav > ul > li{
     float:left;
     width:calc(100vw/4 - 10px);
-    height:65px;
-    line-height:65px;
+    height:40px;
+    line-height:40px;
     position:relative;
     text-transform:uppercase;
-    font-size:14px;
+    font-size:12px;
     color:rgba(0,0,0,0.7);
     cursor:pointer;
     border:1px solid black;
@@ -45,8 +45,17 @@ ul.drop-menu {
     left: 0%;
     width: 100%;
     padding: 0;
-    overflow-y: auto; /* Додали стиль для вертикальної прокрутки */
-    max-height: 400px; /* Налаштуйте висоту, за потреби */
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+ul.drop-menu::-webkit-scrollbar {
+    width: 0.5em;
+    background-color: transparent;
+}
+
+ul.drop-menu::-webkit-scrollbar-thumb {
+    background-color: transparent;
 }
 
 ul.drop-menu li{
@@ -66,7 +75,6 @@ ul.drop-menu li{
 li:hover > ul.drop-menu li{
     display:block;
 }
-
 /* Sub Menu 1*/
 .sub-menu{
     background:#999 !important;
@@ -154,6 +162,8 @@ li:hover > ul.drop-menu.menu-1 li:nth-child(10){
     0% {opacity:0; -webkit-transform:rotateY(-90deg) translateY(30px); transform:rotateY(-90deg) translateY(30px);}
     100% {opacity:1; -webkit-transform:rotateY(0deg) tranlateY(0px); transform:rotateY(0deg) tranlateY(0px);}
 }
+
+
 
 /* Menu 2 */
 li:hover > ul.drop-menu.menu-2{
