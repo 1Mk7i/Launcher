@@ -122,47 +122,10 @@ li:hover > ul.drop-menu.menu-1 li{
     opacity:0;
     /*animation: menu1 300ms ease-in-out forwards;*/
 }
-li:hover > ul.drop-menu.menu-1 li:nth-child(1){
-    -webkit-animation: menu1 300ms 100ms ease-in-out forwards;
-    animation: menu1 300ms 100ms ease-in-out forwards;
+li:hover > ul.drop-menu.menu-1 li {
+    -webkit-animation: menu1 300ms ease-in-out forwards;
+    animation: menu1 300ms ease-in-out forwards;
 }
-li:hover > ul.drop-menu.menu-1 li:nth-child(2){
-    -webkit-animation: menu1 300ms 200ms ease-in-out forwards;
-    animation: menu1 300ms 200ms ease-in-out forwards
-}
-li:hover > ul.drop-menu.menu-1 li:nth-child(3){
-    -webkit-animation: menu1 300ms 300ms ease-in-out forwards;
-    animation: menu1 300ms 300ms ease-in-out forwards;
-}
-li:hover > ul.drop-menu.menu-1 li:nth-child(4){
-    -webkit-animation: menu1 300ms 400ms ease-in-out forwards;
-    animation: menu1 300ms 400ms ease-in-out forwards;
-}
-li:hover > ul.drop-menu.menu-1 li:nth-child(5){
-    -webkit-animation: menu1 300ms 500ms ease-in-out forwards;
-    animation: menu1 300ms 500ms ease-in-out forwards
-}
-li:hover > ul.drop-menu.menu-1 li:nth-child(6){
-    -webkit-animation: menu1 300ms 600ms ease-in-out forwards;
-    animation: menu1 300ms 600ms ease-in-out forwards;
-}
-li:hover > ul.drop-menu.menu-1 li:nth-child(7){
-    -webkit-animation: menu1 300ms 700ms ease-in-out forwards;
-    animation: menu1 300ms 700ms ease-in-out forwards;
-}
-li:hover > ul.drop-menu.menu-1 li:nth-child(8){
-    -webkit-animation: menu1 300ms 800ms ease-in-out forwards;
-    animation: menu1 300ms 800ms ease-in-out forwards;
-}
-li:hover > ul.drop-menu.menu-1 li:nth-child(9){
-    -webkit-animation: menu1 300ms 900ms ease-in-out forwards;
-    animation: menu1 300ms 900ms ease-in-out forwards;
-}
-li:hover > ul.drop-menu.menu-1 li:nth-child(10){
-    -webkit-animation: menu1 300ms 1000ms ease-in-out forwards;
-    animation: menu1 300ms 1000ms ease-in-out forwards;
-}
-
 
 @-webkit-keyframes menu1 {
     0% {opacity:0; -webkit-transform:rotateY(-90deg) translateY(30px);}
@@ -173,8 +136,6 @@ li:hover > ul.drop-menu.menu-1 li:nth-child(10){
     0% {opacity:0; -webkit-transform:rotateY(-90deg) translateY(30px); transform:rotateY(-90deg) translateY(30px);}
     100% {opacity:1; -webkit-transform:rotateY(0deg) tranlateY(0px); transform:rotateY(0deg) tranlateY(0px);}
 }
-
-
 
 /* Menu 2 */
 li:hover > ul.drop-menu.menu-2{

@@ -7,7 +7,7 @@ window.onload=function(){
 	// window.world.startTournament([BachetBotRandom, BachetBotRandomFixed],1, true)
 	// window.world.startTournamentBetweenBots([new BachetBotRandom("A"), new BachetBotRandomFixed("B"), new BachetBotRandomFixed("C")],1000,2,false)
 	//провести турнір між ботами із заданою поведінкою та еволюційними ботами
-	window.world.startTournamentBetweenBots([new BachetBot1("BOT1"), new BachetBotRandom("RND1"),  new BachetBotRandomFixed("RND2"), new Bot123("BEST"), new BachetLearnerBot("LEARN"), new EvoBot("A1"), new EvoBot("A2"),new EvoBot("A3"),new EvoBot("A4"),new EvoBot("A5")],100,2,false)
+	window.world.startTournamentBetweenBots([new BachetBot1("BOT1"),new EvoBotMod("MOD"), new BachetBotRandom("RND1"),  new BachetBotRandomFixed("RND2"), new Bot123("BEST"), new BachetLearnerBot("LEARN"), new EvoBot("A1"), new EvoBot("A2"),new EvoBot("A3"),new EvoBot("A4"),new EvoBot("A5")],100,2,false)
 	//залишити лише 5 еволюційних ботів з кращими результатами
 	//window.world.keepNoMoreThanKBestBotsOfClass(EvoBot,10)
 	//створити нових еволюційних ботів на основі тих, що пройшли відбір
