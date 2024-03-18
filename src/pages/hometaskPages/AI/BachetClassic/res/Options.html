@@ -2,11 +2,11 @@
     <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-primary statPanelButton" onclick="location.reload()" style="background-color: rgba(204, 16, 16, 0.658) !important;">Reset</button>
     </div>
+    <button type="button" class="btn btn-primary statPanelButton" onclick="keepNoMoreThanKBestBotsOfClass()">Keep 10 best</button>
     <div class="groupButton">
-        <button type="button" class="btn btn-primary statPanelButton" onclick="keepNoMoreThanKBestBotsOfClass()">Keep 10 best</button>
-    <input type="text" id="char" value="" style="width: 80px;" onchange="char = this.value;" placeholder="Evo Name">
+        <button type="button" class="btn btn-primary statPanelButton" onclick="createDescendantsOfBotsOfClass()">Create descendants</button>
+        <input type="text" id="char" value="" style="width: 80px;" onchange="char = this.value;" placeholder="Evo Name">
     </div>
-    <button type="button" class="btn btn-primary statPanelButton" onclick="createDescendantsOfBotsOfClass()">Create descendants</button>
     <button type="button" class="btn btn-primary statPanelButton" onclick="showAllBots()">Show all bots</button>
     <button type="button" class="btn btn-primary statPanelButton" onclick="playTournaments()">Play tournaments</button>
     <div class="groupButton">
