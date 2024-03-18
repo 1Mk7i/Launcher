@@ -11,9 +11,9 @@ function updateLastActions() {
     document.getElementById('lastActions').innerHTML = '';
     document.getElementById('lastActions').appendChild(p);
 }
-function keepNoMoreThanKBestBotsOfClass() {
-    window.world.keepNoMoreThanKBestBotsOfClass(EvoBot, 10);
-    lastActions.push('keep 10 best');
+function keepNoMoreThanKBestBotsOfClass(k) {
+    window.world.keepNoMoreThanKBestBotsOfClass(EvoBot, k);
+    lastActions.push('keep '+k+' best');
     updateLastActions();
 }
 function createDescendantsOfBotsOfClass() {

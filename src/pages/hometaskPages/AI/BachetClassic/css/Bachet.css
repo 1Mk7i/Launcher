@@ -10,9 +10,10 @@
 .statPanelButton{
   width: 100% !important;
   height: 80px !important;
-  background: rgba(75, 75, 75, 0.521) !important;
+  background: rgba(141, 141, 141, 0.664) !important;
   backdrop-filter: blur(10px) !important;
   border: none !important;
+  border-top: 1px solid #000000 !important;
   color: #ffffff !important;
   text-shadow: 1px 1px 1px #0000009d;
 }
