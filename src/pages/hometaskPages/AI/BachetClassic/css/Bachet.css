@@ -10,7 +10,7 @@
 
 .staticPanel{
   background-color: rgba(127, 255, 212, 0);
-  border: 1px solid #000;
+  border: 1px solid #00ffdd;
   height: 100%;
   width: 100%;
   display:flex;
@@ -22,13 +22,16 @@
   max-height: 80px;
 }
 .statPanelButton{
-  background: linear-gradient(to right, #00DDEB, #00b597) !important;
-  color: #000 !important;
-  box-shadow: inset #ffffff9d 5px 5px 10px !important;
+  background: rgba(75, 75, 75, 0.521) !important;
+  backdrop-filter: blur(10px) !important;
+  border: none !important;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 1px #0000009d;
 }
 .statPanelButton:hover{
-  background: linear-gradient(to right, #00b597, #00DDEB) !important;
-  color: #000000 !important;
+  background: rgba(128, 128, 128, 0.473) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #232c00 !important;
 }
 .staticPanel input{
   width: 100% !important;
@@ -37,10 +40,15 @@
   font-size: 20px;
   text-align: center;
   box-shadow: inset #0000009d 5px 5px 10px;
+  background-color: #00000059;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000000fb;
+  backdrop-filter: blur(10px);
 }
 .staticPanel input:hover{
-  background-color: #b4b4b4;
+  background-color: #b4b4b46c;
   color: #000;
+  backdrop-filter: blur(10px);
 }
 .static-panel-info{
   display: flex;
