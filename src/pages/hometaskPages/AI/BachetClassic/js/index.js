@@ -71,62 +71,70 @@ function hideStaticPanel(display) {
     }
 }
 
+
 function getScore(rounds) {
-    let scores = [];
-    for (let i = 0; i < rounds; i++) {
-        console.log("ROUND_" + i);
-        let evoRes = window.world.findAverageTournamentResultOfBotsOfClass(EvoBot);
-        let modRes = window.world.findAverageTournamentResultOfBotsOfClass(EvoBotMod);
-        let bestRes = window.world.findAverageTournamentResultOfBotsOfClass(Bot123);
-        scores.push([evoRes / bestRes, modRes / bestRes]);
-        window.world.keepNoMoreThanKBestBotsOfClass(EvoBot, 10);
-        window.world.keepNoMoreThanKBestBotsOfClass(EvoBotMod, 10);
-        window.world.createDescendantsOfBotsOfClass(EvoBot, "A" + i);
-        window.world.createDescendantsOfBotsOfClass(EvoBotMod, "B" + i);
-        window.world.startTournamentBetweenBots(window.world.allBots, 100, 2, false);
+    if (rounds === 0 || rounds === undefined || rounds === null || rounds === '' || rounds < 0 || rounds > 1000 || isNaN(rounds)) {
+        document.getElementById('alert').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('alert').style.display = 'none';
+        }, 3000);
+    }else{
+        let scores = [];
+        for (let i = 0; i < rounds; i++) {
+            console.log("ROUND_" + i);
+            let evoRes = window.world.findAverageTournamentResultOfBotsOfClass(EvoBot);
+            let modRes = window.world.findAverageTournamentResultOfBotsOfClass(EvoBotMod);
+            let bestRes = window.world.findAverageTournamentResultOfBotsOfClass(Bot123);
+            scores.push([evoRes / bestRes, modRes / bestRes]);
+            window.world.keepNoMoreThanKBestBotsOfClass(EvoBot, 10);
+            window.world.keepNoMoreThanKBestBotsOfClass(EvoBotMod, 10);
+            window.world.createDescendantsOfBotsOfClass(EvoBot, "A" + i);
+            window.world.createDescendantsOfBotsOfClass(EvoBotMod, "B" + i);
+            window.world.startTournamentBetweenBots(window.world.allBots, 100, 2, false);
+        }
+        console.log(scores);
+
+        // Побудова лінійного графіка
+        let trace1 = {
+            x: scores.map((score, index) => index), // раунди
+            y: scores.map(score => score[0]), // значення для EvoBot
+            mode: 'lines',
+            type: 'scatter',
+            name: 'EvoBot',
+            line: {
+                color: 'rgb(55, 128, 191)',
+                width: 3
+            }
+        };
+
+        let trace2 = {
+            x: scores.map((score, index) => index), // раунди
+            y: scores.map(score => score[1]), // значення для EvoBotMod
+            mode: 'lines',
+            type: 'scatter',
+            name: 'EvoBotMod',
+            line: {
+                color: 'rgb(219, 64, 82)',
+                width: 3
+            }
+        };
+
+        let data = [trace1, trace2];
+
+        let layout = {
+            title: 'Графік',
+            xaxis: {
+                title: 'Раунд'
+            },
+            yaxis: {
+                title: 'Значення'
+            },
+            legend: {
+                x: 0.8,
+                y: 1
+            }
+        };
+
+        Plotly.newPlot('scatterPlot', data, layout);
     }
-    console.log(scores);
-
-    // Побудова лінійного графіка
-    let trace1 = {
-        x: scores.map((score, index) => index), // раунди
-        y: scores.map(score => score[0]), // значення для EvoBot
-        mode: 'lines',
-        type: 'scatter',
-        name: 'EvoBot',
-        line: {
-            color: 'rgb(55, 128, 191)',
-            width: 3
-        }
-    };
-
-    let trace2 = {
-        x: scores.map((score, index) => index), // раунди
-        y: scores.map(score => score[1]), // значення для EvoBotMod
-        mode: 'lines',
-        type: 'scatter',
-        name: 'EvoBotMod',
-        line: {
-            color: 'rgb(219, 64, 82)',
-            width: 3
-        }
-    };
-
-    let data = [trace1, trace2];
-
-    let layout = {
-        title: 'Графік',
-        xaxis: {
-            title: 'Раунд'
-        },
-        yaxis: {
-            title: 'Значення'
-        },
-        legend: {
-            x: 0.8,
-            y: 1
-        }
-    };
-
-    Plotly.newPlot('scatterPlot', data, layout);
 }
