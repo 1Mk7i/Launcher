@@ -54,9 +54,9 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <script>
-    function getScore(num) {
+    function getScore(rounds) {
         let scores = [];
-        for (let i = 0; i < num; i++) {
+        for (let i = 0; i < rounds; i++) {
             console.log("ROUND_" + i);
             let evoRes = window.world.findAverageTournamentResultOfBotsOfClass(EvoBot);
             let modRes = window.world.findAverageTournamentResultOfBotsOfClass(EvoBotMod);
