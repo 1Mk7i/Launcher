@@ -1,0 +1,11 @@
+<div class="ModalButtonContent">
+    <p><input type="checkbox" id="BEST">BestBot</p>
+    <p><input type="checkbox" id="EVO">EvoBot</p>
+    <p><input type="checkbox" id="MOD">EvoModBot</p>
+    <p><input type="checkbox" id="LEARN">LearningBot</p>
+    <button type="button" class="btn btn-primary statPanelButton" onclick="saveOptions()" style="height: 80px; background-color: rgba(10, 218, 10, 0.644) !important;">Save</button>
+    <div class="groupButton">
+        <button type="button" class="btn btn-primary statPanelButton" onclick="getScore(rounds, saveOptions())" style="height: 80px;">Create Graph</button>
+        <input type="text" id="rounds" value="" style="width: 80px;" onchange="rounds = this.value;" placeholder="Rounds">
+    </div>
+</div>

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Launcher/src/styles/index.css">
-    <link rel="stylesheet" href="/Launcher/src/styles/prism-holi-theme.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>Document</title>
 </head>
@@ -12,6 +11,8 @@
     <div class="Back">
         <a class="btn btn-primary back" href="/Launcher/src/pages/hometask.html">←</a>
     </div>
+
+    <!-- 
     <div class="numPanel">
         <a class="btn btn-primary num" data-target="section1" onclick="scrollToSection(this)">1</a>
     </div>
@@ -19,12 +20,12 @@
     <div class="panel">
         <div id="section1"></div>
         <div class="descriptionPanel" id="text1"></div>
-        <pre><code id="code1" class="language-html codepanel"><!-- Код буде вставлено тут --></code></pre>
+        <pre><code id="code1" class="language-html codepanel"></code></pre>
     </div>
     <div class="panel">
         <div id="section2"></div>
         <div class="descriptionPanel" id="text2"></div>
-        <pre><code id="code2" class="language-html codepanel"><!-- Код буде вставлено тут --></code></pre>
+        <pre><code id="code2" class="language-html codepanel"></code></pre>
     </div>
 
     <div class="cube">
@@ -38,7 +39,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
+
     <style>
         .cube {
             position: fixed;
@@ -79,8 +81,31 @@
             100% { top: 100%; left: 0; }
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+-->
+
+    <a class="btn btn-primary openModalPanel" onclick="openModalPanel('ModalWindow')">Open Modal</a>
+
+    <div class="ModalWindow">
+        <div class="OperationPanel">
+            <a class="btn btn-primary closeModalPanel" onclick="closeModalPanel('ModalWindow')">✕</a>
+        </div>
+        <div class="ButtonContainer">
+            <a class="btn btn-primary optionButton" href="#">Option</a>
+            <a class="btn btn-primary optionButton" href="#">Option</a>
+            <a class="btn btn-primary optionButton" href="#">Option</a>
+            <a class="btn btn-primary optionButton" href="#">Option</a>
+            <a class="btn btn-primary optionButton" href="#">Option</a>
+            <a class="btn btn-primary optionButton" href="#">Option</a>
+            <a class="btn btn-primary optionButton" href="#">Option</a>
+            <a class="btn btn-primary optionButton" href="#">Option</a>
+            <a class="btn btn-primary optionButton" href="#">Option</a>
+            <a class="btn btn-primary optionButton" href="#">Option</a>
+        </div>
+        <div class="ContentContainer">
+            Graph
+        </div>
+    </div>
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

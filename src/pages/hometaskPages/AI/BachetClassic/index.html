@@ -5,25 +5,35 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/Bachet.css">
 	<link rel="stylesheet" href="/Launcher/src/styles/index.css">
+	<link rel="stylesheet" href="/Launcher/src/styles/ModalWindows/modalWindows.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="/Launcher/src/styles/ModalWindows/modalWindows.js"></script>
 	<title>BachetGame</title>
 	<script src="js/main.js"></script>
 	<script src="js/world.js"></script>
 	<script src="js/bots.js"></script>
+	<script src="js/index.js"></script>
 </head>
 <body class="menu2">
-
-    <div id="alert" style="background-color: red; position: fixed; bottom:80px; right: 0; display: none;">
+	<a class="btn btn-primary openModalPanel" onclick="openModalPanel('ModalWindow')">Open Modal</a>
+	<div id="Bachet-content"></div>
+	
+    <div id="alert" style="background-color: red; position: fixed; bottom:80px; right: 0; display: none; z-index: 1002;">
         <h4 style="color:aliceblue">Введіть кількість раундів</h4>
     </div>
-
+	
 	<div class="Back">
-        <a class="btn btn-primary back" href="/Launcher/src/pages/hometaskPages/AI/AI.html">←</a>
+		<a class="btn btn-primary back" href="/Launcher/src/pages/hometaskPages/AI/AI.html">←</a>
     </div>
-
+	
 	<div class="panel2">
 		<div class="info" style="color: rgb(255, 255, 255); margin: 0, 0, 200px, 0;"></div>
+		
 	</div>
+	<div class="panel2">
+		<div id="chart"></div>
+	</div>
+	<div id="scatterPlot"></div>
 
 	<div class="static-panel-info">
 		<h5>Всі боти:</h5>
@@ -32,31 +42,6 @@
 		<div class="last-actions" id="lastActions" style="color: black;"></div>
 	</div>
 
-	<button type="button" class="hideStaticPanel" onclick="hideStaticPanel('off')" style="position: fixed; bottom: 75px;">Hide</button>
-
-	<div class="staticPanel" style="z-index: 999;">
-		<div class="btn-group" role="group" aria-label="Basic example">
-			<button type="button" class="btn btn-primary statPanelButton" onclick="location.reload()">Reset</button>
-		</div>
-		<button type="button" class="btn btn-primary statPanelButton" onclick="keepNoMoreThanKBestBotsOfClass()">Keep 10 best</button>
-		<input type="text" id="char" value="" style="width: 20px;" onchange="char = this.value;" placeholder="Evo Name">
-		<button type="button" class="btn btn-primary statPanelButton" onclick="createDescendantsOfBotsOfClass()">Create descendants</button>
-		<button type="button" class="btn btn-primary statPanelButton" onclick="showAllBots()">Show all bots</button>
-		<button type="button" class="btn btn-primary statPanelButton" onclick="playTournaments()">Play tournaments</button>
-		<input type="text" id="n" value="" style="width: 20px;" onchange="n = this.value;" placeholder="N">
-		<button type="button" class="btn btn-primary statPanelButton" onclick="createDescendantsOfBotsOfClassManyTimes(n)">Create descendants N times</button>
-        <input type="text" id="rounds" value="" style="width: 20px;" onchange="rounds = this.value;" placeholder="Rounds">
-        <button type="button" class="btn btn-primary statPanelButton" onclick="getScore(rounds)">Create Graph</button>
-	</div>
-
-	<div class="panel2">
-		<div id="chart"></div>
-	</div>
-	<div class="panel2">
-		<div id="scatterPlot"></div>
-	</div>
-
-<script src="js/index.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 </body>

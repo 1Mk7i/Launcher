@@ -71,21 +71,34 @@ function hideStaticPanel(display) {
     }
 }
 
+function saveOptions() {
+    var bestBot = document.getElementById("BEST").checked;
+    var evoBot = document.getElementById("EVO").checked;
+    var learnBot = document.getElementById("LEARN").checked;
+    var evoModBot = document.getElementById("MOD").checked;
+    return {
+        bestBot: bestBot,
+        evoBot: evoBot,
+        learnBot: learnBot,
+        evoModBot: evoModBot
+    };
+}
 
-function getScore(rounds) {
+function getScore(rounds, options) {
     if (rounds === 0 || rounds === undefined || rounds === null || rounds === '' || rounds < 0 || rounds > 1000 || isNaN(rounds)) {
         document.getElementById('alert').style.display = 'block';
         setTimeout(() => {
             document.getElementById('alert').style.display = 'none';
         }, 3000);
-    }else{
+    } else {
         let scores = [];
         for (let i = 0; i < rounds; i++) {
             console.log("ROUND_" + i);
-            let evoRes = window.world.findAverageTournamentResultOfBotsOfClass(EvoBot);
-            let modRes = window.world.findAverageTournamentResultOfBotsOfClass(EvoBotMod);
-            let bestRes = window.world.findAverageTournamentResultOfBotsOfClass(Bot123);
-            scores.push([evoRes / bestRes, modRes / bestRes]);
+            let evoRes = options.evoBot ? window.world.findAverageTournamentResultOfBotsOfClass(EvoBot) : 0;
+            let modRes = options.evoModBot ? window.world.findAverageTournamentResultOfBotsOfClass(EvoBotMod) : 0;
+            let bestRes = options.bestBot ? window.world.findAverageTournamentResultOfBotsOfClass(Bot123) : 0;
+            let learnRes = options.learnBot ? window.world.findAverageTournamentResultOfBotsOfClass(BachetLearnerBot) : 0;
+            scores.push([evoRes, modRes, bestRes,learnRes]);
             window.world.keepNoMoreThanKBestBotsOfClass(EvoBot, 10);
             window.world.keepNoMoreThanKBestBotsOfClass(EvoBotMod, 10);
             window.world.createDescendantsOfBotsOfClass(EvoBot, "A" + i);
@@ -95,31 +108,35 @@ function getScore(rounds) {
         console.log(scores);
 
         // Побудова лінійного графіка
-        let trace1 = {
-            x: scores.map((score, index) => index), // раунди
-            y: scores.map(score => score[0]), // значення для EvoBot
-            mode: 'lines',
-            type: 'scatter',
-            name: 'EvoBot',
-            line: {
-                color: 'rgb(55, 128, 191)',
-                width: 3
-            }
-        };
-
-        let trace2 = {
-            x: scores.map((score, index) => index), // раунди
-            y: scores.map(score => score[1]), // значення для EvoBotMod
-            mode: 'lines',
-            type: 'scatter',
-            name: 'EvoBotMod',
-            line: {
-                color: 'rgb(219, 64, 82)',
-                width: 3
-            }
-        };
-
-        let data = [trace1, trace2];
+        let data = [];
+        if (options.evoBot) {
+            let trace1 = {
+                x: scores.map((score, index) => index), // раунди
+                y: scores.map(score => score[0]), // значення для EvoBot
+                mode: 'lines',
+                type: 'scatter',
+                name: 'EvoBot',
+                line: {
+                    color: 'rgb(55, 128, 191)',
+                    width: 3
+                }
+            };
+            data.push(trace1);
+        }
+        if (options.evoModBot) {
+            let trace2 = {
+                x: scores.map((score, index) => index), // раунди
+                y: scores.map(score => score[1]), // значення для EvoBotMod
+                mode: 'lines',
+                type: 'scatter',
+                name: 'EvoBotMod',
+                line: {
+                    color: 'rgb(219, 64, 82)',
+                    width: 3
+                }
+            };
+            data.push(trace2);
+        }
 
         let layout = {
             title: 'Графік',
@@ -138,3 +155,16 @@ function getScore(rounds) {
         Plotly.newPlot('scatterPlot', data, layout);
     }
 }
+
+// Функція для завантаження вмісту з іншого HTML файлу
+function loadContent(url, targetId) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById(targetId).innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send();
+}
+loadContent('/Launcher/src/pages/hometaskPages/AI/BachetClassic/res/modalWindows.html', 'Bachet-content');
