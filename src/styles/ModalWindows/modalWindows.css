@@ -57,11 +57,13 @@
     top: 30px;
     left: 0;
     width: 30%;
-    height: 60px;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    align-content: flex-start;
+    backdrop-filter: blur(5px);
 }
 .ModalButtonContent{
     width: 100%;
