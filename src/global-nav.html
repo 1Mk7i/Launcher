@@ -5,15 +5,15 @@
                 <ul class="drop-menu menu-1">
                     <li class="sub-menu">Games
                         <ul>
-                            <li><a href="/Launcher/src/pages/gamePages/2048.html" style="text-decoration: none; color: white;">2048</a></li>
-                            <li><a href="/Launcher/src/pages/gamePages/MemeMania.html" style="text-decoration: none; color: white;">MemeMania</a></li>
+                            <li><a class="dropdown-item" data-target="section3" href="/Launcher/src/pages/gamePages/2048.html">2048</a></li>
+                            <li><a class="dropdown-item" data-target="section4" href="/Launcher/src/pages/gamePages/MemeMania.html">MemeMania</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">Hometasks
                         <ul>
-                            <li><a href="/Launcher/src/pages/hometaskPages/OOP-res/OOP.html" style="text-decoration: none; color: white;">ООП</a></li>
-                            <li><a href="/Launcher/src/pages/hometaskPages/AI/AI.html" style="text-decoration: none; color: white;">AI</a></li>
-                            <li><a href="/Launcher/src/pages/hometaskPages/TDI/TDI.html" style="text-decoration: none; color: white;">ТЗІ</a></li>
+                            <li><a class="dropdown-item" data-target="section5" href="/Launcher/src/pages/hometaskPages/OOP-res/OOP.html">ООП</a></li>
+                            <li><a class="dropdown-item" data-target="section6" href="/Launcher/src/pages/hometaskPages/AI/AI.html">AI</a></li>
+                            <li><a class="dropdown-item" data-target="section7" href="/Launcher/src/pages/hometaskPages/TDI/TDI.html">ТЗІ</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">Guide
@@ -34,3 +34,20 @@
         </ul>
     </nav>   
 </div>
+
+<style>
+    .global-nav {
+        display: flex;
+        min-width: 200px;
+        z-index: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .global-nav nav ul li{
+        max-width: 200px;
+    }
+    .dropdown-item {
+        font-size: 1em;
+    }
+</style>
