@@ -15,7 +15,7 @@
 	<script src="js/index.js"></script>
 </head>
 <body class="menu2">
-	<a class="btn btn-primary openModalPanel" onclick="openModalPanel('ModalWindow')">Open Modal</a>
+	<a class="btn btn-primary openModalPanel" onclick="openModalPanel('ModalWindow')" style="z-index: 100;">Open Modal</a>
 	<div id="Bachet-content"></div>
 	
     <div id="alert" style="background-color: red; position: fixed; bottom:80px; right: 0; display: none; z-index: 1002;">
@@ -33,7 +33,10 @@
 	<div class="panel2">
 		<div id="chart"></div>
 	</div>
-	<div id="scatterPlot"></div>
+	<div class="panel2" style="width: auto; display: none;" id="PlotT">
+		<div id="scatterPlot"></div>
+	</div>
+	
 
 	<div class="static-panel-info">
 		<h5>Всі боти:</h5>

@@ -23,3 +23,4 @@ fetchAndDisplayContent('tasks/prak5/Vector.cpp','Vectorcpp')
 loadContent('res/OOPnav.html', 'nav-content-oop');
 
 fetchAndDisplayContent('tasks/lab6.cpp', 'Lab6OOP');
+fetchAndDisplayContent('tasks/lab7.cpp', 'Lab7OOP');

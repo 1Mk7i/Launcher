@@ -152,6 +152,7 @@ function getScore(rounds, options) {
             }
         };
 
+        document.getElementById("PlotT").style.display = "block";
         Plotly.newPlot('scatterPlot', data, layout);
     }
 }
