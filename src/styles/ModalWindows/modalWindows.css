@@ -3,13 +3,13 @@
     margin: 40px 60px 60px 60px;
     width: calc(100% - 120px);
     height: calc(100% - 120px);
-    background: linear-gradient(90deg, rgba(51, 50, 53, 0.8) 0%, rgba(75, 75, 75, 0.8) 50%, rgba(63, 63, 63, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(51,50,53,0.9) 0%, rgba(75,75,75,0.9) 50%, rgba(63,63,63,0.9) 100%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     display: none;
     z-index: 1000;
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
-    border: 5px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    border: none;
 }
 .OperationPanel {
     position: absolute;
@@ -17,7 +17,7 @@
     left: 0;
     width: 100%;
     height: 30px;
-    background: rgba(128, 128, 128, 0.199);
+    background: rgba(128,128,128,0.3);
 }
 .closeModalPanel {
     position: absolute;
@@ -25,16 +25,17 @@
     right: 0;
     width: 30px;
     height: 30px;
-    background: rgba(255, 0, 0, 0.404) !important;
+    background: rgba(255,0,0,0.6) !important;
     border: none !important;
     font-size: 30px !important;
     text-align: center !important;
     line-height: 25px !important;
     cursor: pointer !important;
     padding: 0 !important;
+    transition: background 0.2s ease-in-out;
 }
 .closeModalPanel:hover {
-    background: rgba(117, 117, 117, 0.8);
+    background: rgba(255,80,80,0.8) !important;
 }
 .closeModalPanel:active {
     background: rgba(0, 0, 0, 0.8) !important;
@@ -64,9 +65,10 @@
     align-items: center;
     align-content: flex-start;
     backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.3);
 }
 .ModalButtonContent{
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: flex;
     font-size: 20px;
@@ -102,15 +104,27 @@
     height: calc(100% - 60px);
     overflow: auto;
     padding: 20px;
-    color: white;
-    background-color: rgba(112, 112, 112, 0.452);
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
     display: flex;
+    justify-content: center;
 }
 .optionButton {
     width: 100%;
     height: 40px;
-    background: rgba(0, 0, 0, 0.5);
-    font-size: 20px;
+    background: rgba(0,0,0,0.6);
+    font-size: 16px;
     text-align: center;
     cursor: pointer;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    transition: background 0.3s ease-in-out;
+}
+.optionButton:hover {
+    background: rgba(50,50,50,0.8);
 }

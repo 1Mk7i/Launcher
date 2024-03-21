@@ -28,14 +28,14 @@ nav > ul > li{
     font-size:12px;
     color:aqua;
     text-shadow: 1px 1px 1px black;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(10px);
     cursor:pointer;
     border:1px solid black;
     border-radius:5px;
 }
 nav > ul > li:hover{
-    background:#77777775;
-    backdrop-filter: blur(2px);
+    background:#777777a6;
+    backdrop-filter: blur(10px);
     color:rgb(0, 255, 255);
     text-shadow: 1px 1px 1px black;
     border-radius:5px;
@@ -64,16 +64,16 @@ ul.drop-menu::-webkit-scrollbar-thumb {
 }
 
 ul.drop-menu li{
-    background-color:#77777775;
-    backdrop-filter: blur(2px);
+    background-color:#2b2b2b75;
+    backdrop-filter: blur(10px);    
     color:rgb(255, 255, 255);
-    text-shadow: 1px 1px 1px black;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
     border:1px solid black;
 }
 ul.drop-menu li:hover{
-    background:#77777775;
-    backdrop-filter: blur(2px);
-    color:rgb(172, 172, 172);
+    background:#2b2b2b75;
+    backdrop-filter: blur(10px);
+    color:rgb(255, 255, 255);
     text-shadow: 1px 1px 1px black;
 }
 ul.drop-menu li:last-child{
@@ -87,8 +87,8 @@ li:hover > ul.drop-menu li{
 }
 /* Sub Menu 1*/
 .sub-menu{
-    background:rgba(71, 71, 71, 0.596) !important;
-    backdrop-filter: blur(2px);
+    background:rgba(63, 63, 63, 0.699) !important;
+    backdrop-filter: blur(50px);
 }
 
 .sub-menu ul{
