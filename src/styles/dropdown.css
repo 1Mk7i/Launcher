@@ -64,16 +64,16 @@ ul.drop-menu::-webkit-scrollbar-thumb {
 }
 
 ul.drop-menu li{
-    background-color:#2b2b2b75;
+    background-color:#5c5c5cc4;
     backdrop-filter: blur(10px);    
     color:rgb(255, 255, 255);
     text-shadow: 2px 2px 2px rgb(0, 0, 0);
     border:1px solid black;
 }
 ul.drop-menu li:hover{
-    background:#2b2b2b75;
+    background:#6d6d6d;
     backdrop-filter: blur(10px);
-    color:rgb(255, 255, 255);
+    color:rgb(104, 104, 104);
     text-shadow: 1px 1px 1px black;
 }
 ul.drop-menu li:last-child{
