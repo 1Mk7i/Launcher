@@ -65,11 +65,11 @@ KvadratnaMatrix operator-(const KvadratnaMatrix& m1) {
     KvadratnaMatrix result(m1.size);
 
     int n = m1.size;
-    std::vector<std::vector<double>> identity(n, std::vector<double>(n, 0));
+    vector<vector<double>> omatrix(n, vector<double>(n, 0));
     for (int i = 0; i < n; ++i)
-        identity[i][i] = 1;
+        omatrix[i][i] = 1;
 
-    std::vector<std::vector<double>> tempMatrix(m1.matrix);
+    vector<vector<double>> tempMatrix(m1.matrix);
 
     for (int i = 0; i < n; ++i) {
         double divisor = tempMatrix[i][i];
@@ -78,8 +78,8 @@ KvadratnaMatrix operator-(const KvadratnaMatrix& m1) {
             bool found = false;
             for (int k = i + 1; k < n; ++k) {
                 if (tempMatrix[k][i] != 0) {
-                    std::swap(tempMatrix[i], tempMatrix[k]);
-                    std::swap(identity[i], identity[k]);
+                    swap(tempMatrix[i], tempMatrix[k]);
+                    swap(omatrix[i], omatrix[k]);
                     divisor = tempMatrix[i][i];
                     found = true;
                     break;
@@ -94,7 +94,7 @@ KvadratnaMatrix operator-(const KvadratnaMatrix& m1) {
 
         for (int j = 0; j < n; ++j) {
             tempMatrix[i][j] /= divisor;
-            identity[i][j] /= divisor;
+            omatrix[i][j] /= divisor;
         }
 
         for (int k = 0; k < n; ++k) {
@@ -102,13 +102,13 @@ KvadratnaMatrix operator-(const KvadratnaMatrix& m1) {
                 double multiplier = tempMatrix[k][i];
                 for (int j = 0; j < n; ++j) {
                     tempMatrix[k][j] -= multiplier * tempMatrix[i][j];
-                    identity[k][j] -= multiplier * identity[i][j];
+                    omatrix[k][j] -= multiplier * omatrix[i][j];
                 }
             }
         }
     }
 
-    result.matrix = identity;
+    result.matrix = omatrix;
     return result;
 }
 
