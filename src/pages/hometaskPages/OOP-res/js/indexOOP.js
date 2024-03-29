@@ -25,3 +25,4 @@ loadContent('res/OOPnav.html', 'nav-content-oop');
 
 fetchAndDisplayContent('tasks/lab6.cpp', 'Lab6OOP');
 fetchAndDisplayContent('tasks/lab7.cpp', 'Lab7OOP');
+fetchAndDisplayContent('tasks/lab8.cpp', 'Lab8OOP');

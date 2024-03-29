@@ -41,9 +41,6 @@ nav > ul > li:hover{
     border-radius:5px;
 }
 
-nav > ul > li > ul > li{
-}
-
 ul.drop-menu {
     position: relative;
     top: 0%;
@@ -64,14 +61,14 @@ ul.drop-menu::-webkit-scrollbar-thumb {
 }
 
 ul.drop-menu li{
-    background-color:#5c5c5cc4;
+    background-color:linear-gradient(90deg, rgb(51, 50, 53) 0%, rgb(75, 75, 75) 50%, rgb(63, 63, 63) 100%);
     backdrop-filter: blur(10px);    
     color:rgb(255, 255, 255);
     text-shadow: 2px 2px 2px rgb(0, 0, 0);
     border:1px solid black;
 }
 ul.drop-menu li:hover{
-    background:#6d6d6d;
+    background-color:linear-gradient(90deg, rgb(48, 48, 48) 0%, rgb(56, 56, 56) 10%, rgb(100, 100, 100) 70%);
     backdrop-filter: blur(10px);
     color:rgb(104, 104, 104);
     text-shadow: 1px 1px 1px black;
