@@ -1,19 +1,3 @@
-// 1. Розробити і реалізувати програмно клас, згідно варіанту. 
-// 2. Реалізувати перевантаження зазначених операцій. Перевантажте (на вибір) по дві операції як звичайні функції, як функції, що належать класу, та як дружні функції.
-//  3. Продемонструвати роботу створеного класу та його функцій в основній частині програми. 
-// . Скласти опис класу комплексне число і реалізувати його програмно. Дані класу повинні бути в закритій частині.
-// 2. Клас має містити конструктор і деструктор, а також усі функції-оператори, необхідні для реалізації класу. 
-// 3. Надати користувачу можливість введення даних у вигляді текстового рядка, наприклад для комплексних чисел - у форматі “-3+7і”, для дробів - “2/3”. 
-// 4. Реалізувати виведення інформації про об’єкт класу в стандартизованому вигляді, наприклад для часу - 14:23:05, для многочлена - 4x^3+x+1.
-// 5. Реалізувати дружні функції, що перевантажують визначені операції.
-// 6. Реалізувати зовнішні функції, що перевантажують певні операції.
-// 7. Реалізувати методи класу, що перевантажують окремі операції.
-// 6. В головній програмі перевірити всі основні функції, створені у програмі. 
-// 7. Продемонструвати роботу створеної програми. 
-
-// Клас Сurrency (гроші) - зазначається величина та тип, а також - двомірний масив з курсами валют
-// Операції: +,  %,  >.  ==,  =,  -=
-// для того щоб додати наприклад гривні до доларів, потрібно перетворити гривні в долари за курсом, а потім додати їх
 #include <iostream>
 #include <string>
 #include <vector>
@@ -33,7 +17,6 @@ class Currency {
             this->currencyRates = currencyRates;
         }
         ~Currency() {
-            cout << "Currency object was deleted" << endl;
         }
         // конвертор валют :)
         double convertTo(string type) {
@@ -103,10 +86,18 @@ bool operator>(Currency currency1, Currency currency2) {
 }
 
 int main(){
+    // 1 UAH = 1 UAH
+    // 1 USD = 1 USD
+    // 1 EUR = 1 EUR
     // 1 USD = 27.5 UAH
     // 1 USD = 0.85 EUR
     // 1 USD = 0.75 GBP
-    vector<vector<double>> currencyRates = {{27.5, 0.85, 0.75}, {1/27.5, 1/0.85, 1/0.75}};
+    vector<vector<double>> currencyRates = {
+        {1, 27.5, 0.85, 0.75},
+        {0.036, 1, 0.85, 0.75},
+        {1.18, 1.18, 1, 0.89},
+        {1.33, 1.33, 1.12, 1}
+    };
     Currency currency1 = Currency(100, "USD", currencyRates);
     Currency currency2 = Currency(100, "UAH", currencyRates);
     Currency currency3 = Currency(100, "EUR", currencyRates);
@@ -139,5 +130,61 @@ int main(){
     cout << "currency1 -= currency2" << endl;
     currency1 -= currency2;
     currency1.print();
+
+    cout << "Введіть кількість об'єктів: ";
+    int n;
+    cin >> n;
+    vector<Currency> currencies;
+    for (int i = 0; i < n; i++) {
+        cout << "Введіть значення: ";
+        double value;
+        cin >> value;
+        cout << "Введіть тип: ";
+        string type;
+        cin >> type;
+        Currency currency = Currency(value, type, currencyRates);
+        currencies.push_back(currency);
+    }
+    for (int i = 0; i < n; i++) {
+        currencies[i].print();
+    }
+    cout << "Виберіть операцію: " << endl;
+    cout << "1. Додавання" << endl;
+    cout << "2. Віднімання" << endl;
+    cout << "3. Порівняння" << endl;
+    cout << "4. Ділення націло" << endl;
+    cout << "5. Присвоєння" << endl;
+    int operation;
+    cin >> operation;
+    if (operation == 1) {
+        Currency currency1 = currencies[0];
+        Currency currency2 = currencies[1];
+        Currency currency3 = currency1 + currency2;
+        currency3.print();
+    } else if (operation == 2) {
+        Currency currency1 = currencies[0];
+        Currency currency2 = currencies[1];
+        currency1 -= currency2;
+        currency1.print();
+    } else if (operation == 3) {
+        Currency currency1 = currencies[0];
+        Currency currency2 = currencies[1];
+        if (currency1 == currency2) {
+            cout << "True" << endl;
+        } else {
+            cout << "False" << endl;
+        }
+    } else if (operation == 4) {
+        Currency currency1 = currencies[0];
+        Currency currency2 = currencies[1];
+        Currency currency3 = currency1 % currency2;
+        currency3.print();
+    } else if (operation == 5) {
+        Currency currency1 = currencies[0];
+        Currency currency2 = currencies[1];
+        currency1 = currency2;
+        currency1.print();
+    }
+
     return 0;
 }
