@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <limits>
 
 using namespace std;
 
@@ -11,6 +12,18 @@ class Currency {
         string type;
         vector<vector<double>> currencyRates;
     public:
+
+        Currency() {
+            this->value = 0;
+            this->type = "UAH";
+            this->currencyRates = {
+                {1, 27.5, 0.85, 0.75},
+                {0.036, 1, 0.85, 0.75},
+                {1.18, 1.18, 1, 0.89},
+                {1.33, 1.33, 1.12, 1}
+            };
+        }
+
         Currency(double value, string type, vector<vector<double>> currencyRates) {
             this->value = value;
             this->type = type;
@@ -65,6 +78,23 @@ class Currency {
         string getType() {
             return type;
         }
+
+        friend ostream& operator<<(ostream& os, const Currency& c);
+        friend istream& operator>>(istream& input, Currency& currency);
+
+        friend Currency operator++(Currency& currency, int);
+        friend Currency operator--(Currency& currency, int);
+
+        // перевантаження префіксної інкрементації ++
+        Currency operator++() {
+            this->value++;
+            return *this;
+        }
+
+        // перевантаження оператора не !
+        bool operator!() {
+            return this->value == 0;
+        }
 };
 // дружня функція для додавання
 Currency operator+(Currency currency1, Currency currency2) {
@@ -85,6 +115,44 @@ bool operator>(Currency currency1, Currency currency2) {
     return currency1.getValue() > currency2.convertTo(currency1.getType());
 }
 
+// лабораторна 9
+
+// перевантаження операторів виведення та введення
+ostream& operator<<(ostream& os, const Currency& c) {
+    os << c.value << " " << c.type;
+    return os;
+}
+istream& operator>>(istream& input, Currency& currency) {
+    cout << "Введіть значення: ";
+    while (!(input >> currency.value)) {
+        cout << "Неправильне значення. Будь ласка, введіть числове значення: ";
+        input.clear();
+        input.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    cout << "Введіть тип: ";
+    while (!(input >> currency.type)) {
+        cout << "Неправильне значення. Будь ласка, введіть коректний тип: ";
+        input.clear();
+        input.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    return input;
+}
+
+// перевантаження постфіксоної інкрементації ++
+Currency operator++(Currency& currency, int) {
+    Currency temp = currency;
+    currency.value++;
+    return temp;
+}
+// перевантаження постфіксоної інкрементації --
+Currency operator--(Currency& currency, int) {
+    Currency temp = currency;
+    currency.value--;
+    return temp;
+}
+
 int main(){
     // 1 UAH = 1 UAH
     // 1 USD = 1 USD
@@ -98,14 +166,28 @@ int main(){
         {1.18, 1.18, 1, 0.89},
         {1.33, 1.33, 1.12, 1}
     };
-    Currency currency1 = Currency(100, "USD", currencyRates);
+    double value;
+    string type;
+    cout << "currency1" << endl;
+    cout << "Введіть значення: ";
+    cin >> value;
+    cout << "Введіть тип: ";
+    cin >> type;
+    Currency currency1 = Currency(value, type, currencyRates);
+    if (!currency1) {
+        cout << "Значення валюти дорівнює 0" << endl;
+        return 0;
+    }
     Currency currency2 = Currency(100, "UAH", currencyRates);
-    Currency currency3 = Currency(100, "EUR", currencyRates);
-    Currency currency4 = Currency(100, "GBP", currencyRates);
-    currency1.print();
-    currency2.print();
-    currency3.print();
-    currency4.print();
+    // Currency currency3 = Currency(100, "EUR", currencyRates);
+    // Currency currency4 = Currency(100, "GBP", currencyRates);
+    // виведення значення валюти та типу через перевантажений оператор <<
+    cout << currency1 << endl;
+    cout << currency2 << endl;
+    // cout << currency3 << endl;
+    // cout << currency4 << endl;
+
+
     cout << "currency1 + currency2" << endl;
     Currency currency5 = currency1 + currency2;
     currency5.print();
@@ -136,24 +218,23 @@ int main(){
     cin >> n;
     vector<Currency> currencies;
     for (int i = 0; i < n; i++) {
-        cout << "Введіть значення: ";
-        double value;
-        cin >> value;
-        cout << "Введіть тип: ";
-        string type;
-        cin >> type;
-        Currency currency = Currency(value, type, currencyRates);
+        Currency currency;
+        cin >> currency;
         currencies.push_back(currency);
     }
     for (int i = 0; i < n; i++) {
         currencies[i].print();
     }
+    
     cout << "Виберіть операцію: " << endl;
     cout << "1. Додавання" << endl;
     cout << "2. Віднімання" << endl;
     cout << "3. Порівняння" << endl;
     cout << "4. Ділення націло" << endl;
     cout << "5. Присвоєння" << endl;
+    cout << "6. Постфіксна інкрементація ++" << endl;
+    cout << "7. Префіксна інкрементація ++" << endl;
+    cout << "8. Постфіксна інкрементація --" << endl;
     int operation;
     cin >> operation;
     if (operation == 1) {
@@ -183,6 +264,36 @@ int main(){
         Currency currency1 = currencies[0];
         Currency currency2 = currencies[1];
         currency1 = currency2;
+        currency1.print();
+    } else if (operation == 6) {
+        Currency currency1 = currencies[0];
+        currency1.print();
+        cout << "Скільки разів ви хочете збільшити значення на 1: ";
+        int n;
+        cin >> n;
+        for (int i = 0; i < n; i++) {
+            currency1++;
+        }
+        currency1.print();
+    } else if (operation == 7) {
+        Currency currency1 = currencies[0];
+        currency1.print();
+        cout << "Скільки разів ви хочете збільшити значення на 1: ";
+        int n;
+        cin >> n;
+        for (int i = 0; i < n; i++) {
+            ++currency1;
+        }
+        currency1.print();
+    } else if (operation == 8) {
+        Currency currency1 = currencies[0];
+        currency1.print();
+        cout << "Скільки разів ви хочете зменшити значення на 1: ";
+        int n;
+        cin >> n;
+        for (int i = 0; i < n; i++) {
+            currency1--;
+        }
         currency1.print();
     }
 
