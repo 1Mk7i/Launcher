@@ -20,6 +20,7 @@ fetchAndDisplayContent('tasks/prak5/Vector.h','Vectorh')
 fetchAndDisplayContent('tasks/prak5/Vector.cpp','Vectorcpp')
 fetchAndDisplayContent('tasks/Prak8OOP.cpp','Prak8OOP')
 fetchAndDisplayContent('tasks/Prak9OOP.cpp','Prak9OOP')
+fetchAndDisplayContent('tasks/Prak10OOP.cpp','Prak10OOP')
 
 // Виклик функції для завантаження вмісту html з іншого файлу
 loadContent('res/OOPnav.html', 'nav-content-oop');
