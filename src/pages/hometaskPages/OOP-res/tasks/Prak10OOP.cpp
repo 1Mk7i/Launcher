@@ -21,7 +21,7 @@ private:
 public:
     Letter(char letter, int count) : letter(letter), count(count) {}
     char getLetter() { return letter; }
-    void increaseCount() { count++; }
+    void pCount() { count++; }
     int getCount() { return count; }
 };
 
@@ -56,7 +56,7 @@ int main() {
     string s = "Hello, World!";
     for (char c : s) {
         if (isalpha(c)) {
-            l_map[c].increaseCount();
+            l_map[c].pCount();
         }
     }
     l_map.print();
