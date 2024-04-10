@@ -15,7 +15,7 @@ nav > ul{
     display:-webkit-inline-box;
     display:-ms-inline-flexbox;
     display:inline-flex;
-    background:#58585873;
+    background:#5858589f;
     border-radius:5px;
 }
 nav > ul > li{
@@ -61,16 +61,16 @@ ul.drop-menu::-webkit-scrollbar-thumb {
 }
 
 ul.drop-menu li{
-    background:rgba(63, 63, 63, 0.699) !important;
+    background:rgba(63, 63, 63, 0.801) !important;
     backdrop-filter: blur(10px) !important;    
     color:rgb(255, 255, 255);
     text-shadow: 2px 2px 2px rgb(0, 0, 0);
     border:1px solid black;
 }
 ul.drop-menu li:hover{
-    background:rgba(63, 63, 63, 0.699) !important;
-    backdrop-filter: blur(10px);
-    color:rgb(0, 0, 0);
+    background:rgba(88, 88, 88, 0.699) !important;
+    backdrop-filter: blur(10px) !important;
+    color:rgb(255, 255, 255);
     text-shadow: 1px 1px 1px black;
 }
 ul.drop-menu li:last-child{
@@ -87,7 +87,10 @@ li:hover > ul.drop-menu li{
     background:rgba(63, 63, 63, 0.699) !important;
     backdrop-filter: blur(50px) !important;
 }
-
+.dropdown-item{
+    background:rgba(63, 63, 63, 0.699) !important;
+    backdrop-filter: blur(50px) !important; 
+}
 .sub-menu ul{
     position:inherit;
     display:none;
