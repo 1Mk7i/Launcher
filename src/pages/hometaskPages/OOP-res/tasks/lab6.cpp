@@ -19,8 +19,8 @@ class Rectangle {
         }
 
         // функція для знаходження довжини сторони прямокутника.
-        void segment_length() {
-            cout << "Length of segment: " << sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)) << endl;
+        double segment_length() {
+            return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
         }
 
         friend class Rectangle1;
@@ -47,7 +47,7 @@ class Rectangle1 {
 
 int main() {
     Rectangle r(0, 0, 0, 2, 3, 2, 3, 0);
-    r.segment_length();
+    cout << "Length: " << r.segment_length() << endl;
 
     Rectangle1 r1;
     cout << "Perimeter: " << r1.perimeter(r) << endl;

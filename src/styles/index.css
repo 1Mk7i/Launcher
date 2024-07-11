@@ -41,14 +41,6 @@ body::-webkit-scrollbar-thumb:hover{
     backdrop-filter: blur(2px);
     z-index: 100;
 }
-.global-nav{
-    display: flex;
-    left: 0;
-    top: 0px;
-    position: fixed;
-    width: 50px;
-    height: 50px;
-}
 .dropdown-toggle{
     background-color: #252525f1 !important;
     border: none !important;
@@ -100,7 +92,7 @@ body {
 }
 .menu {
     background: rgb(37,3,89);
-    background: linear-gradient(90deg, rgb(51, 50, 53) 0%, rgb(75, 75, 75) 50%, rgb(63, 63, 63) 100%);
+    background: linear-gradient(90deg, rgb(43, 43, 43) 0%, rgb(49, 49, 49) 50%, rgb(43, 43, 43) 100%);
     background-position: center;
     color: #fff; /* змінив кольор тексту на білий для кращої видимості */
     font-family: cursive;
@@ -112,7 +104,6 @@ body {
     background: rgb(7,0,128);
     background: linear-gradient(90deg, rgba(7,0,128,1) 0%, rgba(0,0,0,1) 50%, rgb(10, 8, 63) 100%);    background-position: center;
     color: #000;
-    font-family: cursive;
     font-size: 16px;
     margin: 0;
     padding: 40px 0 0 0;
@@ -120,15 +111,15 @@ body {
 .btnpanel {
     background-color: rgba(71, 72, 77, 0);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 64px;
     padding: 20px;
     margin: 100px;
 }
 .panel {
-    background-color: #7474747c;
+    background-color: #2d2c3193;
     /* background-image: url(../assets/images/white-paper-texture.jpg); */
-    border: 1px solid #727272;
+    border: 1px solid #4d4d4d;
     border-radius: 5px;
     padding: 10px;
     text-decoration: none;
@@ -137,7 +128,7 @@ body {
     backdrop-filter: blur(5px);
     color: #ffffff;
     text-shadow: #000000 2px 2px 1px;
-    box-shadow: #7a7a7a7c 5px 5px 6px;
+    box-shadow: #6e6e6e5b 5px 5px 6px;
 }
 .panel2 {
     background: linear-gradient(90deg, rgb(51, 50, 53) 0%, rgb(75, 75, 75) 50%, rgb(63, 63, 63) 100%);    border: 1px solid #949494;
@@ -150,13 +141,10 @@ body {
 .preview {
     position: relative;
     width: 100%;
-    max-width: 100%; /* Змінилось на 100% від батьківського контейнера */
-    min-width: 250px;
+    max-width: 330px;
+    min-width: 190px;
     border-radius: 5px;
-    box-shadow: #04ebeb77 5px 5px 3px;
-}
-.preview:hover {
-    box-shadow: #e4fd0144 3px 3px 10px;
+    box-shadow: #000000 3px 3px 10px;
 }
 .previewImg {
     margin: 0;
@@ -217,7 +205,7 @@ body {
 
 .preview:hover {
     animation: shake 0.5s infinite;
-    box-shadow: #e5ff0044 3px 3px 10px;
+    box-shadow: #00b3ff44 3px 3px 10px;
 }
 .previewImg {
     margin: 0;
@@ -231,10 +219,9 @@ body {
 
 .Button {
     position: absolute;
-    top: 100%;
-    left: 50%;
+    display: flex;
+    justify-content: center;
     transform: translate(-50%, -100%);
-    width: 100%;
 }
 .top1{
     display: inline-flex;
@@ -347,22 +334,18 @@ body {
 }
 .whiteb {
     align-items: center;
-    background-color: #313131 !important;
-    border-radius: 8px;
+    background-color: #202020 !important;
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
     box-sizing: border-box;
     color: #FFFFFF;
     display: flex;
     font-family: Phantomsans, sans-serif;
-    font-size: 20px;
     justify-content: center;
     line-height: 1em;
-    max-width: 100%;
-    min-width: 140px;
     padding: 3px;
     text-decoration: none;
-    user-select: none;
     -webkit-user-select: none;
+    user-select: none;
     touch-action: manipulation;
     white-space: nowrap;
     cursor: pointer;
@@ -370,14 +353,15 @@ body {
 
 .whiteb:active,
 .whiteb:hover {
-    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-    outline: 0;
+    background-color: #303030 !important;
+    box-shadow: rgba(151, 65, 252, 0.4) 0 15px 30px -5px;
+    text-decoration: none;
 }
 
 @media (min-width: 1000px) {
     .whiteb {
-        font-size: 24px;
-        min-width: 196px;
+        font-size: 20px;
+        min-width: 140px;
     }
 }
 

@@ -17,10 +17,13 @@ nav > ul{
     display:inline-flex;
     background:#5858589f;
     border-radius:5px;
+    max-width: 300px;
+    min-width: 150px;
 }
 nav > ul > li{
     float:left;
     width:calc(100vw/4 - 10px);
+    min-width: 150px;
     height:40px;
     line-height:40px;
     position:relative;
@@ -90,6 +93,12 @@ li:hover > ul.drop-menu li{
 .dropdown-item{
     background:rgba(63, 63, 63, 0.699) !important;
     backdrop-filter: blur(50px) !important; 
+    color: white;
+}
+.dropdown-item:hover{
+    background:rgba(88, 88, 88, 0.699) !important;
+    backdrop-filter: blur(50px) !important;
+    color: white;
 }
 .sub-menu ul{
     position:inherit;

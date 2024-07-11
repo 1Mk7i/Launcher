@@ -1,5 +1,5 @@
 class Neuron{
-	constructor(nwrk, lid, id, numWeights){
+	constructor(nwrk, lid, id, numWeights, fnType="sigmoid"){
 		this.myNetwork = nwrk
 		this.myLayerId = lid
 		this.idInLayer = id
@@ -7,6 +7,8 @@ class Neuron{
 		this.bias = Math.random()*2-1
 		this.calculatedZ = 0;
 		this.calculatedOutput=0;
+
+		
 
 		for (let i=0; i<numWeights; i++){
 			this.entryWeights.push((Math.random()*2-1)/numWeights);
@@ -19,6 +21,38 @@ class Neuron{
 		for (let i=0; i<numWeights; i++){
 			this.dcdw.push(0);
 		}
+
+		
+		this.setActivationFunctionType(fnType)
+		
+	}
+
+	setActivationFunctionType(fnType){
+		this.activationFunctionType=fnType
+		this.activationFunction = this.sigmoidActivationFunction
+		this.activationFunctionPrime = this.sigmoidActivationFunctionPrime
+		switch (this.activationFunctionType){
+			case "sigmoid":{
+				this.activationFunction = this.sigmoidActivationFunction
+				this.activationFunctionPrime = this.sigmoidActivationFunctionPrime			
+				break;
+			}
+			case "relu":{
+				this.activationFunction = this.reluActivationFunction
+				this.activationFunctionPrime = this.reluActivationFunctionPrime			
+				break;
+			}
+			case "leakyrelu":{
+				this.activationFunction = this.leakyReluActivationFunction
+				this.activationFunctionPrime = this.leakyReluActivationFunctionPrime				
+				break;
+			}
+			case "softmax":{
+				this.activationFunction = this.softMaxActivationFunction
+				this.activationFunctionPrime = this.softMaxActivationFunctionPrime			
+				break;
+			}
+		}	
 	}
 
 	calculateErrors(targetVal, prevLayer, nextLayer){
@@ -38,6 +72,33 @@ class Neuron{
 		}
 	}
 
+	calculateDCDAOlnly(targetVal, prevLayer, nextLayer){
+		if (!nextLayer){
+			this.dcda = this.calculatedOutput-targetVal;
+		}else{
+			this.dcda = 0;
+			for (let i=0; i<nextLayer.length; i++){
+				this.dcda+=nextLayer[i].entryWeights[this.idInLayer]*nextLayer[i].dcdz;
+			}
+		}
+	}
+
+	calculateSoftMaxErrors(targetVal, prevLayer, nextLayer){
+		this.dcdz = 0;
+		let myLayer = this.myNetwork.layers[this.myLayerId];
+		for (let i=0; i<myLayer.length; i++){
+			if (i==this.idInLayer){
+				this.dcdz+=this.dcda*this.activationFunctionPrime(this.calculatedZ)
+			}else{
+				this.dcdz+=myLayer[i].dcda*this.softMaxActivationFunctionPrimeById(i, this.calculatedZ)
+			}
+		}
+		this.dcdb = 1*this.dcdz;
+		for (let i=0; i<this.dcdw.length; i++){
+			this.dcdw[i] = prevLayer[i].calculatedOutput*this.dcdz;
+		}
+	}
+
 	adjustParams(step=0.1){
 		for (let i=0; i<this.entryWeights.length; i++){
 			this.entryWeights[i]-=this.dcdw[i]*step;
@@ -45,24 +106,124 @@ class Neuron{
 		this.bias-=this.dcdb*step
 	}
 
-	activationFunction(val){
+	sigmoidActivationFunction(val){
 		return 1/(1+Math.exp(-val))
 	}
 
-	activationFunctionPrime(val){
-		return this.activationFunction(val)*(1-this.activationFunction(val))
+	sigmoidActivationFunctionPrime(val){
+		return this.sigmoidActivationFunction(val)*(1-this.sigmoidActivationFunction(val))
+	}
+
+	reluActivationFunction(val){
+		return val>0?val:0
+	}
+
+	reluActivationFunctionPrime(val){
+		return val>0?1:0
+	}
+	
+	leakyReluActivationFunction(val){
+		return val>0?val:0.01*val
+	}
+	
+	leakyReluActivationFunctionPrime(val){
+		return val>0?1:0.01
+	}
+
+	//проблема: Math.exp(710)=Infinity
+	//поэтому softmax надо перед использованием подстроить
+	softMaxActivationFunction(val){
+		let maxZ = 0;
+		let coef=1;
+		let s = 0;
+		let lyr = this.myNetwork.layers[this.myLayerId]
+		for (let i=0; i<lyr.length; i++){
+			if (lyr[i].calculatedZ>maxZ){
+				maxZ = lyr[i].calculatedZ
+			}
+		}
+		
+		for (let i=0; i<lyr.length; i++){
+			if (i!=this.idInLayer){
+				s+=Math.exp(lyr[i].calculatedZ-maxZ)
+			}
+		}
+		return Math.exp(val-maxZ)/(s+Math.exp(val-maxZ));
+	}
+
+	softMaxActivationFunctionPrime(val){
+		let maxZ = 0;
+		let s = 0;
+		let lyr = this.myNetwork.layers[this.myLayerId]
+		for (let i=0; i<lyr.length; i++){
+			if (lyr[i].calculatedZ>maxZ){
+				maxZ = lyr[i].calculatedZ
+			}
+		}
+
+		for (let i=0; i<lyr.length; i++){
+			if (i!=this.idInLayer){
+				s+=Math.exp(lyr[i].calculatedZ-maxZ)
+			}
+		}
+		let ex = Math.exp(val-maxZ)
+		return ex*s/(ex+s)**2
+	}
+
+	softMaxActivationFunctionPrimeById(id, val){
+		let maxZ = 0;
+		let s = 0;
+		let lyr = this.myNetwork.layers[this.myLayerId]
+		for (let i=0; i<lyr.length; i++){
+			if (lyr[i].calculatedZ>maxZ){
+				maxZ = lyr[i].calculatedZ
+			}
+		}
+		
+		for (let i=0; i<lyr.length; i++){
+			if (i!=this.idInLayer){
+				s+=Math.exp(lyr[i].calculatedZ-maxZ)
+			}
+		}
+
+		let nom = Math.exp(lyr[id].calculatedZ-maxZ);
+		let ex = Math.exp(val-maxZ)
+		return -ex*nom/(ex+s)**2
 	}
 
 	setOutputDirectly(val){
 		this.calculatedOutput=val;
 	}
-	calculateOutFromInput(prevLayer){
+	calculateOutFromInput(prevLayer, withActivation=true){
 		this.calculatedZ = this.bias;
 		for (let i=0; i<prevLayer.length; i++){
 			this.calculatedZ+=prevLayer[i].calculatedOutput*this.entryWeights[i]
 		}
+		if (withActivation){
+			this.applyActiovationFunctionOnly()
+		}
+	}
+
+	applyActiovationFunctionOnly(){
 		this.calculatedOutput = this.activationFunction(this.calculatedZ)
 	}
+
+	export2Object(){
+		return{
+			bias:this.bias,
+			function:this.activationFunctionType,
+			weights:this.entryWeights.slice()
+		}
+	}
+
+	initFromObject(ob){
+		this.bias = ob.bias;
+		let m = Math.min(this.entryWeights.length, ob.weights)
+		for (let i=0; i<m; i++){
+			this.entryWeights[i] = ob.weights[i]
+		}
+		this.setActivationFunctionType(ob.function)
+	}	
 }
 
 class  NeuroNet{
@@ -76,7 +237,7 @@ class  NeuroNet{
 			this.introLayer[i]=new Neuron(this,-1,i,0);
 		}
 	}
-	createLayer(n){
+	createLayer(n, fnType="sigmoid"){
 		this.layers.push([]);
 		let leayerId = this.layers.length-1
 		let ar = this.layers[leayerId];
@@ -86,7 +247,7 @@ class  NeuroNet{
 		}
 
 		for (let i=0; i<n; i++){
-			let nrn = new Neuron(this, leayerId, i, lastNumOuts)
+			let nrn = new Neuron(this, leayerId, i, lastNumOuts, fnType)
 			ar.push(nrn);
 		}
 	}
@@ -109,9 +270,17 @@ class  NeuroNet{
 				prevLayer = this.layers[lid-1]
 			}	
 
+			let isSoftMax = false;
 			for (let i=0; i<lyrAr.length; i++){
 				let nrn = lyrAr[i];
-				nrn.calculateOutFromInput(prevLayer)
+				isSoftMax = isSoftMax||nrn.activationFunctionType=="softmax";
+				nrn.calculateOutFromInput(prevLayer, !isSoftMax)
+			}
+			if (isSoftMax){
+				for (let i=0; i<lyrAr.length; i++){
+					let nrn = lyrAr[i];
+					nrn.applyActiovationFunctionOnly()
+				}
 			}
 		}
 	}
@@ -161,10 +330,20 @@ class  NeuroNet{
 			}else{
 				prevLayer = this.introLayer;
 			}
-
-			for (let i=0; i<layer.length; i++){
-				layer[i].calculateErrors(targetOuts[i],prevLayer, nextLayer)
-			}			
+			let isSoftMax=layer[0].activationFunctionType=="softmax";
+			if (!isSoftMax){
+				for (let i=0; i<layer.length; i++){
+					layer[i].calculateErrors(targetOuts[i],prevLayer, nextLayer)
+				}			
+			}else{
+				for (let i=0; i<layer.length; i++){
+					layer[i].calculateDCDAOlnly(targetOuts[i],prevLayer, nextLayer)
+				}			
+				for (let i=0; i<layer.length; i++){
+					layer[i].calculateSoftMaxErrors(targetOuts[i],prevLayer, nextLayer)
+				}			
+			}
+			
 		}
 	}
 
@@ -234,6 +413,32 @@ class  NeuroNet{
 		return res;
 		// return resLines;
 	}
+	export2Object(){
+		let res={}
+
+		res.numInputs=this.introLayer.length;
+		res.layers=[]
+
+		for (let i=0; i<this.layers.length; i++){
+			let ar=[]
+			for (let j=0; j<this.layers[i].length; j++){
+				ar.push(this.layers[i][j].export2Object())
+			}
+			res.layers.push(ar)
+		}
+
+		return res;
+	}
+
+	buildFromObject(ob){
+		this.createIntroLayer(ob.numInputs)
+		for (let i=0; i<ob.layers.length;i++){
+			this.createLayer(ob.layers[i].length)
+			for (let j=0; j<ob.layers[i].length; j++){
+				this.layers[i][j].initFromObject(ob.layers[i][j])
+			}
+		}
+	}	
 }
 
 function convertNtoBits(N, len=7){

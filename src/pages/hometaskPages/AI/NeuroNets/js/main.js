@@ -1,70 +1,104 @@
 window.onload=function(){
 	console.log("Hello")
-	//створимо нейромережу та навчимо її визначати номер координатної чверті точки, що задаватиметься прою координат, х,у
-	//у мережі має бути 2 входи (на один подаватимемо х, на другий у)
-	//та 4 виходи (маэ активуватися нейрон, що выдповідатиме номеру чверті)
+
+	let num_inputs = 8
+	let num_outputs = 3
 	window.network = new NeuroNet()
-	window.network.createIntroLayer(3);
-	window.network.createLayer(3);
-	window.network.createLayer(3);
+	window.network.createIntroLayer(num_inputs)
+	window.network.createLayer(200);
+	window.network.createLayer(10);
+	window.network.createLayer(num_outputs);
+	//якщо на вході мережі буде масив чисел input_arr, то який за номером вихіднй нейрон має бути активований?
+	function findCorrectActivation(input_arr){
+		let A1 = input_arr[0]
+		let A2 = input_arr[1]
+		let B1 = input_arr[2]
+		let B2 = input_arr[3]
+		let C1 = input_arr[4]
+		let C2 = input_arr[5]
+		let D1 = input_arr[6]
+		let D2 = input_arr[7]
+		return findPoint(A1,A2,B1,B2,C1,C2,D1,D2)
+	}
+	
+	function findPointInCircle(x,y,r){ return (x*x + y*y <= r*r) ? 1 : 0 } // функція, яка визначає чи знаходиться точка в колі
 
+	function findPoint(A1,A2,B1,B2,C1,C2,D1,D2){
+		let ad = (((D2-A2)**2) + ((D1-A1)**2))**0.5
+		let bd = (((D2-B2)**2) + ((D1-B1)**2))**0.5
+		let cd = (((D2-C2)**2) + ((D1-C1)**2))**0.5
 
-	function findMaxNumberId(a,b,c){
-		let arr = [a,b,c]
-		arr.sort(function (a, b) {return a - b;});
-		if (arr[1]==a){
-			return 0
-		}
-		if (arr[1]==b){
-			return 1
-		}
-		if (arr[1]==c){
-			return 2
+		let arr = [ad,bd,cd]
+		arr.sort(function (a, b) {
+			return a - b;
+		  });
+
+		for (let i=0; i<3;i++){
+			if (arr[0] === ad){
+				return 0
+			} else if (arr[0] === bd){
+				return 1
+			} else if (arr[0] === cd){
+				return 2
+			}
 		}
 	}
-
-	//будуємо навчальну вибірку
+	window.findPoint = findPoint
 	let learningData=[];
 	for (let i=0; i<10000; i++){
-		let a = Math.random()*2-1
-		let b = Math.random()*2-1
-		let c = Math.random()*2-1
-		learningData.push([a,b,c])
+		let A1 = Math.random()*50
+		let A2 = Math.random()*50
+		let B1 = Math.random()*50
+		let B2 = Math.random()*50
+		let C1 = Math.random()*50
+		let C2 = Math.random()*50
+		let D1 = Math.random()*50
+		let D2 = Math.random()*50
+		let input_arr = [A1,A2,B1,B2,C1,C2,D1,D2]
+		let correct_neuron_id = findCorrectActivation(input_arr)
+		input_arr.push(correct_neuron_id)
+		learningData.push(input_arr)
 	}
 
 	//тепер проганяємо цю навчальну вибірку по нейромережі 
 	for (let i=0; i<learningData.length; i++){
 		let dataAr = learningData[i];
-		let a = dataAr[0];
-		let b = dataAr[1];
-		let c = dataAr[2];
-		let answer = findMaxNumberId(a,b,c)
-		window.network.calculateOutsForInputs([a,b,c])
+		let input_arr = dataAr.slice(0,dataAr.length-1)
+		let answer = dataAr[dataAr.length-1];
+		window.network.calculateOutsForInputs(input_arr)
 		let networkAnswer = window.network.findIdOfMostActivatedOutNeuron();
-		let correctActivation = [0,0,0];
+		let correctActivation = []
+			for (let k=0; k<num_outputs; k++){
+				correctActivation.push(0)
+			}
 		correctActivation[answer] = 1;
 		window.network.calculateErrors(correctActivation);
 		window.network.adjustParams(0.1)
 	}
 
-	//тепер треба перевірити, як мереда навчилася. Будуємо тестову вибірку
 	let testingData=[];
-	for (let i=0; i<10000; i++){
-		let a = Math.random()*2-1
-		let b = Math.random()*2-1
-		let c = Math.random()*2-1
-		testingData.push([a,b,c])
+	for (let i=0; i<10; i++){
+		let A1 = Math.random()*50 
+		let A2 = Math.random()*50
+		let B1 = Math.random()*50
+		let B2 = Math.random()*50
+		let C1 = Math.random()*50
+		let C2 = Math.random()*50
+		let D1 = Math.random()*50
+		let D2 = Math.random()*50
+		let input_arr = [A1,A2,B1,B2,C1,C2,D1,D2]
+		let correct_neuron_id = findCorrectActivation(input_arr)
+		input_arr.push(correct_neuron_id)
+		testingData.push(input_arr)
 	}
 
 	let numCorrectAnswers=0;
 	let numErrors=0;
 	for (let i=0; i<testingData.length; i++){
-		let dataAr = testingData[i];
-		let a = dataAr[0];
-		let b = dataAr[1];
-		let c = dataAr[2];
-		let answer = findMaxNumberId(a,b,c)
-		window.network.calculateOutsForInputs([a,b,c])
+		let dataAr = learningData[i];
+		let input_arr = dataAr.slice(0,dataAr.length-1)
+		let answer = dataAr[dataAr.length-1];
+		window.network.calculateOutsForInputs(input_arr)
 		let networkAnswer = window.network.findIdOfMostActivatedOutNeuron();
 
 		if (answer==networkAnswer){
