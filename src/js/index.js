@@ -24,8 +24,6 @@ function scrollToSection(button) {
     element.scrollIntoView({ behavior: 'smooth' });
 }
 
-
-
 // Функція для завантаження вмісту з іншого HTML файлу
 function loadContent(url, targetId) {
     var xhr = new XMLHttpRequest();
@@ -49,3 +47,18 @@ function loadContentW(url, target) {
     xhttp.open("GET", url, true);
     xhttp.send();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-code]').forEach(function(element) {
+        const filePath = element.getAttribute('data-code');
+        const PathFunction = element.getAttribute('data-function');
+        // fetchAndDisplayContent(filePath, element.id);
+        if (PathFunction === 'loadContent') {
+            loadContent(filePath, element.id);
+        } else if (PathFunction === 'loadContentW') {
+            loadContentW(filePath, element.id);
+        } else if (PathFunction === 'fetchAndDisplayContent'){
+            fetchAndDisplayContent(filePath, element.id);
+        }
+    });
+});
