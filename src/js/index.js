@@ -48,11 +48,13 @@ function loadContentW(url, target) {
     xhttp.send();
 }
 
+// викликаємо функцію для кожного елемента з атрибутом data-code
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('[data-code]').forEach(function(element) {
         const filePath = element.getAttribute('data-code');
         const PathFunction = element.getAttribute('data-function');
         // fetchAndDisplayContent(filePath, element.id);
+        // перевіряємо, яка функція викликається
         if (PathFunction === 'loadContent') {
             loadContent(filePath, element.id);
         } else if (PathFunction === 'loadContentW') {
@@ -61,4 +63,23 @@ document.addEventListener('DOMContentLoaded', function() {
             fetchAndDisplayContent(filePath, element.id);
         }
     });
+    
+    // створюємо кнопку для кожного елемента з атрибутоми linc-data та name-data (кнопки)
+    var previews = document.querySelectorAll('.preview[link-data][name-data]');
+    previews.forEach(function(preview) {
+        var link = preview.getAttribute('link-data');
+        var text = preview.getAttribute('name-data');
+        var buttonHTML = '<div class="Button"><a class="btn btn-primary whiteb" href="' + link + '">' + text + '</a></div>';
+        preview.innerHTML = buttonHTML;
+    });
+    // створюємо кнопку для кожного елемента з атрибутоми linc-data, name-data та image-data (кнопки з картинкою)
+    var previews = document.querySelectorAll('.preview[link-data][name-data][image-data]');
+    previews.forEach(function(preview) {
+        var link = preview.getAttribute('link-data');
+        var text = preview.getAttribute('name-data');
+        var image = preview.getAttribute('image-data');
+        var buttonHTML = '<img class="previewImg" src="'+ image +'" alt="preview"><div class="Button"><a class="btn btn-primary whiteb" href="'+ link +'">'+ text +'</a></div>';
+        preview.innerHTML = buttonHTML;
+    });
 });
+
