@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube UA</title>
+    <link rel="stylesheet" href="/Launcher/src/styles/index.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #181818;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #202020;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header img {
+            height: 40px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            color: #fff;
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #202020;
+            padding: 15px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+            color: #ccc;
+            cursor: pointer;
+        }
+        .sidebar a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        .sidebarContainer {
+            border: 2px solid #282828;
+            border-radius: 5px;
+            border-left: none;
+            border-right: none;
+        }
+        .content {
+            width: 80%;
+            padding: 0 20px;
+        }
+        .content h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>Головна</li>
+                <li>Відео</li>
+                <li>Списки відтворення</li>
+                <li>Дописи</li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebarContainer">
+                <ul>
+                    <li><a href="/Launcher/index.html">Home</a></li>
+                    <li><a onclick="loadContent('/Launcher/src/pages/hometaskPages/res/hometaskNav.html', 1)"></a>Hometask</li>
+                    <li><a onclick="loadContent('/Launcher/src/pages/gamePages/res/gameNav.html', 1)"></a>Game</li>
+                    <li>Історія</li>
+                </ul>
+            </div>
+            <div id="1" class="sidebarContainer">
+            </div>
+        </aside>
+        <main class="content">
+            <h1>Головна</h1>
+            <div class="video-grid">
+                <div class="preview" link-data="/Launcher/src/pages/game.html" name-data="Game" image-data="/Launcher/src/assets/images/game.jpg"></div>
+                <div class="preview" link-data="/Launcher/src/pages/hometask.html" name-data="Hometask" image-data="/Launcher/src/assets/images/white-canvas-texture.jpg"></div>
+                <div class="preview" link-data="/Launcher/src/pages/guide.html" name-data="Guide"></div>
+            </div>
+        </main>
+    </div>
+</body>
+<script src="/Launcher/src/js/index.js"></script>
+</html>

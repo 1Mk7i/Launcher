@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таблиця з Excel</title>
+    <title>Розклад занять</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         body {
@@ -13,141 +13,134 @@
             background-color: #f0f0f0;
         }
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
             background-color: white;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
         }
         h1 {
             text-align: center;
             color: #333;
         }
-        #groupSelector {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 столбца с равным распределением пространства */
-            gap: 10px; /* Расстояние между столбцами и строками */
-            margin-bottom: 20px;
-         }
         table {
-            width: 100%;
             border-collapse: collapse;
+            font-size: 12px;
+            width: 100%;
         }
         th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
+            border: 1px solid #000;
+            padding: 5px;
             text-align: left;
-            max-width: 150px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            vertical-align: top;
         }
-        th {
-            background-color: #f2f2f2;
+        .day-column {
+            background-color: #87CEEB;
+            font-weight: bold;
         }
-        td:hover {
-            white-space: normal;
-            overflow: visible;
-            position: relative;
-            z-index: 1;
-            background-color: #f9f9f9;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        .pair-number {
+            background-color: #FFA500;
+            font-weight: bold;
         }
-        .tableContainerStyle{
-            max-height: 500px;
-            overflow: auto;
+        .group-header {
+            background-color: #FFFF00;
+            font-weight: bold;
+        }
+        .even-row {
+            background-color: #E6F3FF;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Таблиця з Excel</h1>
-        <div id="groupSelector"></div>
-        <div id="tableContainer" class="tableContainerStyle"></div>
+        <h1>Розклад занять</h1>
+        <div id="tableContainer"></div>
     </div>
 
     <script>
-        let workbook;
-        let headers;
-        let data;
-
         function loadExcel() {
             fetch('test.xlsx')
                 .then(response => response.arrayBuffer())
                 .then(buffer => {
-                    workbook = XLSX.read(buffer, { type: 'array' });
+                    const workbook = XLSX.read(buffer, { type: 'array' });
                     const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                    data = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
-                    headers = data[0];
-                    createGroupSelector();
-                    displayTable();
+                    const range = XLSX.utils.decode_range(firstSheet['!ref']);
+                    
+                    const table = document.createElement('table');
+                    
+                    for (let R = range.s.r; R <= range.e.r; ++R) {
+                        const row = table.insertRow();
+                        if (R % 2 === 1) row.classList.add('even-row');
+                        
+                        for (let C = range.s.c; C <= range.e.c; ++C) {
+                            const cellAddress = XLSX.utils.encode_cell({r:R, c:C});
+                            const cellData = firstSheet[cellAddress];
+
+                            // Skip cells that are not top-left of a merged area
+                            let shouldSkip = false;
+                            if (firstSheet['!merges']) {
+                                firstSheet['!merges'].forEach(merge => {
+                                    if (R >= merge.s.r && R <= merge.e.r && C >= merge.s.c && C <= merge.e.c) {
+                                        if (R !== merge.s.r || C !== merge.s.c) {
+                                            shouldSkip = true;
+                                        }
+                                    }
+                                });
+                            }
+
+                            if (shouldSkip) continue;
+
+                            const cell = row.insertCell();
+
+                            if (cellData) {
+                                // Handle different data types
+                                switch (cellData.t) {
+                                    case 's': // String
+                                    case 'str':
+                                        cell.textContent = cellData.v;
+                                        break;
+                                    case 'n': // Number
+                                        cell.textContent = cellData.v;
+                                        break;
+                                    case 'b': // Boolean
+                                        cell.textContent = cellData.v ? 'TRUE' : 'FALSE';
+                                        break;
+                                    case 'd': // Date
+                                        cell.textContent = new Date(cellData.v).toLocaleDateString();
+                                        break;
+                                    default:
+                                        cell.textContent = cellData.v;
+                                }
+
+                                // Add classes based on position
+                                if (R === 0) {
+                                    cell.classList.add('group-header');
+                                } else if (C === 0) {
+                                    cell.classList.add('day-column');
+                                } else if (C === 1) {
+                                    cell.classList.add('pair-number');
+                                }
+
+                                // Handle merged cells
+                                if (firstSheet['!merges']) {
+                                    firstSheet['!merges'].forEach(merge => {
+                                        if (R === merge.s.r && C === merge.s.c) {
+                                            cell.rowSpan = merge.e.r - merge.s.r + 1;
+                                            cell.colSpan = merge.e.c - merge.s.c + 1;
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    
+                    const tableContainer = document.getElementById('tableContainer');
+                    tableContainer.innerHTML = '';
+                    tableContainer.appendChild(table);
                 })
                 .catch(error => console.error('Error loading Excel file:', error));
-        }
-
-        function createGroupSelector() {
-         const selector = document.getElementById('groupSelector');
-         selector.innerHTML = '';
-
-         // Додавання чекбокса "Вивести все" у свій div
-         const selectAllDiv = document.createElement('div');
-         const selectAllCheckbox = document.createElement('input');
-         selectAllCheckbox.type = 'checkbox';
-         selectAllCheckbox.id = 'selectAll';
-         selectAllCheckbox.addEventListener('change', () => {
-            const allCheckboxes = document.querySelectorAll('#groupSelector input[type="checkbox"]:not(#selectAll)');
-            allCheckboxes.forEach(checkbox => checkbox.checked = selectAllCheckbox.checked);
-            displayTable();
-         });
-         const selectAllLabel = document.createElement('label');
-         selectAllLabel.htmlFor = 'selectAll';
-         selectAllLabel.textContent = 'Вивести все';
-         selectAllDiv.appendChild(selectAllCheckbox);
-         selectAllDiv.appendChild(selectAllLabel);
-         selector.appendChild(selectAllDiv);
-         selector.appendChild(document.createElement('br'));
-
-         for (let i = 1; i < headers.length; i++) {
-            const groupDiv = document.createElement('div'); // Створення нового div для кожного чекбокса
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = `group${i}`;
-            checkbox.value = i;
-            checkbox.checked = false; // Змінено на false, щоб були вимкнені з самого початку
-            checkbox.addEventListener('change', displayTable);
-            const label = document.createElement('label');
-            label.htmlFor = `group${i}`;
-            label.textContent = headers[i];
-            groupDiv.appendChild(checkbox);
-            groupDiv.appendChild(label);
-            selector.appendChild(groupDiv);
-         }
-      }
-
-        function displayTable() {
-            const selectedColumns = Array.from(document.querySelectorAll('#groupSelector input:checked')).map(cb => parseInt(cb.value));
-            selectedColumns.unshift(0); // Always include the date column
-
-            const table = document.createElement('table');
-            const headerRow = table.insertRow();
-            selectedColumns.forEach(colIndex => {
-                const th = document.createElement('th');
-                th.textContent = headers[colIndex];
-                headerRow.appendChild(th);
-            });
-
-            for (let i = 1; i < data.length; i++) {
-                const row = table.insertRow();
-                selectedColumns.forEach(colIndex => {
-                    const cell = row.insertCell();
-                    cell.textContent = data[i][colIndex] || '';
-                });
-            }
-
-            const tableContainer = document.getElementById('tableContainer');
-            tableContainer.innerHTML = '';
-            tableContainer.appendChild(table);
         }
 
         window.onload = loadExcel;

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube UA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #181818;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #202020;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header img {
+            height: 40px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            color: #fff;
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #202020;
+            padding: 15px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+            color: #ccc;
+            cursor: pointer;
+        }
+        .content {
+            width: 80%;
+            padding: 0 20px;
+        }
+        .content h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .video-card {
+            background-color: #282828;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .video-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .video-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .video-card p {
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/YouTube_social_white_squircle.svg/1200px-YouTube_social_white_squircle.svg.png" alt="YouTube Logo" width="50" height="50">
+        <nav>
+            <ul>
+                <li>Головна</li>
+                <li>Відео</li>
+                <li>YouTube Shorts</li>
+                <li>Наживо</li>
+                <li>Списки відтворення</li>
+                <li>Дописи</li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li>Головна</li>
+                <li>YouTube Shorts</li>
+                <li>Підписки</li>
+                <li>Ви</li>
+                <li>Ваш канал</li>
+                <li>Історія</li>
+                <li>Списки відтворення</li>
+                <li>Ваші відео</li>
+                <li>Переглянути пізніше</li>
+                <li>Відео, які сподобалися</li>
+            </ul>
+            <h3>Підписки</h3>
+            <ul>
+                <li>Всесвіт UA</li>
+                <li>Riddle UA</li>
+                <li>SEREDA</li>
+                <li>АУКЦІОН КОН...</li>
+                <li>Показати більше</li>
+            </ul>
+        </aside>
+        <main class="content">
+            <h1>Головна</h1>
+            <div class="video-grid">
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_video_thumbnail.jpg" alt="Марс. Шлях К'юріосіті">
+                    <h3>Марс. Шлях К'юріосіті</h3>
+                    <p>43 тис. переглядів • 5 днів тому</p>
+                </div>
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_video_thumbnail2.jpg" alt="Марс. Spirit і Opportunity - незламні першопроходці.">
+                    <h3>Марс. Spirit і Opportunity - незламні першопроходці.</h3>
+                    <p>101 тис. переглядів • 2 тижні тому</p>
+                </div>
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_video_thumbnail3.jpg" alt="Дивись вгору! Як спалахне Т Гівіньчої Корони?">
+                    <h3>Дивись вгору! Як спалахне Т Гівіньчої Корони?</h3>
+                    <p>37 тис. переглядів • 1 місяць тому</p>
+                </div>
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_video_thumbnail4.jpg" alt="Марс! Досліди червону планету, щоб зрозуміти...">
+                    <h3>Марс! Досліди червону планету, щоб зрозуміти...</h3>
+                    <p>218 тис. переглядів • 1 місяць тому</p>
+                </div>
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_video_thumbnail5.jpg" alt="Еволюція подвійних зір.">
+                    <h3>Еволюція подвійних зір.</h3>
+                    <p>57 тис. переглядів • 1 місяць тому</p>
+                </div>
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_video_thumbnail6.jpg" alt="Нова «друга земля» - Gliese 12b! Крутiше за...">
+                    <h3>Нова «друга земля» - Gliese 12b! Крутiше за...</h3>
+                    <p>50 тис. переглядів • 1 місяць тому</p>
+                </div>
+            </div>
+            <h1>Створені списки відтворення</h1>
+            <div class="video-grid">
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_playlist_thumbnail.jpg" alt="Марс">
+                    <h3>Марс</h3>
+                    <p>6 відео</p>
+                </div>
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_playlist_thumbnail2.jpg" alt="Добірки">
+                    <h3>Добірки</h3>
+                    <p>Найдивовижніші... СОНЯЧНОЇ СИ...</p>
+                </div>
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_playlist_thumbnail3.jpg" alt="Джеймс Вебб">
+                    <h3>Джеймс Вебб</h3>
+                    <p>27 відео</p>
+                </div>
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_playlist_thumbnail4.jpg" alt="Колонізація космосу">
+                    <h3>Колонізація космосу</h3>
+                    <p>8 відео</p>
+                </div>
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_playlist_thumbnail5.jpg" alt="Придатні для життя світи">
+                    <h3>Придатні для життя світи</h3>
+                    <p>16 відео</p>
+                </div>
+                <div class="video-card">
+                    <img src="https://i.ytimg.com/vi/some_playlist_thumbnail6.jpg" alt="Новини">
+                    <h3>Новини</h3>
+                    <p>32 відео</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
