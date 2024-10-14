@@ -1,0 +1,15 @@
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\bin\Debug\net8.0\MyVbNetApp.exe
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\bin\Debug\net8.0\MyVbNetApp.deps.json
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\bin\Debug\net8.0\MyVbNetApp.runtimeconfig.json
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\bin\Debug\net8.0\MyVbNetApp.dll
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\bin\Debug\net8.0\MyVbNetApp.pdb
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\obj\Debug\net8.0\MyVbNetApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\obj\Debug\net8.0\MyVbNetApp.AssemblyInfoInputs.cache
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\obj\Debug\net8.0\MyVbNetApp.AssemblyInfo.vb
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\obj\Debug\net8.0\MyVbNetApp.vbproj.CoreCompileInputs.cache
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\obj\Debug\net8.0\MyVbNetApp.sourcelink.json
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\obj\Debug\net8.0\MyVbNetApp.dll
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\obj\Debug\net8.0\refint\MyVbNetApp.dll
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\obj\Debug\net8.0\MyVbNetApp.pdb
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\obj\Debug\net8.0\MyVbNetApp.genruntimeconfig.cache
+D:\Privat\IT\GIT\Launcher\src\pages\guidePages\Windows\Programs\MyVbNetApp\obj\Debug\net8.0\ref\MyVbNetApp.dll

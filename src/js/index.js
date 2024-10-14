@@ -78,7 +78,7 @@ function loadContent(url, targetId) {
                 fetchAndDisplayContent(filePath, element.id);
             }
         });
-    }, 3000); // 1000 мс = 1 секунда
+    }, 2000); // 1000 мс = 1 секунда
 }
 // Завантаження вмісту за замовчуванням при завантаженні сторінки
 window.onload = loadDefaultContent;
