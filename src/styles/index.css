@@ -345,6 +345,16 @@ header {
 header img {
     height: 40px;
 }
+.NamePage {
+    font-size: 24px;
+    margin: 0;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: dotted;
+    border-color: #8d8d8d;
+}
 nav ul {
     list-style: none;
     display: flex;
@@ -362,14 +372,15 @@ nav ul li {
 }
 .sidebar {
     width: 220px;
-    background-color: #202020;
+    background-color: #20202071;
+    backdrop-filter: blur(5px);
     padding: 15px;
-    height: 100vh;
     overflow-y: auto;
     position: fixed;
     z-index: 9;
     top: 60px;
     height: 80%;
+    border: 2px solid #282828;
 }
 .sidebar ul {
     list-style: none;
@@ -403,7 +414,7 @@ nav ul li {
 }
 .content {
     width: 80%;
-    padding: 20px 20px 0 260px;
+    padding: 20px 20px 0 280px;
 }
 .content h1 {
     font-size: 24px;
@@ -413,6 +424,7 @@ nav ul li {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 15px;
+    margin-top: 20px;
 }
 .scroll {
     display: flex;
@@ -420,3 +432,4 @@ nav ul li {
     overflow-x: auto;
     flex-wrap: wrap;
 }
+
